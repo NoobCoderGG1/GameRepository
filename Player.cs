@@ -4,11 +4,9 @@ using System.Collections.Generic;
 
 public partial class Player : CharacterBody2D
 {
-	public string[] weapones = new string[] { "Arms", "Gun" }; //Пока нигде не используется
-	static public int currentWeaponeIndex = 0;
-	public float Damage = 5f;
-
+	public int currentWeaponeIndex = -1;
 	private float hp = 100.0f;
+	public float Damage = 1f;
 	public float HP { get { return hp; } set { hp = value; } }
 	public List<Vector2> helpVector = new List<Vector2>();
 
@@ -16,60 +14,63 @@ public partial class Player : CharacterBody2D
 	public const float JumpVelocity = -400.0f;
 
 	public int countMoney = 0;
+	public List<Weapon> inventory = new List<Weapon>();
 
 	public float PosX;
 	public float PosY;
 	
-	private List<Enemy1> enemies = new List<Enemy1>();
+	public List<Enemy1> enemies = new List<Enemy1>();
 
 	public override void _Ready()
 	{
+		// Получается, что на каждой карте есть "реальный игрок", который бегает, стреляет
+		// и есть "виртуальный игрок", который покупает и выбирает предметы
+		// связь между ними реализована через вход "реального" в сцену
+		// с копированием значения полей монеток и выбранных оружий
+		/* Реальный_игрок.инвентарь = вирутальный_игрок.инвентарь */
+		inventory = GetTree().Root.GetNode<Main>("Main").player.inventory;
+		countMoney = GetTree().Root.GetNode<Main>("Main").player.countMoney;
 		PosX = GetNode<CollisionShape2D>("AreaPlayer/AreaCollision").Position.X;
 		PosY = GetNode<CollisionShape2D>("AreaPlayer/AreaCollision").Position.Y;
-	}
+	}	
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if(hp <= 0) GD.Print("Убит"); 
 		Vector2 velocity = Velocity;
 		Vector2 v2 = new Vector2();
 
-		// Add the gravity.
 		if (!IsOnFloor())
 			velocity.Y += gravity * (float)delta;
 
-
-		// Handle Jump.
 		if (Input.IsActionJustPressed("ui_accept") && IsOnFloor())
 			velocity.Y = JumpVelocity;
 		if (Input.IsActionJustPressed("move_down") && IsOnFloor())
 			Position = new Vector2(Position.X, Position.Y + 5);
-		if (Input.IsActionJustPressed("change_weapone"))
+		
+		if (Input.IsActionJustPressed("change_weapone") && inventory.Count>1)
 		{
-			switch(currentWeaponeIndex) 
-			{ 
-				case 0: 
-					currentWeaponeIndex = 1; 
-					break;
+			switch (currentWeaponeIndex)
+			{
+				case -1:
+				case 0:
+					currentWeaponeIndex = 1;
+				break;
 				case 1:
 					currentWeaponeIndex = 0;
-					break;
+				break;
 			}
+		Damage = inventory[currentWeaponeIndex].Damage;
 		}
-		if (Input.IsActionJustPressed("melee_attack") && IsOnFloor() && currentWeaponeIndex == 0)
+		
+		if (Input.IsActionJustPressed("melee_attack") && IsOnFloor() && currentWeaponeIndex == -1)
 		{
 			foreach (var enemy in enemies) { 
 				enemy.HP -= Damage; 
-				GD.Print(enemy.HP); 
 			}
-			GD.Print("Hit!");
-			
 		}
 
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "move_down");
 
 		switch (direction)
@@ -94,30 +95,34 @@ public partial class Player : CharacterBody2D
 		Velocity = velocity;
 		MoveAndSlide();
 	}
-	private void body_entered(Node2D body)
-	{
-		if (body.GetType() == typeof(Enemy1))
+	private void _on_shooting_body_entered(Node2D body)
+{
+	if(body != null)
+		{
+			((Enemy1)body).HP-=24;
+			GD.Print("Попадание");
+		}
+}
+
+private void body_entered(Node2D body)
+{
+	if (body.GetType() == typeof(Enemy1))
 		{
 			if (!enemies.Contains((Enemy1)body) && body != null)
 				enemies.Add((Enemy1)body);
 			GD.Print("A");
 		}
-	}
-	private void body_exited(Node2D body)
-	{
-		if (body.GetType() == typeof(Enemy1))
+}
+
+private void body_exited(Node2D body)
+{
+	if (body.GetType() == typeof(Enemy1))
 		{
 			if (enemies.Contains((Enemy1)body) && body != null)
 				enemies.Remove((Enemy1)body);
 			GD.Print("B");
 		}
-	}
-	private void _on_shooting_body_entered(Node2D body)
-	{
-		if(body != null && currentWeaponeIndex == 1)
-		{
-			((Enemy1)body).HP-=24;
-			GD.Print("Попадание");
-		}
-	}
 }
+}
+
+

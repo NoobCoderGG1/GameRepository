@@ -9,7 +9,6 @@ public partial class Button2 : Button
 	CharacterBody2D player;
 	DateTime time = DateTime.Now;
 	public float offset;
-	List<Vector2> hlp;
 	public override void _Ready()
 	{
 		player = GetTree().Root.GetNode<Node2D>("Level").GetNode<CharacterBody2D>("Player");
@@ -50,7 +49,7 @@ public partial class Button2 : Button
 	} 
 	
 	private bool ChkTile(float userPositionX, float userPositionY, int offset){
-		var chk = GetTree().Root.GetNode<Node>("Level").GetNode<TileMap>("TileMap").GetCellTileData(2, new Vector2I( (int) ((userPositionX+offset)/16), (int) (userPositionY/16) ) );
+		var chk = GetTree().Root.GetNode<Node>("Level").GetNode<TileMap>("TileMap").GetCellTileData(2, new Vector2I( (int) ((userPositionX+offset)/16), (int) (userPositionY/16) ) );		
 		if (chk!=null) return true;
 		return false;
 	}

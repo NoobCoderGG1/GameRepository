@@ -4,10 +4,10 @@ using System;
 public partial class Enemy1 : CharacterBody2D
 {
 	private PackedScene coin_scene = (PackedScene)ResourceLoader.Load("res://coin.tscn");
-
-	public float Speed = 50f;
+	public const float Speed = 50f;
 	public float Damage = 30f;
 	public float HP = 1f;
+	DateTime time = DateTime.Now;
 
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	public const float delay = 3f;
@@ -19,14 +19,14 @@ public partial class Enemy1 : CharacterBody2D
 			coin coin = (coin)coin_scene.Instantiate();
 			coin.Position = new Vector2(x: Position.X, Position.Y);
 			GetTree().Root.AddChild(coin);
-			level.enemies.Remove(this);
+			LevelLevel.enemies.Remove(this);
 			QueueFree();
-			
 		}
 		GD.Print(HP);
+		
 		Vector2 velocity = Velocity;
 		Vector2 target_velocity = new Vector2();
-
+		
 		if (Mathf.Abs(Position.X - GetParent().GetNode<CharacterBody2D>("Player").Position.X) > 25 ||
 		Mathf.Abs(Position.Y - GetParent().GetNode<CharacterBody2D>("Player").Position.Y) > 25)
 		{
@@ -53,5 +53,6 @@ public partial class Enemy1 : CharacterBody2D
 
 		Velocity = target_velocity;
 		MoveAndSlide();
+		
 	}
 }

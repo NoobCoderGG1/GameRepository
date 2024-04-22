@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-
 public partial class timerCount : Control
 {
 	float time_counter = 50.0F;
@@ -23,7 +22,7 @@ public partial class timerCount : Control
 				attempt = false;
 				break;
 			case (1, 0, false):
-				foreach(Enemy1 enemy in level.enemies)
+				foreach(Enemy1 enemy in LevelLevel.enemies)
 				{
 					enemy.Damage *= 2;
 					enemy.HP += 9f;
