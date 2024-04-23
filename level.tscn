@@ -187,6 +187,3 @@ script = ExtResource("10_se7un")
 [connection signal="body_entered" from="Player/Shooting" to="Player" method="_on_shooting_body_entered"]
 [connection signal="body_entered" from="Player/AreaPlayer" to="Player" method="body_entered"]
 [connection signal="body_exited" from="Player/AreaPlayer" to="Player" method="body_exited"]
-[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@37734" to="TileMap/@Area2D@37734" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@37735" to="TileMap/@Area2D@37735" method="_on_body_entered"]

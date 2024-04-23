@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ducane6xw4aa7"]
+[gd_scene load_steps=6 format=3 uid="uid://ducane6xw4aa7"]
 
 [ext_resource type="Script" path="res://Play.cs" id="1_jvm52"]
 [ext_resource type="Script" path="res://Main.cs" id="1_th2sm"]
+[ext_resource type="Texture2D" uid="uid://2lljpxvdeqxe" path="res://MenuSprite.png" id="2_flpll"]
 [ext_resource type="Script" path="res://Shop.cs" id="2_yr6vm"]
 [ext_resource type="Script" path="res://Invertory.cs" id="3_dlga4"]
 
@@ -14,29 +15,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_th2sm")
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture_filter = 2
+position = Vector2(576, 326)
+texture = ExtResource("2_flpll")
+
 [node name="Play" type="Button" parent="."]
 layout_mode = 0
-offset_left = 331.0
-offset_top = 38.0
-offset_right = 534.0
-offset_bottom = 143.0
+offset_left = 423.44
+offset_top = 100.0
+offset_right = 744.79
+offset_bottom = 191.275
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(0.972549, 0.839216, 0.921569, 1)
+theme_override_colors/icon_normal_color = Color(0.109804, 0.109804, 0.109804, 1)
+theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_focus_color = Color(0.713726, 0.713726, 0.713726, 1)
+theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
 text = "PLAY"
 script = ExtResource("1_jvm52")
 
 [node name="Shop" type="Button" parent="."]
 layout_mode = 0
-offset_left = 326.0
-offset_top = 188.0
-offset_right = 543.0
-offset_bottom = 294.0
+offset_left = 423.44
+offset_top = 240.0
+offset_right = 744.79
+offset_bottom = 331.275
 text = "SHOP"
 script = ExtResource("2_yr6vm")
 
 [node name="Invertory" type="Button" parent="."]
 layout_mode = 0
-offset_left = 329.0
-offset_top = 330.0
-offset_right = 541.0
-offset_bottom = 419.0
+offset_left = 423.44
+offset_top = 380.0
+offset_right = 744.79
+offset_bottom = 471.275
 text = "INVENTARY"
 script = ExtResource("3_dlga4")

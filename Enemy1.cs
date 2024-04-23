@@ -6,7 +6,7 @@ public partial class Enemy1 : CharacterBody2D
 	private PackedScene coin_scene = (PackedScene)ResourceLoader.Load("res://coin.tscn");
 	public const float Speed = 50f;
 	public float Damage = 30f;
-	public float HP = 1f;
+	public float HP = 50f;
 	DateTime time = DateTime.Now;
 
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
@@ -21,9 +21,7 @@ public partial class Enemy1 : CharacterBody2D
 			GetTree().Root.AddChild(coin);
 			LevelLevel.enemies.Remove(this);
 			QueueFree();
-		}
-		GD.Print(HP);
-		
+		}		
 		Vector2 velocity = Velocity;
 		Vector2 target_velocity = new Vector2();
 		

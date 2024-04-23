@@ -7,6 +7,7 @@ public partial class Player : CharacterBody2D
 	public int currentWeaponeIndex = -1;
 	private float hp = 100.0f;
 	public float Damage = 1f;
+	public float MeleeDamage = 30f;
 	public float HP { get { return hp; } set { hp = value; } }
 	public List<Vector2> helpVector = new List<Vector2>();
 
@@ -29,6 +30,8 @@ public partial class Player : CharacterBody2D
 		// с копированием значения полей монеток и выбранных оружий
 		/* Реальный_игрок.инвентарь = вирутальный_игрок.инвентарь */
 		inventory = GetTree().Root.GetNode<Main>("Main").player.inventory;
+		inventory.Add(new Weapon("Knife", 100, 50));
+		// Name FireRate Damage BulletSpeed Status CurrentBullet Capacity
 		countMoney = GetTree().Root.GetNode<Main>("Main").player.countMoney;
 		PosX = GetNode<CollisionShape2D>("AreaPlayer/AreaCollision").Position.X;
 		PosY = GetNode<CollisionShape2D>("AreaPlayer/AreaCollision").Position.Y;
@@ -56,18 +59,24 @@ public partial class Player : CharacterBody2D
 				case -1:
 				case 0:
 					currentWeaponeIndex = 1;
+					GD.Print(currentWeaponeIndex);
 				break;
 				case 1:
+					currentWeaponeIndex = 2;
+					GD.Print(currentWeaponeIndex);
+					break;
+				case 2:
 					currentWeaponeIndex = 0;
+					GD.Print(currentWeaponeIndex);
 				break;
 			}
 		Damage = inventory[currentWeaponeIndex].Damage;
 		}
 		
-		if (Input.IsActionJustPressed("melee_attack") && IsOnFloor() && currentWeaponeIndex == -1)
+		if (Input.IsActionJustPressed("melee_attack") && IsOnFloor())
 		{
 			foreach (var enemy in enemies) { 
-				enemy.HP -= Damage; 
+				enemy.HP -= MeleeDamage; 
 			}
 		}
 
@@ -90,39 +99,36 @@ public partial class Player : CharacterBody2D
 			case { X: 0, Y: _ }:
 				velocity.X = Mathf.MoveToward(Velocity.X, 0, Speed);
 				break;
-
 		}
 		Velocity = velocity;
 		MoveAndSlide();
 	}
+
 	private void _on_shooting_body_entered(Node2D body)
-{
-	if(body != null)
+	{
+		if(body != null)
 		{
 			((Enemy1)body).HP-=24;
 			GD.Print("Попадание");
 		}
-}
+	}
 
-private void body_entered(Node2D body)
-{
-	if (body.GetType() == typeof(Enemy1))
+	private void body_entered(Node2D body)
+	{
+		if (body.GetType() == typeof(Enemy1))
 		{
 			if (!enemies.Contains((Enemy1)body) && body != null)
 				enemies.Add((Enemy1)body);
 			GD.Print("A");
 		}
+	}
+	private void body_exited(Node2D body)
+	{
+		if (body.GetType() == typeof(Enemy1))
+			{
+				if (enemies.Contains((Enemy1)body) && body != null)
+					enemies.Remove((Enemy1)body);
+				GD.Print("B");
+			}
+	}
 }
-
-private void body_exited(Node2D body)
-{
-	if (body.GetType() == typeof(Enemy1))
-		{
-			if (enemies.Contains((Enemy1)body) && body != null)
-				enemies.Remove((Enemy1)body);
-			GD.Print("B");
-		}
-}
-}
-
-

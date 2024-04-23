@@ -3,7 +3,7 @@ using System;
 
 public partial class timerCount : Control
 {
-	float time_counter = 50.0F;
+	float time_counter = 0.0F;
 	public static int min, sec;
 	bool attempt = false; //mutex
 

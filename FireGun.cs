@@ -6,12 +6,27 @@ public partial class FireGun : Button
 	Player player;
 	DateTime dt;
 	Weapon weapon;
+	bool isPressed = false;
+	Player realPlayer;
+	
 	
 	public override void _Ready()
 	{
 		Pressed += ButtonPressed;
+		GuiInput += Inp;
 		player = GetTree().Root.GetNode<Main>("Main").player;
 		dt = DateTime.Now;
+		realPlayer = GetTree().Root.GetNode<LevelLevel>("Level").GetNode<Player>("Player");
+	}
+	
+	public override void _PhysicsProcess(double delta){
+		if (isPressed) ButtonPressed();
+	}
+	
+	public void Inp(InputEvent i){
+		ReleaseFocus();
+		if (i.AsText() == "Left Mouse Button")
+			isPressed = !isPressed;
 	}
 	
 	public new void ButtonPressed(){
@@ -19,7 +34,9 @@ public partial class FireGun : Button
 		int indx = GetTree().Root.GetNode<LevelLevel>("Level").GetNode<Player>("Player").currentWeaponeIndex;
 		weapon = player.inventory[indx];
 		int fr = (int)weapon.FireRate;
+
 		if (DateTime.Now - dt < (new TimeSpan(0, 0, (int) fr / 60000,(int) fr / 1000,(int) fr % 1000))) return;
+
 		if (indx == -1) return;
 		if (player.inventory[indx].CurrentBullet==0){
 			GD.Print("Перезарядка");
@@ -37,7 +54,10 @@ public partial class FireGun : Button
 		area.BodyEntered += (Node2D body) => {
 			if (body is Enemy1 || body is Godot.TileMap){
 				if (body is Enemy1){
-					((Enemy1)body).HP-=player.Damage;
+					GD.Print();
+					GD.Print(((Enemy1)body).HP);
+					((Enemy1)body).HP-=realPlayer.Damage;
+					GD.Print(((Enemy1)body).HP);
 				}
 				else if (body is Godot.TileMap){
 				}
