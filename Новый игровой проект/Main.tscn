@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://ducane6xw4aa7"]
+
+[ext_resource type="Script" path="res://Play.cs" id="1_jvm52"]
+[ext_resource type="Script" path="res://Main.cs" id="1_th2sm"]
+[ext_resource type="Script" path="res://Shop.cs" id="2_yr6vm"]
+[ext_resource type="Script" path="res://Invertory.cs" id="3_dlga4"]
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_th2sm")
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 331.0
+offset_top = 38.0
+offset_right = 534.0
+offset_bottom = 143.0
+text = "PLAY"
+script = ExtResource("1_jvm52")
+
+[node name="Shop" type="Button" parent="."]
+layout_mode = 0
+offset_left = 326.0
+offset_top = 188.0
+offset_right = 543.0
+offset_bottom = 294.0
+text = "SHOP"
+script = ExtResource("2_yr6vm")
+
+[node name="Invertory" type="Button" parent="."]
+layout_mode = 0
+offset_left = 329.0
+offset_top = 330.0
+offset_right = 541.0
+offset_bottom = 419.0
+text = "INVENTARY"
+script = ExtResource("3_dlga4")

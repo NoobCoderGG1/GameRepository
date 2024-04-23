@@ -1,0 +1,192 @@
+[gd_scene load_steps=22 format=3 uid="uid://cfknpy3jq0hnx"]
+
+[ext_resource type="Script" path="res://LevelLevel.cs" id="1_7fown"]
+[ext_resource type="Texture2D" uid="uid://5ho6llrlmm2w" path="res://Sprite-0001.png" id="1_che11"]
+[ext_resource type="Texture2D" uid="uid://dpdcrhbfr14jo" path="res://Sprite-0002.png" id="2_4vdjm"]
+[ext_resource type="PackedScene" uid="uid://rgiweocllj5k" path="res://timer.tscn" id="2_p0dqg"]
+[ext_resource type="PackedScene" uid="uid://lbg751jqdlsf" path="res://platform.tscn" id="3_si554"]
+[ext_resource type="Texture2D" uid="uid://cidbf6gsvthhf" path="res://icon.svg" id="4_n77mu"]
+[ext_resource type="Script" path="res://Player.cs" id="6_a5er8"]
+[ext_resource type="PackedScene" uid="uid://ck0d8p23fx41l" path="res://coin.tscn" id="7_elcrk"]
+[ext_resource type="Script" path="res://Button.cs" id="8_on6u2"]
+[ext_resource type="PackedScene" uid="uid://dhi6u5vxm6umv" path="res://enemy_1.tscn" id="9_h0e5q"]
+[ext_resource type="Script" path="res://Button2.cs" id="9_lllyu"]
+[ext_resource type="Script" path="res://FireGun.cs" id="10_se7un"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6n8ot"]
+b = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff43g"]
+size = Vector2(20, 18)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mwd22"]
+points = PackedVector2Array(10, 9, 10, -9, 0, -20, -10, -9, -10, 9)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uxume"]
+b = Vector2(0, 0)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8sqk"]
+texture = ExtResource("1_che11")
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2.74004, -8, 2.91681, -8, 3.27037, -3.44715, 4.15425, 0.795495, 6.45235, 8, -6.62913, 8, -2.56326, 0.265165)
+0:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_1/angular_velocity = 0.0
+0:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_2/angular_velocity = 0.0
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-5.39169, -8, 8, -5.74524, 6.45235, -1.5026, 5.74524, 2.38649, 5.03814, 8, -1.32583, 8, -2.38649, 1.14905)
+1:0/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_1/angular_velocity = 0.0
+1:0/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_2/angular_velocity = 0.0
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+0:1/0/physics_layer_1/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+0:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_2/angular_velocity = 0.0
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_1/angular_velocity = 0.0
+1:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_2/angular_velocity = 0.0
+1:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yyv1v"]
+texture = ExtResource("2_4vdjm")
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_1/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_1/angular_velocity = 0.0
+0:1/0/physics_layer_2/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_2/angular_velocity = 0.0
+0:1/0/physics_layer_2/polygon_0/points = PackedVector2Array(8, -8, -8, -8, -8, 8, 8, 8)
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_vg0q7"]
+scenes/1/scene = ExtResource("3_si554")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_8v2pn"]
+scenes/1/scene = ExtResource("7_elcrk")
+
+[sub_resource type="TileSet" id="TileSet_xqv2g"]
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 33
+physics_layer_1/collision_layer = 1
+physics_layer_1/collision_mask = 35
+physics_layer_2/collision_layer = 8
+physics_layer_2/collision_mask = 4
+sources/0 = SubResource("TileSetAtlasSource_q8sqk")
+sources/1 = SubResource("TileSetAtlasSource_yyv1v")
+sources/2 = SubResource("TileSetScenesCollectionSource_vg0q7")
+sources/3 = SubResource("TileSetScenesCollectionSource_8v2pn")
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_7fown")
+
+[node name="Timer" parent="." instance=ExtResource("2_p0dqg")]
+offset_left = 190.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 3.0
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(120.705, 80.885)
+zoom = Vector2(4.665, 4.2)
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(37, 80.915)
+collision_mask = 165
+script = ExtResource("6_a5er8")
+
+[node name="Shooting" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Shooting"]
+z_index = 1
+shape = SubResource("SegmentShape2D_6n8ot")
+debug_color = Color(0.658824, 0.517647, 0, 0.419608)
+
+[node name="AreaPlayer" type="Area2D" parent="Player"]
+collision_layer = 16
+collision_mask = 36
+
+[node name="AreaCollision" type="CollisionShape2D" parent="Player/AreaPlayer"]
+modulate = Color(0, 0, 0, 1)
+shape = SubResource("RectangleShape2D_ff43g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("ConvexPolygonShape2D_mwd22")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+scale = Vector2(0.148438, 0.15625)
+texture = ExtResource("4_n77mu")
+
+[node name="HelpShooting" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HelpShooting"]
+z_index = 1
+shape = SubResource("SegmentShape2D_uxume")
+debug_color = Color(0, 1, 0, 1)
+
+[node name="TileMap" type="TileMap" parent="."]
+texture_filter = 1
+tile_set = SubResource("TileSet_xqv2g")
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(393216, 0, 1, 393217, 0, 1, 393218, 0, 1, 393219, 0, 1, 393220, 0, 1, 393221, 0, 1, 393222, 0, 1, 393223, 0, 1, 393224, 0, 1, 393225, 0, 1, 393226, 0, 1, 393227, 0, 1, 393228, 0, 1, 393229, 0, 1, 393230, 0, 1, 458752, 0, 1, 458753, 0, 1, 458754, 0, 1, 524291, 0, 1, 524292, 0, 1, 524293, 0, 1, 524294, 0, 1, 524295, 0, 1, 524296, 0, 1, 589832, 0, 1, 589833, 0, 1, 589834, 0, 1, 589835, 0, 1, 589836, 0, 1, 589837, 0, 1, 589838, 0, 1, 524302, 0, 1, 458766, 0, 1, 458765, 0, 1, 458764, 0, 1, 458763, 0, 1, 458762, 0, 1, 458761, 0, 1, 458760, 0, 1, 458759, 0, 1, 458758, 0, 1, 458757, 0, 1, 458756, 0, 1, 458755, 0, 1, 524297, 0, 1, 524298, 0, 1, 524299, 0, 1, 524300, 0, 1, 524301, 0, 1, 524290, 0, 1, 524289, 0, 1, 524288, 0, 1, 589824, 0, 1, 589825, 0, 1, 589826, 0, 1, 589827, 0, 1, 589828, 0, 1, 589829, 0, 1, 589830, 0, 1, 589831, 0, 1, 65539, 2, 65536, 327680, 0, 1)
+layer_1/name = "Sky"
+layer_1/z_index = -1
+layer_1/tile_data = PackedInt32Array(0, 1, 1, 65536, 1, 1, 131072, 1, 1, 196608, 1, 1, 262144, 1, 1, 327680, 1, 1, 393216, 1, 1, 458752, 1, 1, 524288, 1, 1, 589824, 1, 1, 1, 1, 1, 65537, 1, 1, 131073, 1, 1, 196609, 1, 1, 262145, 1, 1, 327681, 1, 1, 393217, 1, 1, 458753, 1, 1, 524289, 1, 1, 589825, 1, 1, 2, 1, 1, 65538, 1, 1, 131074, 1, 1, 196610, 1, 1, 262146, 1, 1, 327682, 1, 1, 393218, 1, 1, 458754, 1, 1, 524290, 1, 1, 589826, 1, 1, 3, 1, 1, 65539, 1, 1, 131075, 1, 1, 196611, 1, 1, 262147, 1, 1, 327683, 1, 1, 393219, 1, 1, 458755, 1, 1, 524291, 1, 1, 589827, 1, 1, 4, 1, 1, 65540, 1, 1, 131076, 1, 1, 196612, 1, 1, 262148, 1, 1, 327684, 1, 1, 393220, 1, 1, 458756, 1, 1, 524292, 1, 1, 589828, 1, 1, 5, 1, 1, 65541, 1, 1, 131077, 1, 1, 196613, 1, 1, 262149, 1, 1, 327685, 1, 1, 393221, 1, 1, 458757, 1, 1, 524293, 1, 1, 589829, 1, 1, 6, 1, 1, 65542, 1, 1, 131078, 1, 1, 196614, 1, 1, 262150, 1, 1, 327686, 1, 1, 393222, 1, 1, 458758, 1, 1, 524294, 1, 1, 589830, 1, 1, 7, 1, 1, 65543, 1, 1, 131079, 1, 1, 196615, 1, 1, 262151, 1, 1, 327687, 1, 1, 393223, 1, 1, 458759, 1, 1, 524295, 1, 1, 589831, 1, 1, 8, 1, 1, 65544, 1, 1, 131080, 1, 1, 196616, 1, 1, 262152, 1, 1, 327688, 1, 1, 393224, 1, 1, 458760, 1, 1, 524296, 1, 1, 589832, 1, 1, 9, 1, 1, 65545, 1, 1, 131081, 1, 1, 196617, 1, 1, 262153, 1, 1, 327689, 1, 1, 393225, 1, 1, 458761, 1, 1, 524297, 1, 1, 589833, 1, 1, 10, 1, 1, 65546, 1, 1, 131082, 1, 1, 196618, 1, 1, 262154, 1, 1, 327690, 1, 1, 393226, 1, 1, 458762, 1, 1, 524298, 1, 1, 589834, 1, 1, 11, 1, 1, 65547, 1, 1, 131083, 1, 1, 196619, 1, 1, 262155, 1, 1, 327691, 1, 1, 393227, 1, 1, 458763, 1, 1, 524299, 1, 1, 589835, 1, 1, 12, 1, 1, 65548, 1, 1, 131084, 1, 1, 196620, 1, 1, 262156, 1, 1, 327692, 1, 1, 393228, 1, 1, 458764, 1, 1, 524300, 1, 1, 589836, 1, 1, 13, 1, 1, 65549, 1, 1, 131085, 1, 1, 196621, 1, 1, 262157, 1, 1, 327693, 1, 1, 393229, 1, 1, 458765, 1, 1, 524301, 1, 1, 589837, 1, 1, 14, 1, 1, 65550, 1, 1, 131086, 1, 1, 196622, 1, 1, 262158, 1, 1, 327694, 1, 1, 393230, 1, 1, 458766, 1, 1, 524302, 1, 1, 589838, 1, 1)
+layer_2/name = "Trees"
+layer_2/z_index = 1
+layer_2/tile_data = PackedInt32Array(327692, 0, 0, 327687, 0, 0, 262156, 65536, 0, 262151, 65536, 0, 262150, 65536, 1, 196614, 65536, 1, 196616, 65536, 1, 262152, 65536, 1, 196615, 65536, 1, 131079, 65536, 1, 262155, 65536, 1, 196619, 65536, 1, 196620, 65536, 1, 196621, 65536, 1, 262157, 65536, 1, 131084, 65536, 1, 327690, 3, 65536, 327689, 3, 65536, 327684, 3, 65536)
+
+[node name="Enemy1" parent="." instance=ExtResource("9_h0e5q")]
+
+[node name="Menu" type="Button" parent="."]
+offset_left = 2.0
+offset_top = 127.0
+offset_right = 56.0
+offset_bottom = 158.0
+text = "меню"
+script = ExtResource("8_on6u2")
+
+[node name="Fire" type="Button" parent="."]
+offset_left = 158.0
+offset_top = 127.0
+offset_right = 240.0
+offset_bottom = 158.0
+text = "стрельба"
+script = ExtResource("9_lllyu")
+
+[node name="FireGun" type="Button" parent="."]
+offset_left = 80.0
+offset_top = 127.0
+offset_right = 150.0
+offset_bottom = 158.0
+text = "FireGun"
+script = ExtResource("10_se7un")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
+[connection signal="body_entered" from="Player/Shooting" to="Player" method="_on_shooting_body_entered"]
+[connection signal="body_entered" from="Player/AreaPlayer" to="Player" method="body_entered"]
+[connection signal="body_exited" from="Player/AreaPlayer" to="Player" method="body_exited"]
+[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@37124" to="TileMap/@Area2D@37124" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@37125" to="TileMap/@Area2D@37125" method="_on_body_entered"]
