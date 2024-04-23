@@ -1,0 +1,119 @@
+[gd_scene load_steps=6 format=3 uid="uid://bsyprmbw6mk73"]
+
+[ext_resource type="Script" path="res://Shop/to_menu.gd" id="2_oc2bk"]
+[ext_resource type="Script" path="res://Shop/weapons.gd" id="2_vfph1"]
+[ext_resource type="Script" path="res://Shop/buy.gd" id="4_of4yv"]
+[ext_resource type="Script" path="res://Shop/user_money.gd" id="4_xue4i"]
+[ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="5_oyg04"]
+
+[node name="shop" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="weapons" type="ItemList" parent="."]
+layout_mode = 0
+offset_right = 694.0
+offset_bottom = 715.0
+max_columns = 6
+same_column_width = true
+script = ExtResource("2_vfph1")
+
+[node name="to_menu" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1070.0
+offset_top = 290.0
+offset_right = 1156.0
+offset_bottom = 355.0
+text = "Menu"
+script = ExtResource("2_oc2bk")
+
+[node name="buy" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1066.0
+offset_top = 112.0
+offset_right = 1158.0
+offset_bottom = 183.0
+text = "Buy"
+script = ExtResource("4_of4yv")
+
+[node name="user_money" type="Label" parent="."]
+layout_mode = 0
+offset_left = 713.0
+offset_top = 1.0
+offset_right = 766.0
+offset_bottom = 24.0
+text = "Money: "
+script = ExtResource("4_xue4i")
+
+[node name="weapon_info" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 711.0
+offset_top = 67.0
+offset_right = 751.0
+offset_bottom = 107.0
+
+[node name="image" type="TextureRect" parent="weapon_info"]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 5.0
+offset_right = 139.0
+offset_bottom = 133.0
+texture = ExtResource("5_oyg04")
+
+[node name="name" type="Label" parent="weapon_info"]
+layout_mode = 0
+offset_left = 33.0
+offset_top = 156.0
+offset_right = 80.0
+offset_bottom = 179.0
+text = "Name"
+
+[node name="fire_rate" type="Label" parent="weapon_info"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 204.0
+offset_right = 99.0
+offset_bottom = 227.0
+text = "Fire rate"
+
+[node name="damage" type="Label" parent="weapon_info"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 256.0
+offset_right = 102.0
+offset_bottom = 279.0
+text = "Damage"
+
+[node name="bullet_speed" type="Label" parent="weapon_info"]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 304.0
+offset_right = 130.0
+offset_bottom = 327.0
+text = "Bullet speed"
+
+[node name="capacity" type="Label" parent="weapon_info"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 349.0
+offset_right = 108.0
+offset_bottom = 372.0
+text = "Capacity"
+
+[node name="description" type="Label" parent="weapon_info"]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 392.0
+offset_right = 127.0
+offset_bottom = 415.0
+text = "Description"
+
+[connection signal="item_selected" from="weapons" to="weapons" method="_on_item_selected"]
+[connection signal="ready" from="weapons" to="weapons" method="_on_ready"]
+[connection signal="gui_input" from="to_menu" to="to_menu" method="_on_gui_input"]
+[connection signal="gui_input" from="buy" to="buy" method="_on_gui_input"]
