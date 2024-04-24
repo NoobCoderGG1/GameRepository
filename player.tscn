@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://cm06fyyrqys8p"]
+
+[ext_resource type="Script" path="res://Player.cs" id="1_bsyem"]
+[ext_resource type="Texture2D" uid="uid://cidbf6gsvthhf" path="res://icon.svg" id="2_g8dkx"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_6n8ot"]
+b = Vector2(0, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff43g"]
+size = Vector2(20, 18)
+
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mwd22"]
+points = PackedVector2Array(10, 9, 10, -9, 0, -20, -10, -9, -10, 9)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_uxume"]
+b = Vector2(0, 0)
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(37, 80.915)
+collision_mask = 165
+script = ExtResource("1_bsyem")
+
+[node name="Shooting" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shooting"]
+z_index = 1
+shape = SubResource("SegmentShape2D_6n8ot")
+debug_color = Color(0.658824, 0.517647, 0, 0.419608)
+
+[node name="AreaPlayer" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 36
+
+[node name="AreaCollision" type="CollisionShape2D" parent="AreaPlayer"]
+modulate = Color(0, 0, 0, 1)
+shape = SubResource("RectangleShape2D_ff43g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_mwd22")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.148438, 0.15625)
+texture = ExtResource("2_g8dkx")
+
+[node name="HelpShooting" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HelpShooting"]
+z_index = 1
+shape = SubResource("SegmentShape2D_uxume")
+debug_color = Color(0, 1, 0, 1)
+
+[connection signal="body_entered" from="Shooting" to="." method="_on_shooting_body_entered"]
+[connection signal="body_entered" from="AreaPlayer" to="." method="body_entered"]
+[connection signal="body_exited" from="AreaPlayer" to="." method="body_exited"]

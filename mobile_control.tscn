@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://bjykc8wc4230l"]
+
+[ext_resource type="Texture2D" uid="uid://y6vgd2fecurq" path="res://ButtonSprites/RMoveBtn.png" id="1_vdpqx"]
+[ext_resource type="Texture2D" uid="uid://fv2ljd0aeevp" path="res://ButtonSprites/LMoveBtn.png" id="2_qcgfq"]
+[ext_resource type="Texture2D" uid="uid://ddc6gjtlabxp3" path="res://ButtonSprites/JumpBtn.png" id="3_huxen"]
+[ext_resource type="Texture2D" uid="uid://jj8ji8opp0qq" path="res://ButtonSprites/DownMoveBtn.png" id="4_ftafs"]
+[ext_resource type="Texture2D" uid="uid://bncvqwf0rswj6" path="res://ButtonSprites/AttackBtn.png" id="5_7ohfh"]
+[ext_resource type="Texture2D" uid="uid://dnci64y4v7bax" path="res://ButtonSprites/ChangeWeaponeBtn.png" id="6_y64ai"]
+
+[node name="MobileControl" type="CanvasLayer"]
+
+[node name="RightMoveButton" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(278, 441)
+scale = Vector2(5, 5)
+texture_normal = ExtResource("1_vdpqx")
+texture_pressed = ExtResource("1_vdpqx")
+action = "ui_right"
+
+[node name="LeftMoveButton" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(76, 440)
+scale = Vector2(4.78125, 5.15625)
+texture_normal = ExtResource("2_qcgfq")
+texture_pressed = ExtResource("2_qcgfq")
+action = "ui_left"
+
+[node name="JumpButton" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(778, 302)
+scale = Vector2(5.53125, 4.9375)
+texture_normal = ExtResource("3_huxen")
+texture_pressed = ExtResource("3_huxen")
+action = "ui_accept"
+
+[node name="MoveDownButton" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(721, 485)
+scale = Vector2(5.53125, 4.71875)
+texture_normal = ExtResource("4_ftafs")
+texture_pressed = ExtResource("4_ftafs")
+action = "move_down"
+
+[node name="AttackButton" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(950, 477)
+scale = Vector2(5.6875, 4.125)
+texture_normal = ExtResource("5_7ohfh")
+texture_pressed = ExtResource("5_7ohfh")
+action = "melee_attack"
+
+[node name="ChangeGun" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(971, 291)
+scale = Vector2(5.46875, 5.09375)
+texture_normal = ExtResource("6_y64ai")
+texture_pressed = ExtResource("6_y64ai")
+action = "change_weapone"

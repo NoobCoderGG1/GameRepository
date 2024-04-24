@@ -1,10 +1,41 @@
-[gd_scene load_steps=6 format=3 uid="uid://ducane6xw4aa7"]
+[gd_scene load_steps=16 format=3 uid="uid://ducane6xw4aa7"]
 
 [ext_resource type="Script" path="res://Play.cs" id="1_jvm52"]
 [ext_resource type="Script" path="res://Main.cs" id="1_th2sm"]
 [ext_resource type="Texture2D" uid="uid://2lljpxvdeqxe" path="res://MenuSprite.png" id="2_flpll"]
 [ext_resource type="Script" path="res://Shop.cs" id="2_yr6vm"]
 [ext_resource type="Script" path="res://Invertory.cs" id="3_dlga4"]
+[ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://ButtonSprites/ButtonSprite.png" id="3_jmr2i"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_couu4"]
+texture = ExtResource("3_jmr2i")
+modulate_color = Color(0.054902, 0.709804, 0.537255, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_kyn88"]
+texture = ExtResource("3_jmr2i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7lgo"]
+texture = ExtResource("3_jmr2i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qudeg"]
+texture = ExtResource("3_jmr2i")
+modulate_color = Color(0.054902, 0.709804, 0.537255, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6ckq1"]
+texture = ExtResource("3_jmr2i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_m7b7j"]
+texture = ExtResource("3_jmr2i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0nimk"]
+texture = ExtResource("3_jmr2i")
+modulate_color = Color(0.054902, 0.709804, 0.537255, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xau4t"]
+texture = ExtResource("3_jmr2i")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_odt3p"]
+texture = ExtResource("3_jmr2i")
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -16,40 +47,53 @@ grow_vertical = 2
 script = ExtResource("1_th2sm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-z_index = -1
-texture_filter = 2
-position = Vector2(576, 326)
+z_index = -2
+texture_filter = 1
+position = Vector2(576, 325.5)
+scale = Vector2(11.52, 6.45)
 texture = ExtResource("2_flpll")
 
 [node name="Play" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 423.44
-offset_top = 100.0
-offset_right = 744.79
-offset_bottom = 191.275
+offset_left = 421.0
+offset_top = 157.0
+offset_right = 742.0
+offset_bottom = 190.765
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_hover_color = Color(0.972549, 0.839216, 0.921569, 1)
 theme_override_colors/icon_normal_color = Color(0.109804, 0.109804, 0.109804, 1)
 theme_override_colors/icon_hover_color = Color(1, 1, 1, 1)
 theme_override_colors/icon_focus_color = Color(0.713726, 0.713726, 0.713726, 1)
 theme_override_colors/icon_disabled_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_couu4")
+theme_override_styles/hover = SubResource("StyleBoxTexture_kyn88")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m7lgo")
 text = "PLAY"
 script = ExtResource("1_jvm52")
 
 [node name="Shop" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 423.44
-offset_top = 240.0
-offset_right = 744.79
-offset_bottom = 331.275
+offset_left = 421.0
+offset_top = 297.0
+offset_right = 742.0
+offset_bottom = 330.765
+theme_override_styles/normal = SubResource("StyleBoxTexture_qudeg")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6ckq1")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_m7b7j")
 text = "SHOP"
 script = ExtResource("2_yr6vm")
 
 [node name="Invertory" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 423.44
-offset_top = 380.0
-offset_right = 744.79
-offset_bottom = 471.275
+offset_left = 421.0
+offset_top = 437.0
+offset_right = 742.0
+offset_bottom = 470.765
+theme_override_styles/normal = SubResource("StyleBoxTexture_0nimk")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xau4t")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_odt3p")
 text = "INVENTARY"
 script = ExtResource("3_dlga4")

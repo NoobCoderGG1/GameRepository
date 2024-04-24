@@ -5,25 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://dpdcrhbfr14jo" path="res://Sprite-0002.png" id="2_4vdjm"]
 [ext_resource type="PackedScene" uid="uid://rgiweocllj5k" path="res://timer.tscn" id="2_p0dqg"]
 [ext_resource type="PackedScene" uid="uid://lbg751jqdlsf" path="res://platform.tscn" id="3_si554"]
-[ext_resource type="Texture2D" uid="uid://cidbf6gsvthhf" path="res://icon.svg" id="4_n77mu"]
-[ext_resource type="Script" path="res://Player.cs" id="6_a5er8"]
+[ext_resource type="PackedScene" uid="uid://cm06fyyrqys8p" path="res://player.tscn" id="3_ym4oq"]
 [ext_resource type="PackedScene" uid="uid://ck0d8p23fx41l" path="res://coin.tscn" id="7_elcrk"]
 [ext_resource type="Script" path="res://Button.cs" id="8_on6u2"]
 [ext_resource type="PackedScene" uid="uid://dhi6u5vxm6umv" path="res://enemy_1.tscn" id="9_h0e5q"]
 [ext_resource type="Script" path="res://Button2.cs" id="9_lllyu"]
+[ext_resource type="Texture2D" uid="uid://b4g4myr0aurtq" path="res://ButtonSprites/PauseButton.png" id="9_ptcyv"]
 [ext_resource type="Script" path="res://FireGun.cs" id="10_se7un"]
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_6n8ot"]
-b = Vector2(0, 0)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ff43g"]
-size = Vector2(20, 18)
-
-[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_mwd22"]
-points = PackedVector2Array(10, 9, 10, -9, 0, -20, -10, -9, -10, 9)
-
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_uxume"]
-b = Vector2(0, 0)
+[ext_resource type="PackedScene" uid="uid://bjykc8wc4230l" path="res://mobile_control.tscn" id="13_0t0t1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q8sqk"]
 texture = ExtResource("1_che11")
@@ -89,13 +78,25 @@ sources/1 = SubResource("TileSetAtlasSource_yyv1v")
 sources/2 = SubResource("TileSetScenesCollectionSource_vg0q7")
 sources/3 = SubResource("TileSetScenesCollectionSource_8v2pn")
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5prh0"]
+texture = ExtResource("9_ptcyv")
+modulate_color = Color(1, 1, 1, 0.454902)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3stsl"]
+texture = ExtResource("9_ptcyv")
+modulate_color = Color(1, 1, 1, 0.454902)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ofedm"]
+texture = ExtResource("9_ptcyv")
+modulate_color = Color(1, 1, 1, 0.454902)
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_7fown")
 
 [node name="Timer" parent="." instance=ExtResource("2_p0dqg")]
-offset_left = 190.0
+offset_left = 188.0
 offset_top = 3.0
-offset_right = 190.0
+offset_right = 188.0
 offset_bottom = 3.0
 
 [node name="SpawnTimer" type="Timer" parent="."]
@@ -106,45 +107,10 @@ autostart = true
 position = Vector2(120.705, 80.885)
 zoom = Vector2(4.665, 4.2)
 
-[node name="Player" type="CharacterBody2D" parent="."]
-position = Vector2(37, 80.915)
-collision_mask = 165
-script = ExtResource("6_a5er8")
-
-[node name="Shooting" type="Area2D" parent="Player"]
-collision_layer = 0
-collision_mask = 32
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Shooting"]
-z_index = 1
-shape = SubResource("SegmentShape2D_6n8ot")
-debug_color = Color(0.658824, 0.517647, 0, 0.419608)
-
-[node name="AreaPlayer" type="Area2D" parent="Player"]
-collision_layer = 16
-collision_mask = 36
-
-[node name="AreaCollision" type="CollisionShape2D" parent="Player/AreaPlayer"]
-modulate = Color(0, 0, 0, 1)
-shape = SubResource("RectangleShape2D_ff43g")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource("ConvexPolygonShape2D_mwd22")
-
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
-scale = Vector2(0.148438, 0.15625)
-texture = ExtResource("4_n77mu")
-
-[node name="HelpShooting" type="Area2D" parent="Player"]
-collision_layer = 0
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/HelpShooting"]
-z_index = 1
-shape = SubResource("SegmentShape2D_uxume")
-debug_color = Color(0, 1, 0, 1)
+[node name="Player" parent="." instance=ExtResource("3_ym4oq")]
 
 [node name="TileMap" type="TileMap" parent="."]
+visibility_layer = 2
 texture_filter = 1
 tile_set = SubResource("TileSet_xqv2g")
 format = 2
@@ -160,30 +126,37 @@ layer_2/tile_data = PackedInt32Array(327692, 0, 0, 327687, 0, 0, 262156, 65536, 
 [node name="Enemy1" parent="." instance=ExtResource("9_h0e5q")]
 
 [node name="Menu" type="Button" parent="."]
-offset_left = 2.0
-offset_top = 127.0
-offset_right = 56.0
-offset_bottom = 158.0
-text = "меню"
+texture_filter = 1
+offset_left = 111.0
+offset_top = 6.0
+offset_right = 137.0
+offset_bottom = 29.0
+theme_override_styles/normal = SubResource("StyleBoxTexture_5prh0")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3stsl")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_ofedm")
+text = "
+"
 script = ExtResource("8_on6u2")
 
 [node name="Fire" type="Button" parent="."]
-offset_left = 158.0
+offset_left = 1.0
 offset_top = 127.0
-offset_right = 240.0
+offset_right = 83.0
 offset_bottom = 158.0
 text = "стрельба"
 script = ExtResource("9_lllyu")
 
 [node name="FireGun" type="Button" parent="."]
-offset_left = 80.0
+offset_left = 86.0
 offset_top = 127.0
-offset_right = 150.0
+offset_right = 156.0
 offset_bottom = 158.0
 text = "FireGun"
 script = ExtResource("10_se7un")
 
+[node name="MobileControl" parent="." instance=ExtResource("13_0t0t1")]
+
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
-[connection signal="body_entered" from="Player/Shooting" to="Player" method="_on_shooting_body_entered"]
-[connection signal="body_entered" from="Player/AreaPlayer" to="Player" method="body_entered"]
-[connection signal="body_exited" from="Player/AreaPlayer" to="Player" method="body_exited"]
+[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@54517" to="TileMap/@Area2D@54517" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@54518" to="TileMap/@Area2D@54518" method="_on_body_entered"]
