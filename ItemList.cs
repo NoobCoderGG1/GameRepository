@@ -8,7 +8,8 @@ public partial class ItemList : Godot.ItemList
 							  { new Weapon("AKM", 167, 14f, 30f, false, 0, 30),
 						// Name FireRate Damage BulletSpeed Status CurrentBullet Capacity
 								new Weapon("SCARL", 133, 10f, 36f, false, 0, 30),
-								new Weapon("KAR98K", 1600, 63f, 12f, false, 0, 5)};
+								new Weapon("KAR98K", 1600, 63f, 12f, false, 0, 5),
+								new Weapon("LazerGun", 1600, 63f, 12f, false, 0, 5)};
 	public long selectedIndex;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

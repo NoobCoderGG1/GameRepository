@@ -47,7 +47,7 @@ position = Vector2(950, 477)
 scale = Vector2(5.6875, 4.125)
 texture_normal = ExtResource("5_7ohfh")
 texture_pressed = ExtResource("5_7ohfh")
-action = "melee_attack"
+action = "attack"
 
 [node name="ChangeGun" type="TouchScreenButton" parent="."]
 texture_filter = 1

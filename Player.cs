@@ -6,8 +6,7 @@ public partial class Player : CharacterBody2D
 {
 	public int currentWeaponeIndex = -1;
 	private float hp = 100.0f;
-	public float Damage = 1f;
-	public float MeleeDamage = 30f;
+	public float Damage = 0f; //Не достал оружие.
 	public float HP { get { return hp; } set { hp = value; } }
 	public List<Vector2> helpVector = new List<Vector2>();
 
@@ -70,15 +69,9 @@ public partial class Player : CharacterBody2D
 					GD.Print(currentWeaponeIndex);
 				break;
 			}
-		Damage = inventory[currentWeaponeIndex].Damage;
+			Damage = inventory[currentWeaponeIndex].Damage;
 		}
-		
-		if (Input.IsActionJustPressed("melee_attack") && IsOnFloor())
-		{
-			foreach (var enemy in enemies) { 
-				enemy.HP -= MeleeDamage; 
-			}
-		}
+		playerAttack(); //Проверка на атаку, а также выбор атаки в зависимости от оружия
 
 		Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "move_down");
 
@@ -130,5 +123,29 @@ public partial class Player : CharacterBody2D
 					enemies.Remove((Enemy1)body);
 				GD.Print("B");
 			}
+	}
+
+	private void playerAttack()
+	{
+		if (Input.IsActionJustPressed("attack") && IsOnFloor() && currentWeaponeIndex == 2)
+		{
+			foreach (var enemy in enemies)
+			{
+				enemy.HP -= Damage;
+			}
+		}
+		if (Input.IsActionJustPressed("attack") && currentWeaponeIndex != -1)
+		{
+			if (inventory[currentWeaponeIndex].Name == "LazerGun")
+			{
+				var button = GetParent().GetNode<Button2>("Fire");
+				button.PreButtonPressed();
+			}
+			else
+			{
+				var button = GetParent().GetNode<FireGun>("FireGun");
+				button.ButtonPressed();
+			}
+		}
 	}
 }

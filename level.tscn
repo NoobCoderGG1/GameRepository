@@ -139,18 +139,20 @@ text = "
 script = ExtResource("8_on6u2")
 
 [node name="Fire" type="Button" parent="."]
-offset_left = 1.0
-offset_top = 127.0
-offset_right = 83.0
-offset_bottom = 158.0
+offset_left = 9.0
+offset_top = 1.0
+offset_right = 91.0
+offset_bottom = 32.0
+scale = Vector2(1e-05, 1e-05)
 text = "стрельба"
 script = ExtResource("9_lllyu")
 
 [node name="FireGun" type="Button" parent="."]
-offset_left = 86.0
-offset_top = 127.0
-offset_right = 156.0
-offset_bottom = 158.0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 73.0
+offset_bottom = 32.0
+scale = Vector2(1e-05, 1e-05)
 text = "FireGun"
 script = ExtResource("10_se7un")
 
@@ -158,5 +160,5 @@ script = ExtResource("10_se7un")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
 [connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@54517" to="TileMap/@Area2D@54517" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@54518" to="TileMap/@Area2D@54518" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@92664" to="TileMap/@Area2D@92664" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@92665" to="TileMap/@Area2D@92665" method="_on_body_entered"]

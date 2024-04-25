@@ -31,9 +31,9 @@ public partial class Button2 : Button
 		}
 	}
 	
-	void PreButtonPressed(){
+	public void PreButtonPressed() {
 		ReleaseFocus();
-		
+
 		for (int i = 0; i<20*16; i+=16){
 			((SegmentShape2D)helpArea.Shape).B = new Vector2(i, 0);
 			if (ChkTile(((Player)player).Position.X, ((Player)player).Position.Y, i)) {
