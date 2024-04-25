@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddc6gjtlabxp3"
-path="res://.godot/imported/JumpBtn.png-a9f3322196ebbfa5af699a0617fe1407.ctex"
+uid="uid://e10v0tb2f0nn"
+path="res://.godot/imported/Full_HealthBar.png-be6e4d8914bcad3c8ccf3f6ab099078b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ButtonSprites/JumpBtn.png"
-dest_files=["res://.godot/imported/JumpBtn.png-a9f3322196ebbfa5af699a0617fe1407.ctex"]
+source_file="res://UI/Full_HealthBar.png"
+dest_files=["res://.godot/imported/Full_HealthBar.png-be6e4d8914bcad3c8ccf3f6ab099078b.ctex"]
 
 [params]
 

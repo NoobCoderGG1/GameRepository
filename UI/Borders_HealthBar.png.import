@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnci64y4v7bax"
-path="res://.godot/imported/ChangeWeaponeBtn.png-24762f3c97f73e9fd2ca6d8438f1f674.ctex"
+uid="uid://bylmhn0t3yau4"
+path="res://.godot/imported/Borders_HealthBar.png-9fc3d458ac316e94a57683ff395e23c7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ButtonSprites/ChangeWeaponeBtn.png"
-dest_files=["res://.godot/imported/ChangeWeaponeBtn.png-24762f3c97f73e9fd2ca6d8438f1f674.ctex"]
+source_file="res://UI/Borders_HealthBar.png"
+dest_files=["res://.godot/imported/Borders_HealthBar.png-9fc3d458ac316e94a57683ff395e23c7.ctex"]
 
 [params]
 

@@ -10,7 +10,7 @@
 [ext_resource type="Script" path="res://Button.cs" id="8_on6u2"]
 [ext_resource type="PackedScene" uid="uid://dhi6u5vxm6umv" path="res://enemy_1.tscn" id="9_h0e5q"]
 [ext_resource type="Script" path="res://Button2.cs" id="9_lllyu"]
-[ext_resource type="Texture2D" uid="uid://b4g4myr0aurtq" path="res://ButtonSprites/PauseButton.png" id="9_ptcyv"]
+[ext_resource type="Texture2D" uid="uid://b4g4myr0aurtq" path="res://UI/PauseButton.png" id="9_ptcyv"]
 [ext_resource type="Script" path="res://FireGun.cs" id="10_se7un"]
 [ext_resource type="PackedScene" uid="uid://bjykc8wc4230l" path="res://mobile_control.tscn" id="13_0t0t1"]
 
@@ -159,6 +159,3 @@ script = ExtResource("10_se7un")
 [node name="MobileControl" parent="." instance=ExtResource("13_0t0t1")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
-[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@92664" to="TileMap/@Area2D@92664" method="_on_body_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@92665" to="TileMap/@Area2D@92665" method="_on_body_entered"]

@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://bjykc8wc4230l"]
 
-[ext_resource type="Texture2D" uid="uid://y6vgd2fecurq" path="res://ButtonSprites/RMoveBtn.png" id="1_vdpqx"]
-[ext_resource type="Texture2D" uid="uid://fv2ljd0aeevp" path="res://ButtonSprites/LMoveBtn.png" id="2_qcgfq"]
-[ext_resource type="Texture2D" uid="uid://ddc6gjtlabxp3" path="res://ButtonSprites/JumpBtn.png" id="3_huxen"]
-[ext_resource type="Texture2D" uid="uid://jj8ji8opp0qq" path="res://ButtonSprites/DownMoveBtn.png" id="4_ftafs"]
-[ext_resource type="Texture2D" uid="uid://bncvqwf0rswj6" path="res://ButtonSprites/AttackBtn.png" id="5_7ohfh"]
-[ext_resource type="Texture2D" uid="uid://dnci64y4v7bax" path="res://ButtonSprites/ChangeWeaponeBtn.png" id="6_y64ai"]
+[ext_resource type="Texture2D" uid="uid://y6vgd2fecurq" path="res://UI/RMoveBtn.png" id="1_vdpqx"]
+[ext_resource type="Texture2D" uid="uid://fv2ljd0aeevp" path="res://UI/LMoveBtn.png" id="2_qcgfq"]
+[ext_resource type="Texture2D" uid="uid://ddc6gjtlabxp3" path="res://UI/JumpBtn.png" id="3_huxen"]
+[ext_resource type="Texture2D" uid="uid://jj8ji8opp0qq" path="res://UI/DownMoveBtn.png" id="4_ftafs"]
+[ext_resource type="Texture2D" uid="uid://bncvqwf0rswj6" path="res://UI/AttackBtn.png" id="5_7ohfh"]
+[ext_resource type="Texture2D" uid="uid://dnci64y4v7bax" path="res://UI/ChangeWeaponeBtn.png" id="6_y64ai"]
 
 [node name="MobileControl" type="CanvasLayer"]
 

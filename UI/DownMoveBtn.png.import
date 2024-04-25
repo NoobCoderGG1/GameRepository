@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://y6vgd2fecurq"
-path="res://.godot/imported/RMoveBtn.png-94c74fe50897e075a3697aff6599b2ba.ctex"
+uid="uid://jj8ji8opp0qq"
+path="res://.godot/imported/DownMoveBtn.png-b29d46af8080276af75744d7dbce3b91.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ButtonSprites/RMoveBtn.png"
-dest_files=["res://.godot/imported/RMoveBtn.png-94c74fe50897e075a3697aff6599b2ba.ctex"]
+source_file="res://UI/DownMoveBtn.png"
+dest_files=["res://.godot/imported/DownMoveBtn.png-b29d46af8080276af75744d7dbce3b91.ctex"]
 
 [params]
 

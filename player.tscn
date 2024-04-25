@@ -1,7 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://cm06fyyrqys8p"]
+[gd_scene load_steps=10 format=3 uid="uid://cm06fyyrqys8p"]
 
 [ext_resource type="Script" path="res://Player.cs" id="1_bsyem"]
 [ext_resource type="Texture2D" uid="uid://cidbf6gsvthhf" path="res://icon.svg" id="2_g8dkx"]
+[ext_resource type="Texture2D" uid="uid://cjy7spd7vvhnq" path="res://UI/Empty_HealthBar.png" id="3_1rsbo"]
+[ext_resource type="Texture2D" uid="uid://bylmhn0t3yau4" path="res://UI/Borders_HealthBar.png" id="4_lok3j"]
+[ext_resource type="Texture2D" uid="uid://e10v0tb2f0nn" path="res://UI/Full_HealthBar.png" id="5_dyflt"]
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_6n8ot"]
 b = Vector2(0, 0)
@@ -19,6 +22,7 @@ b = Vector2(0, 0)
 position = Vector2(37, 80.915)
 collision_mask = 165
 script = ExtResource("1_bsyem")
+metadata/_edit_group_ = true
 
 [node name="Shooting" type="Area2D" parent="."]
 collision_layer = 0
@@ -52,6 +56,17 @@ collision_mask = 4
 z_index = 1
 shape = SubResource("SegmentShape2D_uxume")
 debug_color = Color(0, 1, 0, 1)
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
+texture_filter = 1
+offset_left = -16.0
+offset_top = -44.0
+offset_right = 16.0
+offset_bottom = -12.0
+value = 100.0
+texture_under = ExtResource("3_1rsbo")
+texture_over = ExtResource("4_lok3j")
+texture_progress = ExtResource("5_dyflt")
 
 [connection signal="body_entered" from="Shooting" to="." method="_on_shooting_body_entered"]
 [connection signal="body_entered" from="AreaPlayer" to="." method="body_entered"]

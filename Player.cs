@@ -40,6 +40,7 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		GetNode<TextureProgressBar>("PlayerHealthBar").Value = hp;
 		Vector2 velocity = Velocity;
 		Vector2 v2 = new Vector2();
 
@@ -127,24 +128,26 @@ public partial class Player : CharacterBody2D
 
 	private void playerAttack()
 	{
-		if (Input.IsActionJustPressed("attack") && IsOnFloor() && currentWeaponeIndex == 2)
-		{
-			foreach (var enemy in enemies)
+		if (Input.IsActionJustPressed("attack")) {
+			if (IsOnFloor() && currentWeaponeIndex == 2)
 			{
-				enemy.HP -= Damage;
+				foreach (var enemy in enemies)
+				{
+					enemy.HP -= Damage;
+				}
 			}
-		}
-		if (Input.IsActionJustPressed("attack") && currentWeaponeIndex != -1)
-		{
-			if (inventory[currentWeaponeIndex].Name == "LazerGun")
+			if (currentWeaponeIndex != -1)
 			{
-				var button = GetParent().GetNode<Button2>("Fire");
-				button.PreButtonPressed();
-			}
-			else
-			{
-				var button = GetParent().GetNode<FireGun>("FireGun");
-				button.ButtonPressed();
+				if (inventory[currentWeaponeIndex].Name == "LazerGun")
+				{
+					var button = GetParent().GetNode<Button2>("Fire");
+					button.PreButtonPressed();
+				}
+				else
+				{
+					var button = GetParent().GetNode<FireGun>("FireGun");
+					button.ButtonPressed();
+				}
 			}
 		}
 	}

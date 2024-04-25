@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bncvqwf0rswj6"
-path="res://.godot/imported/AttackBtn.png-5d05f557e761c06c9998b46587313dd5.ctex"
+uid="uid://dnci64y4v7bax"
+path="res://.godot/imported/ChangeWeaponeBtn.png-f7eb77ba84d741d050fc72efd68dd896.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ButtonSprites/AttackBtn.png"
-dest_files=["res://.godot/imported/AttackBtn.png-5d05f557e761c06c9998b46587313dd5.ctex"]
+source_file="res://UI/ChangeWeaponeBtn.png"
+dest_files=["res://.godot/imported/ChangeWeaponeBtn.png-f7eb77ba84d741d050fc72efd68dd896.ctex"]
 
 [params]
 

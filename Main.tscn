@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://2lljpxvdeqxe" path="res://MenuSprite.png" id="2_flpll"]
 [ext_resource type="Script" path="res://Shop.cs" id="2_yr6vm"]
 [ext_resource type="Script" path="res://Invertory.cs" id="3_dlga4"]
-[ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://ButtonSprites/ButtonSprite.png" id="3_jmr2i"]
+[ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/ButtonSprite.png" id="3_jmr2i"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_couu4"]
 texture = ExtResource("3_jmr2i")
