@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://di8njwhg0rn63"]
+
+[ext_resource type="Script" path="res://Level/player.gd" id="1_hh38r"]
+[ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="2_fgqfl"]
+
+[node name="player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_hh38r")
+
+[node name="Shooting" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Shooting"]
+
+[node name="AreaPlayer" type="Area2D" parent="."]
+
+[node name="AreaCollision" type="CollisionShape2D" parent="AreaPlayer"]
+
+[node name="playerSprite" type="Sprite2D" parent="."]
+scale = Vector2(0.17, 0.17)
+texture = ExtResource("2_fgqfl")
+
+[node name="HelpShooting" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HelpShooting"]
+
+[node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
