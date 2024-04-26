@@ -159,3 +159,6 @@ script = ExtResource("10_se7un")
 [node name="MobileControl" parent="." instance=ExtResource("13_0t0t1")]
 
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
+[connection signal="body_entered" from="TileMap/Coin" to="TileMap/Coin" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@19947" to="TileMap/@Area2D@19947" method="_on_body_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@19948" to="TileMap/@Area2D@19948" method="_on_body_entered"]
