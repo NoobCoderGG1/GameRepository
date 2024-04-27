@@ -1,13 +1,14 @@
 [gd_scene load_steps=7 format=3 uid="uid://bybny80bcvmg6"]
 
 [ext_resource type="Script" path="res://MainMenu/main_menu.gd" id="1_i7o12"]
-[ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="1_tjeq3"]
+[ext_resource type="Texture2D" uid="uid://bcqr8p7cobi2q" path="res://MainMenu/MenuSprite.png" id="2_j31d2"]
 [ext_resource type="Script" path="res://MainMenu/PlayButton.gd" id="3_idkyk"]
 [ext_resource type="Script" path="res://MainMenu/ShopButton.gd" id="4_su0qb"]
 [ext_resource type="Script" path="res://MainMenu/InventoryButton.gd" id="5_ct62a"]
 [ext_resource type="Script" path="res://MainMenu/Player.gd" id="6_hgcql"]
 
 [node name="main_menu" type="Control"]
+z_index = -2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,10 +18,11 @@ grow_vertical = 2
 script = ExtResource("1_i7o12")
 
 [node name="background" type="Sprite2D" parent="."]
-modulate = Color(0.490196, 0.494118, 0.490196, 1)
-position = Vector2(641, 364)
-scale = Vector2(9.9375, 5.60156)
-texture = ExtResource("1_tjeq3")
+modulate = Color(0.658824, 0.658824, 0.658824, 1)
+texture_filter = 1
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("2_j31d2")
 
 [node name="play_button" type="Button" parent="."]
 layout_mode = 0
@@ -52,5 +54,6 @@ script = ExtResource("5_ct62a")
 [node name="virtual_player" type="CharacterBody2D" parent="."]
 script = ExtResource("6_hgcql")
 
+[connection signal="gui_input" from="play_button" to="play_button" method="_on_gui_input"]
 [connection signal="gui_input" from="shop_button" to="shop_button" method="_on_gui_input"]
 [connection signal="gui_input" from="inventory_button" to="inventory_button" method="_on_gui_input"]

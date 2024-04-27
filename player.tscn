@@ -25,7 +25,6 @@ script = ExtResource("1_bsyem")
 metadata/_edit_group_ = true
 
 [node name="Shooting" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 32
 
@@ -50,7 +49,6 @@ scale = Vector2(0.148438, 0.15625)
 texture = ExtResource("2_g8dkx")
 
 [node name="HelpShooting" type="Area2D" parent="."]
-visible = false
 collision_layer = 0
 collision_mask = 4
 

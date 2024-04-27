@@ -1,9 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://di8njwhg0rn63"]
+[gd_scene load_steps=5 format=3 uid="uid://di8njwhg0rn63"]
 
 [ext_resource type="Script" path="res://Level/player.gd" id="1_hh38r"]
 [ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="2_fgqfl"]
 
+[sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_yty4r"]
+points = PackedVector2Array(10, 9, 10, -9, 0, -20, -10, -9, -10, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jvn7o"]
+
 [node name="player" type="CharacterBody2D"]
+position = Vector2(-1, 0)
 collision_layer = 2
 collision_mask = 5
 script = ExtResource("1_hh38r")
@@ -12,13 +18,20 @@ script = ExtResource("1_hh38r")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shooting"]
 
-[node name="AreaPlayer" type="Area2D" parent="."]
-
-[node name="AreaCollision" type="CollisionShape2D" parent="AreaPlayer"]
+[node name="playerCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("ConvexPolygonShape2D_yty4r")
 
 [node name="playerSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.17, 0.17)
 texture = ExtResource("2_fgqfl")
+
+[node name="AreaPlayer" type="Area2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+collision_layer = 8
+collision_mask = 4
+
+[node name="AreaCollision" type="CollisionShape2D" parent="AreaPlayer"]
+shape = SubResource("RectangleShape2D_jvn7o")
 
 [node name="HelpShooting" type="Area2D" parent="."]
 
@@ -27,3 +40,6 @@ texture = ExtResource("2_fgqfl")
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
 offset_right = 40.0
 offset_bottom = 40.0
+
+[connection signal="body_entered" from="AreaPlayer" to="." method="areaPlayer_entered"]
+[connection signal="body_exited" from="AreaPlayer" to="." method="areaPlayer_exited"]
