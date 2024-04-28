@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://di7xxpcwgni5b"]
+
+[ext_resource type="Script" path="res://UI/timer_count.gd" id="1_ohs2a"]
+
+[node name="timerCount" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ohs2a")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "00:00
+"

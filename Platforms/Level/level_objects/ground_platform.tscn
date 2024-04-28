@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3pfbwx3m1c56"]
+
+[ext_resource type="Texture2D" uid="uid://btx832ly87xhs" path="res://Level/level_objects/ground_platform.png" id="1_57eho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nceai"]
+size = Vector2(32, 15)
+
+[node name="ground_platform" type="Sprite2D"]
+texture_filter = 1
+texture = ExtResource("1_57eho")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_nceai")
+one_way_collision = true

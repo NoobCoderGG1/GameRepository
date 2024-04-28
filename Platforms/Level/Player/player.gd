@@ -28,6 +28,8 @@ func _ready():
 func _physics_process(delta):
 	$PlayerHealthBar.value = HP
 	isMoving(delta)
+	changeWeapon()
+	player_attack()
 	
 func isMoving(delta):
 	var Velocity : Vector2 = velocity
@@ -36,7 +38,7 @@ func isMoving(delta):
 	if not is_on_floor():
 		Velocity.y += gravity * delta
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		Velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("move_down") and is_on_floor():
 		position = Vector2(position.x, position.y + 5);
@@ -55,8 +57,40 @@ func isMoving(delta):
 	velocity = Velocity;
 	move_and_slide();
 
+func changeWeapon():
+	if Input.is_action_just_pressed("change_weapon") and inventory.size() > 1:
+		match currentWeaponeIndex:
+			-1, 0:
+				currentWeaponeIndex = 1
+			1:
+				currentWeaponeIndex = 2
+			2:
+				currentWeaponeIndex = 0
+		damage = inventory[currentWeaponeIndex].damage
+	
 func areaPlayer_entered(body):
-	pass # Replace with function body.
+	if not enemies.has(body) and body != null:
+		enemies.append(body)
+		print("В зоне!")
 	
 func areaPlayer_exited(body):
-	pass # Replace with function body.
+	if enemies.has(body) and body != null:
+		enemies.erase(body)
+		print("Bне зоны!")
+
+func player_attack():
+	if Input.is_action_just_pressed("attack"):
+		if is_on_floor() and currentWeaponeIndex == -1:
+			for enemy in enemies:
+				enemy.HP -= damage
+				print(enemy.HP)
+			return
+	if currentWeaponeIndex != -1:
+		if inventory[currentWeaponeIndex].name == "LazerGun":
+			#var button = get_parent().get_node("Fire") as Button2
+			#button.pre_button_pressed()
+			pass
+		else:
+			pass
+			#var button = get_parent().get_node("FireGun") as FireGun
+			#button.button_pressed()

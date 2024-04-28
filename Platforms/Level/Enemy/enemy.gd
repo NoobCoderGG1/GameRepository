@@ -7,19 +7,18 @@ var time
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var delay = 3.0
 var lastHit : float = 0.0
-#var coin_scene = load("res://coin.tscn")
+var coin_scene = preload("res://Level/level_objects/coin.tscn")
+@onready var level = $".."
 
 func _physics_process(delta):
 	if HP <= 0:
-		#var coin = coin_scene.instance()
-		#coin.position = Vector2(position.x, position.y)
-		#get_tree().root.add_child(coin)
-		#Level.enemies.remove(self) <-- Надо добавить список enemies в скрипт Level
+		var coin = coin_scene.instantiate()
+		coin.position = Vector2(position.x, position.y)
+		get_tree().root.add_child(coin)
+		level.enemies.erase(self)
 		queue_free()
-
 	var Velocity = velocity
 	var target_velocity = Vector2()
-
 	if abs(position.x - get_parent().get_node("player").position.x) > 25 or abs(position.y - get_parent().get_node("player").position.y) > 25:
 		if position.x < get_parent().get_node("player").position.x:
 			Velocity.x = 1
