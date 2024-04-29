@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+#Переменные игрока
 @onready var player = $"."
 var currentWeaponeIndex = -1
 var HP = 100
@@ -14,6 +15,12 @@ var PosY:float;
 var enemies = [] #Enemy
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+#Переменные необходимые для стрельбы
+var area : CollisionShape2D
+var helpArea : CollisionShape2D
+@onready var timerNode = $"../UI/timerCount"
+var timeNow
+var offset : float
 
 func _ready():
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
@@ -24,12 +31,25 @@ func _ready():
 	countMoney = get_tree().root.get_node("main_menu").virtual_player.player_money
 	PosX = $AreaPlayer/AreaCollision.position.x
 	PosY = $AreaPlayer/AreaCollision.position.y
+	#Инициализация переменных для стрельбы
+	area = player.get_node("Shooting").get_node("CollisionShape2D")
+	area.visible = false
+	helpArea = player.get_node("HelpShooting").get_node("CollisionShape2D")
+	helpArea.visible = false
+	timeNow = timerNode.time_counter
 
 func _physics_process(delta):
 	$PlayerHealthBar.value = HP
+	#Вынес все условия и прочие действия в функции
 	isMoving(delta)
 	changeWeapon()
 	player_attack()
+	#Для LazerGun, чтобы луч пропадал
+	if timerNode.time_counter - timeNow >= 0.2:
+		area.visible = false
+		area.shape.b = Vector2(0, 0)
+		helpArea.shape.b = Vector2(0, 0)
+		timeNow = timerNode.time_counter
 	
 func isMoving(delta):
 	var Velocity : Vector2 = velocity
@@ -68,16 +88,6 @@ func changeWeapon():
 				currentWeaponeIndex = 0
 		damage = inventory[currentWeaponeIndex].damage
 	
-func areaPlayer_entered(body):
-	if not enemies.has(body) and body != null:
-		enemies.append(body)
-		print("В зоне!")
-	
-func areaPlayer_exited(body):
-	if enemies.has(body) and body != null:
-		enemies.erase(body)
-		print("Bне зоны!")
-
 func player_attack():
 	if Input.is_action_just_pressed("attack"):
 		if is_on_floor() and currentWeaponeIndex == -1:
@@ -87,10 +97,37 @@ func player_attack():
 			return
 	if currentWeaponeIndex != -1:
 		if inventory[currentWeaponeIndex].name == "LazerGun":
-			#var button = get_parent().get_node("Fire") as Button2
-			#button.pre_button_pressed()
-			pass
+			lazerShoot()
 		else:
-			pass
-			#var button = get_parent().get_node("FireGun") as FireGun
-			#button.button_pressed()
+			commonShoot()
+
+func areaPlayer_entered(body):
+	if not enemies.has(body) and body != null:
+		enemies.append(body)
+		print("В зоне!")
+		
+func areaPlayer_exited(body):
+	if enemies.has(body) and body != null:
+		enemies.erase(body)
+		print("Bне зоны!")
+
+func shootingBody_entered(body):
+	if body != null:
+		body.HP -= 24
+		print("Попадание!")
+#Функции осуществляющие стрельбу
+func lazerShoot():
+	for i in range(0, 20*16, 16):
+		helpArea.shape.b = Vector2(i, 0)
+		if check_tile(player.position.x, player.position.y, i):
+			fire(float(i - player.position.x) / float(16 + 8))
+			break
+func commonShoot():
+	pass
+#Вспомогательные функции для lazerShoot
+func fire(pos_x:float) -> void:
+		area.shape.b = Vector2(pos_x, 0)
+		area.visible = true
+func check_tile(user_position_x: float, user_position_y: float, offset: int) -> bool:
+		var chk = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(2, Vector2i((user_position_x + offset) / 16, user_position_y / 16))
+		return chk != null

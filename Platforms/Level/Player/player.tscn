@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://di8njwhg0rn63"]
+[gd_scene load_steps=10 format=3 uid="uid://di8njwhg0rn63"]
 
 [ext_resource type="Script" path="res://Level/Player/player.gd" id="1_hh38r"]
 [ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="2_fgqfl"]
@@ -6,11 +6,16 @@
 [ext_resource type="Texture2D" uid="uid://d22kxat7u1v8k" path="res://Level/Player/Player_HealthBar/Borders_HealthBar.png" id="4_yx1t7"]
 [ext_resource type="Texture2D" uid="uid://5xky86hl13tf" path="res://Level/Player/Player_HealthBar/Full_HealthBar.png" id="5_3tfox"]
 
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_x02gu"]
+
 [sub_resource type="ConvexPolygonShape2D" id="ConvexPolygonShape2D_yty4r"]
 points = PackedVector2Array(10, 9, 10, -9, 0, -20, -10, -9, -10, 9)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvn7o"]
 size = Vector2(22, 22)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_bakwj"]
+b = Vector2(0, 0)
 
 [node name="player" type="CharacterBody2D"]
 collision_layer = 2
@@ -18,8 +23,12 @@ collision_mask = 5
 script = ExtResource("1_hh38r")
 
 [node name="Shooting" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shooting"]
+z_index = 1
+shape = SubResource("SegmentShape2D_x02gu")
 
 [node name="playerCollision" type="CollisionShape2D" parent="."]
 shape = SubResource("ConvexPolygonShape2D_yty4r")
@@ -37,8 +46,12 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_jvn7o")
 
 [node name="HelpShooting" type="Area2D" parent="."]
+collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HelpShooting"]
+z_index = 1
+shape = SubResource("SegmentShape2D_bakwj")
+debug_color = Color(0, 0.482353, 0, 1)
 
 [node name="PlayerHealthBar" type="TextureProgressBar" parent="."]
 texture_filter = 1
@@ -55,5 +68,6 @@ texture_progress = ExtResource("5_3tfox")
 zoom = Vector2(3.085, 3.085)
 position_smoothing_enabled = true
 
+[connection signal="body_entered" from="Shooting" to="." method="shootingBody_entered"]
 [connection signal="body_entered" from="AreaPlayer" to="." method="areaPlayer_entered"]
 [connection signal="body_exited" from="AreaPlayer" to="." method="areaPlayer_exited"]

@@ -1,6 +1,6 @@
 extends Control
 
-var time_counter = 50.0
+static var time_counter = 50.0
 static var min = 0
 static var sec = 0
 var attempt = false #mutex
