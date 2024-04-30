@@ -17,11 +17,19 @@ func spawn_timer():
 	add_child(enemy)
 	enemies.append(enemy)
 	print("Заспавнился")
-
+	
 func _physics_process(delta):
 	var player = $player
 	for bullet in bullets:
 		var cs = bullet.get_child(0)
 		var ss = cs.shape
-	   # ss.b = Vector2(ss.b.x + delta * player.inventory.find_position(lambda weap: weap.name == bullet.name.split("~")[0].bullet_speed, ss.b.y))
+		var bullet_name_parts = bullet.name.split("~")
+		var bullet_speed = int(bullet_name_parts[0])
+		var weapon_position = null
+		for weapon in player.inventory:
+			if weapon.name == bullet_name_parts[1]:
+				weapon_position = weapon.position
+				break
+		var new_position = Vector2(ss.b.x + delta * bullet_speed, ss.b.y + weapon_position)
+		ss.b = new_position
 		ss.a = Vector2(ss.b.x - 5, ss.b.y)
