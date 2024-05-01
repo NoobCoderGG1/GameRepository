@@ -20,16 +20,17 @@ func spawn_timer():
 	
 func _physics_process(delta):
 	var player = $player
+	var vplayer_commonShoot =  get_tree().root.get_node("main_menu").virtual_player
+	var indx = player.currentWeaponeIndex
 	for bullet in bullets:
+		if bullet == null: continue
 		var cs = bullet.get_child(0)
 		var ss = cs.shape
-		var bullet_name_parts = bullet.name.split("~")
-		var bullet_speed = int(bullet_name_parts[0])
-		var weapon_position = null
-		for weapon in player.inventory:
-			if weapon.name == bullet_name_parts[1]:
-				weapon_position = weapon.position
+		var current_bullet = vplayer_commonShoot.player_inventory[indx].name + "~" + str(vplayer_commonShoot.player_inventory[indx].current_bullet)
+		var bullet_speed = 5
+		for w in player.inventory:
+			if w.name == bullet.name.split("~")[0]: #if w.name + "~" + str(w.current_bullet+1) == bullet.name:
+				bullet_speed = w.bullet_speed
 				break
-		var new_position = Vector2(ss.b.x + delta * bullet_speed, ss.b.y + weapon_position)
-		ss.b = new_position
+		ss.b = Vector2(ss.b.x + delta * bullet_speed, ss.b.y)
 		ss.a = Vector2(ss.b.x - 5, ss.b.y)

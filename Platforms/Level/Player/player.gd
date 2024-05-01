@@ -25,6 +25,7 @@ var offset : float
 var vplayer_commonShoot
 var realPlayer
 var dt #как timeNow, но для commonShoot
+var area_commonshoot
 
 func _ready():
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
@@ -73,7 +74,6 @@ func isMoving(delta):
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left","move_right","jump","move_down")
-	
 	if direction.x == 1 or direction.x == -1:
 			Velocity.x = direction.x * SPEED;
 			dirAreaPlayer.y = PosY;
@@ -146,26 +146,52 @@ func commonShoot():
 		return
 	dt = timerNode.time_counter
 	var segment := SegmentShape2D.new()
-	segment.A = Vector2(realPlayer.position.x, realPlayer.position.y)
-	segment.B = Vector2(realPlayer.position.x, realPlayer.position.y)
+	#segment.a = Vector2(realPlayer.position.x, realPlayer.position.y)
+	#segment.b = Vector2(realPlayer.position.x, realPlayer.position.y)
+	segment.a = Vector2(0,0)
+	segment.b = Vector2(5,0)
 	var collision := CollisionShape2D.new()
 	collision.debug_color = Color(255, 0, 0, 1)
 	collision.shape = segment
 	
-	var area := Area2D.new()
-	area.connect("body_entered", _on_BodyEntered)
-	area.add_child(collision)
-	area.set_collision_mask_bit(3, true) # Enemies
-	area.set_collision_mask_bit(1, true) # level_objects
-	area.z_index = 2
-	area.name = vplayer_commonShoot.player_inventory[indx].name + "~" + str(vplayer_commonShoot.player_inventory[indx].current_bullet)
+	area_commonshoot = Area2D.new()
+	area_commonshoot.name = vplayer_commonShoot.player_inventory[indx].name + "~" + str(vplayer_commonShoot.player_inventory[indx].current_bullet)
+	var string_area_name = str(area_commonshoot.name)
+	var area_copy = area_commonshoot
+	var lambda = func(body): 
+		var index = get_tree().root.get_node("Level").get_node("player").currentWeaponeIndex
+		if body is CharacterBody2D or body is TileMap:
+			if body is CharacterBody2D:
+				print("")
+				print(body.HP)
+				body.HP -= realPlayer.damage
+				print(body.HP)
+			elif body is TileMap:
+				
+				print("Delete scene")
+				print(area_copy)
+				print(string_area_name)
+				var node = get_tree().root.get_node("Level").get_node(NodePath(string_area_name))
+				get_tree().root.get_node("Level").bullets.erase(area_copy)
+				deleteScene(string_area_name)#в get_node(vplayer_commonShoot.player_inventory[indx].name + "~" + str(vplayer_commonShoot.player_inventory[indx].current_bullet))
+				print("Finish")
+				
+	area_commonshoot.body_entered.connect(lambda)
+	area_commonshoot.add_child(collision)
+	area_commonshoot.set_collision_mask_value(3,true) # Enemies
+	area_commonshoot.set_collision_mask_value(1, true) # level_objects
+	area_commonshoot.z_index = 2
+	area_commonshoot.name = vplayer_commonShoot.player_inventory[indx].name + "~" + str(vplayer_commonShoot.player_inventory[indx].current_bullet)
 	vplayer_commonShoot.player_inventory[indx].current_bullet -= 1
-	
-	get_tree().root.get_node("Level").add_child(area)
-	get_tree().root.get_node("Level").bullets.append(area)
-	area.position = get_tree().root.get_node("Level").get_node("player").position
+
+	get_tree().root.get_node("Level").add_child(area_commonshoot)
+	get_tree().root.get_node("Level").bullets.append(area_commonshoot)
+	area_commonshoot.position = get_tree().root.get_node("Level").get_node("player").position
+	print("Выстрел")
+	print(area_commonshoot)
 #Вспомогательная функция для commonShoot
 func _on_BodyEntered(body):
+	var indx = get_tree().root.get_node("Level").get_node("player").currentWeaponeIndex
 	if body is CharacterBody2D or body is TileMap:
 		if body is CharacterBody2D:
 			print("")
@@ -173,8 +199,8 @@ func _on_BodyEntered(body):
 			body.HP -= realPlayer.damage
 			print(body.HP)
 		elif body is TileMap:
-			get_tree().root.get_node("Level").get_node("Area2D").queue_free()
-			get_tree().root.get_node("Level").bullets.remove(area)
+			get_tree().root.get_node("Level").get_node(str(area_commonshoot.name)).queue_free() #в get_node(vplayer_commonShoot.player_inventory[indx].name + "~" + str(vplayer_commonShoot.player_inventory[indx].current_bullet))
+			get_tree().root.get_node("Level").bullets.erase(area_commonshoot)
 #Вспомогательные функции для lazerShoot
 func fire(pos_x:float) -> void:
 		area.shape.b = Vector2(pos_x, 0)
@@ -185,3 +211,6 @@ func check_tile(user_position_x: float, user_position_y: float, offset: int) -> 
 		var check_trees_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(1, Vector2i(
 			(user_position_x + offset) / 16, user_position_y / 16))
 		return check_ground_layer != null or check_trees_layer != null
+
+func deleteScene(stringNodePath):
+	get_tree().root.get_node("Level").get_node(str(stringNodePath)).queue_free()
