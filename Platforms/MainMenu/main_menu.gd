@@ -24,6 +24,6 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	
 	tmp_weapon.name = "Weapon3";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 100.0;
-	tmp_weapon.bullet_speed = 10.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 100.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 20
 	shop_weapons.append(tmp_weapon)
