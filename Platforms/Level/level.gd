@@ -21,6 +21,7 @@ func _physics_process(delta):
 	var player = $player
 	for bullet in bullets: #Пробежка по списку выпущенных пуль
 		if bullet == null: continue
+		var bullet_sprite = bullet.get_child(1)
 		var cs = bullet.get_child(0)
 		var ss = cs.shape
 		var bullet_speed
@@ -30,3 +31,4 @@ func _physics_process(delta):
 				break
 		ss.b = Vector2(ss.b.x + delta * bullet_speed, ss.b.y)
 		ss.a = Vector2(ss.b.x - 5, ss.b.y)
+		bullet_sprite.position = Vector2(ss.b.x + delta * bullet_speed, ss.b.y)

@@ -13,7 +13,6 @@ var inventory = [] #Weapones
 #Координаты смещения зоны "радиуса атаки ближнего боя" от самого героя
 var PosX:float; 
 var PosY:float;
-
 var enemies = []
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -28,8 +27,10 @@ var virtual_player_commonShoot
 var realPlayer
 var dt #как timeNow, но для commonShoot
 var area_commonshoot
+var animated_player_sprite
 
 func _ready():
+	animated_player_sprite = $playerSprite
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
 	var weapon_class = ResourceLoader.load("res://Weapon.gd")
 	var tmp_weapon = weapon_class.Weapon.new()
@@ -77,6 +78,9 @@ func isMoving(delta):
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_vector("move_left","move_right","jump","move_down")
 	if direction.x == 1 or direction.x == -1:
+			animated_player_sprite.animation = "player_walk"
+			animated_player_sprite.play()
+			animated_player_sprite.flip_h = direction.x < 0
 			Velocity.x = direction.x * SPEED;
 			dirAreaPlayer.y = PosY;
 			dirAreaPlayer.x = PosX + 5 * direction.x; #Перемещение "взгляда" персонажа
@@ -93,7 +97,10 @@ func changeWeapon():
 			-1, 0:
 				currentWeaponIndex = 1
 			1:
-				currentWeaponIndex = 2
+				if inventory.size() < 3:
+					currentWeaponIndex = 0
+				else:
+					currentWeaponIndex = 2
 			2:
 				currentWeaponIndex = 0
 		damage = inventory[currentWeaponIndex].damage
@@ -143,13 +150,18 @@ func commonShoot():
 		inventory[indx].current_bullet = inventory[indx].capacity
 		return
 	dt = timerNode.time_counter
-	
+	#Создание коллизии пули
 	var segment := SegmentShape2D.new()
 	segment.a = Vector2(0,0)
 	segment.b = Vector2(5,0)
 	var collision := CollisionShape2D.new()
 	collision.debug_color = Color(255, 0, 0, 1)
 	collision.shape = segment
+	#Создание узла спрайта для пули
+	var bullet_sprite := Sprite2D.new()
+	bullet_sprite.texture = load("res://UI/assets/Weapons/gold_bullet.png")
+	bullet_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
+	bullet_sprite.scale = Vector2(0.35,0.35)
 	#Создание пули и ее размещение в узле "Level"
 	area_commonshoot = Area2D.new()
 	area_commonshoot.name = inventory[indx].name + "~" + str(inventory[indx].current_bullet)
@@ -157,18 +169,19 @@ func commonShoot():
 	var area_commonshoot_copy = area_commonshoot #Получение копии для корректной работы с ссылками
 	var lambda = func(body): 
 		var index = get_tree().root.get_node("Level").get_node("player").currentWeaponIndex
-		if body is CharacterBody2D or body is TileMap:
+		if body is CharacterBody2D or body is TileMap or body is StaticBody2D:
 			if body is CharacterBody2D:
 				print("")
 				print(body.HP)
 				body.HP -= realPlayer.damage
 				print(body.HP)
-			elif body is TileMap:
+			elif body is TileMap or body is StaticBody2D:
 				get_tree().root.get_node("Level").bullets.erase(area_commonshoot_copy)
 				deleteScene(area_commonshoot_name)
 	#Продолжение установки свойств для пули
 	area_commonshoot.body_entered.connect(lambda)
 	area_commonshoot.add_child(collision)
+	area_commonshoot.add_child(bullet_sprite)
 	area_commonshoot.set_collision_mask_value(3,true) # Enemies маска
 	area_commonshoot.set_collision_mask_value(1, true) # level_objects маска
 	area_commonshoot.z_index = 2
