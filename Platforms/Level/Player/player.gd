@@ -1,5 +1,5 @@
+class_name Player
 extends CharacterBody2D
-
 #Переменные игрока
 @onready var player = $"."
 var currentWeaponIndex = -1
@@ -23,14 +23,11 @@ var helpArea : CollisionShape2D
 var timeNow
 var offset : float
 #Переменные необходимые для commonShoot стрельбы
-var virtual_player_commonShoot
 var realPlayer
 var dt #как timeNow, но для commonShoot
 var area_commonshoot
-var animated_player_sprite
 
 func _ready():
-	animated_player_sprite = $playerSprite
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
 	var weapon_class = ResourceLoader.load("res://Weapon.gd")
 	var tmp_weapon = weapon_class.Weapon.new()
@@ -46,11 +43,11 @@ func _ready():
 	helpArea.visible = false
 	timeNow = timerNode.time_counter
 	#Инициализация переменных для commonShoot стрельбы
-	virtual_player_commonShoot = get_tree().root.get_node("main_menu").virtual_player
 	realPlayer = get_tree().root.get_node("Level").get_node("player")
 	dt = timerNode.time_counter
 
 func _physics_process(delta):
+	$AnimatedSprite2D.play()
 	$PlayerHealthBar.value = HP
 	#Вынес все условия и прочие действия в функции
 	isMoving(delta)
@@ -74,20 +71,15 @@ func isMoving(delta):
 		Velocity.y = JUMP_VELOCITY
 	if Input.is_action_just_pressed("move_down") and is_on_floor():
 		position = Vector2(position.x, position.y + 5);
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+
 	var direction = Input.get_vector("move_left","move_right","jump","move_down")
 	if direction.x == 1 or direction.x == -1:
-			animated_player_sprite.animation = "player_walk"
-			animated_player_sprite.play()
-			animated_player_sprite.flip_h = direction.x < 0
 			Velocity.x = direction.x * SPEED;
 			dirAreaPlayer.y = PosY;
 			dirAreaPlayer.x = PosX + 5 * direction.x; #Перемещение "взгляда" персонажа
 			$AreaPlayer/AreaCollision.position = dirAreaPlayer;
 	if direction == Vector2.ZERO:
 			Velocity.x = move_toward(velocity.x, 0, SPEED);
-		
 	velocity = Velocity;
 	move_and_slide();
 

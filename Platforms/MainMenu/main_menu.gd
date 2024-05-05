@@ -3,9 +3,11 @@ extends Control
 var virtual_player # Player
 var weapon_inventory = [] # Weapon
 var shop_weapons = [] # Weapon
+var cursor = load("res://UI/Cursor.png")
 
 func _ready():
-	virtual_player = $virtual_player.Player.new()
+	Input.set_custom_mouse_cursor(cursor) #Установка курсора
+	virtual_player = $virtual_player.virtual_player.new()
 	var weapon_class = ResourceLoader.load("res://Weapon.gd")
 	var tmp_weapon = weapon_class.Weapon.new()
 	# Weapon1
