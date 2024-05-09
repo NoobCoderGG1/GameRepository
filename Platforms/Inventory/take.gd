@@ -24,6 +24,8 @@ func _on_gui_input(event):
 			if w.name == name_of_weapon:
 				selected_weapon = w
 				break
+		if selected_weapon == null:
+			return
 		if selected_item_index != -1 and not is_in_taken(selected_weapon):
 			virtual_player.player_inventory.append(selected_weapon.copy())
 			$"../taken_weapons".update_list()

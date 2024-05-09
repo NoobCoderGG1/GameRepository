@@ -1,11 +1,94 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpwmxbivx348f"]
+[gd_scene load_steps=18 format=3 uid="uid://bpwmxbivx348f"]
 
+[ext_resource type="Texture2D" uid="uid://j5cm6g03i2ue" path="res://UI/assets/Background/InventoryWithout.png" id="1_n4itx"]
 [ext_resource type="Script" path="res://Inventory/avaible_weapons.gd" id="1_r1mpv"]
 [ext_resource type="Script" path="res://Inventory/taken_weapons.gd" id="2_24fka"]
 [ext_resource type="Script" path="res://Inventory/take.gd" id="3_0nn04"]
 [ext_resource type="Script" path="res://Inventory/to_menu.gd" id="4_633ql"]
+[ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="5_s3i7b"]
 [ext_resource type="Script" path="res://Inventory/drop.gd" id="5_t61g8"]
 [ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="6_0lj8w"]
+
+[sub_resource type="FontVariation" id="FontVariation_f3fba"]
+variation_embolden = 2.0
+spacing_top = 6
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_imlvu"]
+texture = ExtResource("5_s3i7b")
+texture_margin_left = 6.0
+texture_margin_top = 14.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+expand_margin_left = 4.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_fe73q"]
+texture = ExtResource("5_s3i7b")
+texture_margin_left = 6.0
+texture_margin_top = 14.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+expand_margin_left = 4.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.482353, 0.478431, 0.498039, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_7k6dk"]
+variation_embolden = 2.0
+spacing_top = 6
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_87lnx"]
+texture = ExtResource("5_s3i7b")
+texture_margin_left = 6.0
+texture_margin_top = 14.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+expand_margin_left = 4.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i4cm3"]
+texture = ExtResource("5_s3i7b")
+texture_margin_left = 6.0
+texture_margin_top = 14.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+expand_margin_left = 4.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.482353, 0.478431, 0.498039, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_8m11x"]
+variation_embolden = 2.0
+spacing_top = 6
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_suc26"]
+texture = ExtResource("5_s3i7b")
+texture_margin_left = 6.0
+texture_margin_top = 14.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+expand_margin_left = 4.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 5.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w6th8"]
+texture = ExtResource("5_s3i7b")
+texture_margin_left = 6.0
+texture_margin_top = 14.0
+texture_margin_right = 5.0
+texture_margin_bottom = 14.0
+expand_margin_left = 4.0
+expand_margin_top = 5.0
+expand_margin_right = 4.0
+expand_margin_bottom = 5.0
+modulate_color = Color(0.482353, 0.478431, 0.498039, 1)
 
 [node name="inventory" type="Control"]
 layout_mode = 3
@@ -19,46 +102,62 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(636, 361)
+scale = Vector2(4, 4)
+texture = ExtResource("1_n4itx")
+
 [node name="avaible_weapons" type="ItemList" parent="."]
 layout_mode = 0
-offset_left = 3.0
+offset_left = 36.0
 offset_top = 34.0
-offset_right = 527.0
-offset_bottom = 593.0
+offset_right = 620.0
+offset_bottom = 460.0
 script = ExtResource("1_r1mpv")
 
 [node name="taken_weapons" type="ItemList" parent="."]
 layout_mode = 0
-offset_left = 795.0
-offset_top = 28.0
-offset_right = 1277.0
-offset_bottom = 591.0
+offset_left = 978.0
+offset_top = 23.0
+offset_right = 1250.0
+offset_bottom = 482.0
 script = ExtResource("2_24fka")
 
 [node name="take" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 592.0
-offset_top = 510.0
-offset_right = 697.0
-offset_bottom = 541.0
+offset_left = 492.0
+offset_top = 512.0
+offset_right = 774.0
+offset_bottom = 674.0
+theme_override_fonts/font = SubResource("FontVariation_f3fba")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_imlvu")
+theme_override_styles/hover = SubResource("StyleBoxTexture_fe73q")
 text = "Take to fight"
 script = ExtResource("3_0nn04")
 
 [node name="to_menu" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 215.0
-offset_top = 636.0
-offset_right = 330.0
-offset_bottom = 667.0
+offset_left = 40.0
+offset_top = 512.0
+offset_right = 322.0
+offset_bottom = 674.0
+theme_override_fonts/font = SubResource("FontVariation_7k6dk")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_87lnx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i4cm3")
 text = "Back to menu"
 script = ExtResource("4_633ql")
 
 [node name="avaible_weapons_text" type="Label" parent="."]
 layout_mode = 0
-offset_left = 189.0
-offset_top = 5.0
-offset_right = 319.0
-offset_bottom = 28.0
+offset_left = 262.0
+offset_top = 6.0
+offset_right = 392.0
+offset_bottom = 29.0
 text = "Avaible weapons"
 
 [node name="taken_weapons_text" type="Label" parent="."]
@@ -70,18 +169,25 @@ offset_bottom = 27.0
 text = "Taken weapons"
 
 [node name="drop" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 581.0
-offset_top = 593.0
-offset_right = 718.0
-offset_bottom = 624.0
+offset_left = 948.0
+offset_top = 512.0
+offset_right = 1230.0
+offset_bottom = 674.0
+theme_override_fonts/font = SubResource("FontVariation_8m11x")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxTexture_suc26")
+theme_override_styles/hover = SubResource("StyleBoxTexture_w6th8")
 text = "Drop from taken"
 script = ExtResource("5_t61g8")
 
 [node name="weapon_info" type="Control" parent="."]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 145.0
+offset_top = 5.0
+offset_right = 209.0
+offset_bottom = 49.0
 
 [node name="image" type="TextureRect" parent="weapon_info"]
 layout_mode = 0
@@ -143,4 +249,5 @@ text = "Description"
 [connection signal="item_selected" from="taken_weapons" to="taken_weapons" method="_on_item_selected"]
 [connection signal="gui_input" from="take" to="take" method="_on_gui_input"]
 [connection signal="gui_input" from="to_menu" to="to_menu" method="_on_gui_input"]
+[connection signal="button_down" from="drop" to="drop" method="_on_button_down"]
 [connection signal="gui_input" from="drop" to="drop" method="_on_gui_input"]

@@ -1,9 +1,99 @@
-[gd_scene load_steps=4 format=3 uid="uid://c1u8o53fueecg"]
+[gd_scene load_steps=21 format=3 uid="uid://c1u8o53fueecg"]
 
 [ext_resource type="Script" path="res://Level/Enemy/enemy.gd" id="1_wnv5k"]
-[ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="2_y3iar"]
+[ext_resource type="Texture2D" uid="uid://mfhlwc2nbkve" path="res://UI/assets/Idle/ninja_enemy_idle.png" id="2_kmnip"]
+[ext_resource type="Script" path="res://Level/Enemy/FSM/fsm.gd" id="3_nx2el"]
+[ext_resource type="Texture2D" uid="uid://d06jt48skb33u" path="res://UI/assets/Run/Ninja_Enemy/ninja_enemy_run.png" id="3_webco"]
+[ext_resource type="Script" path="res://Level/Enemy/FSM/Idle.gd" id="4_enieg"]
+[ext_resource type="Script" path="res://Level/Enemy/FSM/Attack.gd" id="5_1uyjp"]
+[ext_resource type="Script" path="res://Level/Enemy/FSM/Run.gd" id="5_qp70y"]
+[ext_resource type="Script" path="res://Level/Enemy/FSM/Jump.gd" id="7_gsk67"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t14un"]
+size = Vector2(15, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnh6o"]
+atlas = ExtResource("2_kmnip")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ba2"]
+atlas = ExtResource("2_kmnip")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l52g"]
+atlas = ExtResource("2_kmnip")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkdb3"]
+atlas = ExtResource("2_kmnip")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l41xv"]
+atlas = ExtResource("2_kmnip")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahtm4"]
+atlas = ExtResource("3_webco")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unre4"]
+atlas = ExtResource("3_webco")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5e75g"]
+atlas = ExtResource("3_webco")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1wr1"]
+atlas = ExtResource("3_webco")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_surxd"]
+atlas = ExtResource("3_webco")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tudo6"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnh6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ba2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l52g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkdb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l41xv")
+}],
+"loop": true,
+"name": &"enemy_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahtm4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unre4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5e75g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1wr1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_surxd")
+}],
+"loop": true,
+"name": &"enemy_run",
+"speed": 5.0
+}]
 
 [node name="enemy" type="CharacterBody2D"]
 collision_layer = 4
@@ -12,11 +102,26 @@ script = ExtResource("1_wnv5k")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_t14un")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(0.309804, 0.309804, 0.309804, 1)
-self_modulate = Color(0.631373, 0, 0.647059, 1)
-position = Vector2(0, -4.76837e-07)
-scale = Vector2(0.151, 0.151)
-texture = ExtResource("2_y3iar")
+[node name="enemySprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_tudo6")
+animation = &"enemy_run"
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_nx2el")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("4_enieg")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("5_1uyjp")
+
+[node name="Run" type="Node" parent="FSM"]
+script = ExtResource("5_qp70y")
+
+[node name="Jump" type="Node" parent="FSM"]
+script = ExtResource("7_gsk67")

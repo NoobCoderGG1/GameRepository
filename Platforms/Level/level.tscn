@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bhrlaw06f1fmq"]
+[gd_scene load_steps=19 format=3 uid="uid://bhrlaw06f1fmq"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_8gipx"]
 [ext_resource type="PackedScene" uid="uid://di8njwhg0rn63" path="res://Level/Player/player.tscn" id="1_qwmfb"]
@@ -9,13 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://byxkv5xfh8f2m" path="res://Level/level_objects/coin.tscn" id="4_l7aex"]
 [ext_resource type="PackedScene" uid="uid://di7xxpcwgni5b" path="res://UI/timer_count/timer_count.tscn" id="8_5i1fm"]
 [ext_resource type="Texture2D" uid="uid://b4g4myr0aurtq" path="res://UI/buttons/PauseButton.png" id="9_3lhjf"]
-[ext_resource type="Texture2D" uid="uid://fv2ljd0aeevp" path="res://UI/buttons/LMoveBtn.png" id="10_7v0l2"]
 [ext_resource type="Script" path="res://Level/PauseBtn.gd" id="10_puf4b"]
-[ext_resource type="Texture2D" uid="uid://y6vgd2fecurq" path="res://UI/buttons/RMoveBtn.png" id="11_6egn6"]
-[ext_resource type="Texture2D" uid="uid://bncvqwf0rswj6" path="res://UI/buttons/AttackBtn.png" id="12_od28m"]
-[ext_resource type="Texture2D" uid="uid://dnci64y4v7bax" path="res://UI/buttons/ChangeWeaponeBtn.png" id="13_vqhq3"]
-[ext_resource type="Texture2D" uid="uid://ddc6gjtlabxp3" path="res://UI/buttons/JumpBtn.png" id="14_mkv1k"]
-[ext_resource type="Texture2D" uid="uid://jj8ji8opp0qq" path="res://UI/buttons/DownMoveBtn.png" id="15_2snwj"]
+[ext_resource type="Texture2D" uid="uid://cot05as33kder" path="res://UI/buttons/LeftRight.png" id="11_1hiau"]
+[ext_resource type="Texture2D" uid="uid://cmwogixv483pv" path="res://UI/buttons/Attack.png" id="12_nrw0p"]
+[ext_resource type="Texture2D" uid="uid://di4fpefrj86im" path="res://UI/buttons/Reload.png" id="13_vxaek"]
+[ext_resource type="Texture2D" uid="uid://crtnoudmy6lt2" path="res://UI/buttons/UpDown.png" id="14_sf5tj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ycmr"]
 texture = ExtResource("2_lhmjx")
@@ -104,42 +102,42 @@ script = ExtResource("10_puf4b")
 texture_filter = 1
 position = Vector2(97, 498)
 scale = Vector2(5.84375, 5.5)
-texture_normal = ExtResource("10_7v0l2")
+texture_normal = ExtResource("11_1hiau")
 action = "move_left"
 
 [node name="RMoveBtn" type="TouchScreenButton" parent="UI"]
 texture_filter = 1
-position = Vector2(343, 496)
-scale = Vector2(5.5, 5.5625)
-texture_normal = ExtResource("11_6egn6")
+position = Vector2(523.053, 496)
+scale = Vector2(-5.677, 5.5)
+texture_normal = ExtResource("11_1hiau")
 action = "move_right"
 
 [node name="AttackBtn" type="TouchScreenButton" parent="UI"]
 texture_filter = 1
 position = Vector2(1098, 553)
 scale = Vector2(4.65625, 4.65625)
-texture_normal = ExtResource("12_od28m")
+texture_normal = ExtResource("12_nrw0p")
 action = "attack"
 
 [node name="ChangeBtn" type="TouchScreenButton" parent="UI"]
 texture_filter = 1
 position = Vector2(1119, 339)
 scale = Vector2(4.03125, 4.3125)
-texture_normal = ExtResource("13_vqhq3")
+texture_normal = ExtResource("13_vxaek")
 action = "change_weapon"
 
 [node name="JumpBtn" type="TouchScreenButton" parent="UI"]
 texture_filter = 1
-position = Vector2(945, 392)
-scale = Vector2(4.3125, 4.4375)
-texture_normal = ExtResource("14_mkv1k")
+position = Vector2(945, 520)
+scale = Vector2(4.494, -4.313)
+texture_normal = ExtResource("14_sf5tj")
 action = "jump"
 
 [node name="DownMoveBtn" type="TouchScreenButton" parent="UI"]
 texture_filter = 1
 position = Vector2(889, 563)
 scale = Vector2(4.375, 4.3125)
-texture_normal = ExtResource("15_2snwj")
+texture_normal = ExtResource("14_sf5tj")
 action = "move_down"
 
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]

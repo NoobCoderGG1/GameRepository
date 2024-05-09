@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fre6rruu2tl2"
-path="res://.godot/imported/IdlePlayer.png-c1b2ab72c03714ef8eee4a2e82b5c349.ctex"
+uid="uid://owg5tjg6vr2i"
+path="res://.godot/imported/gold_bullet.png-9d48d8fb43f7cd9fd35395251c96d3d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Run/Player/IdlePlayer.png"
-dest_files=["res://.godot/imported/IdlePlayer.png-c1b2ab72c03714ef8eee4a2e82b5c349.ctex"]
+source_file="res://UI/assets/Weapons/Bullets/gold_bullet.png"
+dest_files=["res://.godot/imported/gold_bullet.png-9d48d8fb43f7cd9fd35395251c96d3d7.ctex"]
 
 [params]
 

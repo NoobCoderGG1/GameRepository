@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 #Переменные игрока
 @onready var player = $"."
+@onready var animation = $playerSprite
 var currentWeaponIndex = -1
 var HP = 100
 var damage: int = 0 #Не достал оружие.
@@ -10,6 +11,7 @@ var SPEED: float = 300.0
 var JUMP_VELOCITY: float = -400.0
 var countMoney:int = 0;
 var inventory = [] #Weapones
+var dirPlayer = 1 #Направление взгляда персонажа, равняется -1 или 1
 #Координаты смещения зоны "радиуса атаки ближнего боя" от самого героя
 var PosX:float; 
 var PosY:float;
@@ -18,7 +20,7 @@ var enemies = []
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Переменные необходимые для lazerGun стрельбы
 var area_lazerGun : CollisionShape2D
-var helpArea : CollisionShape2D
+#var helpArea : CollisionShape2D
 @onready var timerNode = $"../UI/timerCount"
 var timeNow
 var offset : float
@@ -39,15 +41,14 @@ func _ready():
 	#Инициализация переменных для lazerGun стрельбы
 	area_lazerGun = player.get_node("Shooting").get_node("CollisionShape2D")
 	area_lazerGun.visible = false
-	helpArea = player.get_node("HelpShooting").get_node("CollisionShape2D")
-	helpArea.visible = false
+	#helpArea = player.get_node("HelpShooting").get_node("CollisionShape2D")
+	#helpArea.visible = false
 	timeNow = timerNode.time_counter
 	#Инициализация переменных для commonShoot стрельбы
 	realPlayer = get_tree().root.get_node("Level").get_node("player")
 	dt = timerNode.time_counter
 
 func _physics_process(delta):
-	$AnimatedSprite2D.play()
 	$PlayerHealthBar.value = HP
 	#Вынес все условия и прочие действия в функции
 	isMoving(delta)
@@ -57,12 +58,13 @@ func _physics_process(delta):
 	if timerNode.time_counter - timeNow >= 0.2:
 		area_lazerGun.visible = false
 		area_lazerGun.shape.b = Vector2(0, 0)
-		helpArea.shape.b = Vector2(0, 0)
+		#helpArea.shape.b = Vector2(0, 0)
 		timeNow = timerNode.time_counter
+		$LazerGunLine.clear_points()
 	
 func isMoving(delta):
 	var Velocity : Vector2 = velocity
-	var dirAreaPlayer : Vector2 = Vector2() #Направление взгляда героя
+	var dirAreaPlayer : Vector2 = Vector2() #Направление взгляда героя для AreaPlayer
 	# Add the gravity.
 	if not is_on_floor():
 		Velocity.y += gravity * delta
@@ -76,8 +78,9 @@ func isMoving(delta):
 	if direction.x == 1 or direction.x == -1:
 			Velocity.x = direction.x * SPEED;
 			dirAreaPlayer.y = PosY;
-			dirAreaPlayer.x = PosX + 5 * direction.x; #Перемещение "взгляда" персонажа
+			dirAreaPlayer.x = PosX + 5 * direction.x; #Перемещение "области досягаемости атаки" персонажа
 			$AreaPlayer/AreaCollision.position = dirAreaPlayer;
+			dirPlayer = direction.x
 	if direction == Vector2.ZERO:
 			Velocity.x = move_toward(velocity.x, 0, SPEED);
 	velocity = Velocity;
@@ -123,11 +126,11 @@ func shootingBody_entered(body): #Функция для lazerShoot
 #Функции осуществляющие стрельбу
 func lazerShoot():
 	for i in range(0, 20*16, 16):
-		helpArea.shape.b = Vector2(i, 0)
-		if check_tile(player.position.x, player.position.y, i): #Проверка на tile
-			fire(float(i - fmod(player.position.x, 16.0) + 0)) 
+		#helpArea.shape.b = Vector2(i * dirPlayer, 0) --- нигде не используется, зачем нужна?
+		if check_tile(player.position.x, player.position.y, i * dirPlayer): #Проверка на tile
+			fire(float(i * dirPlayer - fmod(player.position.x, 16.0) + 0)) 
 			return
-	fire(400)
+	fire(400 * dirPlayer)
 	
 func commonShoot():
 	var indx = get_tree().root.get_node("Level").get_node("player").currentWeaponIndex
@@ -154,9 +157,10 @@ func commonShoot():
 	bullet_sprite.texture = load("res://UI/assets/Weapons/gold_bullet.png")
 	bullet_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	bullet_sprite.scale = Vector2(0.35,0.35)
+	bullet_sprite.flip_h = dirPlayer < 0
 	#Создание пули и ее размещение в узле "Level"
 	area_commonshoot = Area2D.new()
-	area_commonshoot.name = inventory[indx].name + "~" + str(inventory[indx].current_bullet)
+	area_commonshoot.name = inventory[indx].name + "~" + str(inventory[indx].current_bullet) + "^" + str(dirPlayer)
 	var area_commonshoot_name = str(area_commonshoot.name) #Получение имени пули для правильного обращения через get_node 
 	var area_commonshoot_copy = area_commonshoot #Получение копии для корректной работы с ссылками
 	var lambda = func(body): 
@@ -177,7 +181,6 @@ func commonShoot():
 	area_commonshoot.set_collision_mask_value(3,true) # Enemies маска
 	area_commonshoot.set_collision_mask_value(1, true) # level_objects маска
 	area_commonshoot.z_index = 2
-	area_commonshoot.name = inventory[indx].name + "~" + str(inventory[indx].current_bullet)
 	inventory[indx].current_bullet -= 1
 
 	get_tree().root.get_node("Level").add_child(area_commonshoot)
@@ -191,6 +194,13 @@ func deleteScene(stringNodePath): #Требуется для корректно�
 func fire(pos_x:float) -> void: #Произведение лазерного выстрела
 		area_lazerGun.shape.b = Vector2(pos_x, 0)
 		area_lazerGun.visible = true
+		var isUp = -1
+		if pos_x < 0:
+			pos_x = pos_x * -1
+		for i in range(pos_x/3):
+			var point = Vector2(i * 5 * dirPlayer, isUp * (position.y/16))
+			isUp = isUp * -1
+			$LazerGun.add_point(point,i)
 func check_tile(user_position_x: float, user_position_y: float, offset: int) -> bool: #Проверка на слой тайла
 		var check_ground_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(2, Vector2i(
 			(user_position_x + offset) / 16, user_position_y / 16))

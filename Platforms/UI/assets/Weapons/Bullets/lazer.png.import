@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://owg5tjg6vr2i"
-path="res://.godot/imported/gold_bullet.png-a6332c71477ac6cd5f7c2ee918fe8e20.ctex"
+uid="uid://wi10padrgy6y"
+path="res://.godot/imported/lazer.png-6625f9216955fddf31b3fa8241fb7925.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Weapons/gold_bullet.png"
-dest_files=["res://.godot/imported/gold_bullet.png-a6332c71477ac6cd5f7c2ee918fe8e20.ctex"]
+source_file="res://UI/assets/Weapons/Bullets/lazer.png"
+dest_files=["res://.godot/imported/lazer.png-6625f9216955fddf31b3fa8241fb7925.ctex"]
 
 [params]
 

@@ -14,8 +14,7 @@ func is_in_taken(weapon):
 			return true
 	return false
 
-func _on_gui_input(event):
-	if event.is_pressed():
+func _on_button_down():
 		release_focus()
 		selected_item_index = taken_weapons_list.selected_item_index
 		var name_of_weapon = taken_weapons_list.get_item_text(selected_item_index)
@@ -24,6 +23,8 @@ func _on_gui_input(event):
 			if w.name == name_of_weapon:
 				selected_weapon = w
 				break
+		if selected_weapon == null:
+			return
 		if selected_item_index != -1 and is_in_taken(selected_weapon):
 			virtual_player.player_inventory.remove_at(selected_item_index)
 			$"../taken_weapons".update_list()

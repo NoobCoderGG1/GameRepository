@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bcqr8p7cobi2q"
-path="res://.godot/imported/MenuSprite.png-e2fbe181ffc6fa7789839019bfe199cf.ctex"
+uid="uid://cot05as33kder"
+path="res://.godot/imported/LeftRight.png-5c199e74eb04b823ba764982f60f569f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://MainMenu/MenuSprite.png"
-dest_files=["res://.godot/imported/MenuSprite.png-e2fbe181ffc6fa7789839019bfe199cf.ctex"]
+source_file="res://UI/buttons/LeftRight.png"
+dest_files=["res://.godot/imported/LeftRight.png-5c199e74eb04b823ba764982f60f569f.ctex"]
 
 [params]
 

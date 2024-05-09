@@ -1,10 +1,65 @@
-[gd_scene load_steps=6 format=3 uid="uid://bsyprmbw6mk73"]
+[gd_scene load_steps=13 format=3 uid="uid://bsyprmbw6mk73"]
 
+[ext_resource type="Texture2D" uid="uid://wwdyjydjlyps" path="res://UI/assets/Background/ShopWithout.png" id="1_dgq57"]
 [ext_resource type="Script" path="res://Shop/to_menu.gd" id="2_oc2bk"]
 [ext_resource type="Script" path="res://Shop/weapons.gd" id="2_vfph1"]
+[ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="3_ee17m"]
 [ext_resource type="Script" path="res://Shop/buy.gd" id="4_of4yv"]
 [ext_resource type="Script" path="res://Shop/user_money.gd" id="4_xue4i"]
-[ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="5_oyg04"]
+
+[sub_resource type="FontVariation" id="FontVariation_n0wao"]
+variation_embolden = 2.0
+spacing_top = -1
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mj2wo"]
+texture = ExtResource("3_ee17m")
+texture_margin_left = 7.0
+texture_margin_top = 15.0
+texture_margin_right = 6.0
+texture_margin_bottom = 13.0
+expand_margin_left = 4.0
+expand_margin_top = 19.0
+expand_margin_right = 4.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wegmy"]
+texture = ExtResource("3_ee17m")
+texture_margin_left = 7.0
+texture_margin_top = 15.0
+texture_margin_right = 6.0
+texture_margin_bottom = 13.0
+expand_margin_left = 4.0
+expand_margin_top = 19.0
+expand_margin_right = 4.0
+expand_margin_bottom = 15.0
+modulate_color = Color(0.466667, 0.466667, 0.466667, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_tjvt0"]
+variation_embolden = 2.0
+spacing_top = -3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q6u4g"]
+texture = ExtResource("3_ee17m")
+texture_margin_left = 7.0
+texture_margin_top = 15.0
+texture_margin_right = 6.0
+texture_margin_bottom = 13.0
+expand_margin_left = 4.0
+expand_margin_top = 19.0
+expand_margin_right = 4.0
+expand_margin_bottom = 15.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ad7tg"]
+texture = ExtResource("3_ee17m")
+texture_margin_left = 7.0
+texture_margin_top = 15.0
+texture_margin_right = 6.0
+texture_margin_bottom = 13.0
+expand_margin_left = 4.0
+expand_margin_top = 19.0
+expand_margin_right = 4.0
+expand_margin_bottom = 15.0
+modulate_color = Color(0.466667, 0.466667, 0.466667, 1)
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -14,29 +69,45 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="background" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(640, 360)
+scale = Vector2(4, 4)
+texture = ExtResource("1_dgq57")
+
 [node name="weapons" type="ItemList" parent="."]
 layout_mode = 0
-offset_right = 694.0
-offset_bottom = 715.0
+offset_left = 51.0
+offset_top = 529.0
+offset_right = 1233.0
+offset_bottom = 691.0
 max_columns = 6
 same_column_width = true
 script = ExtResource("2_vfph1")
 
 [node name="to_menu" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1070.0
-offset_top = 290.0
-offset_right = 1156.0
-offset_bottom = 355.0
+offset_left = 970.0
+offset_top = 347.0
+offset_right = 1201.0
+offset_bottom = 418.0
+theme_override_fonts/font = SubResource("FontVariation_n0wao")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_mj2wo")
+theme_override_styles/hover = SubResource("StyleBoxTexture_wegmy")
 text = "Menu"
 script = ExtResource("2_oc2bk")
 
 [node name="buy" type="Button" parent="."]
 layout_mode = 0
-offset_left = 1066.0
-offset_top = 112.0
-offset_right = 1158.0
-offset_bottom = 183.0
+offset_left = 968.0
+offset_top = 198.0
+offset_right = 1199.0
+offset_bottom = 269.0
+theme_override_fonts/font = SubResource("FontVariation_tjvt0")
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxTexture_q6u4g")
+theme_override_styles/hover = SubResource("StyleBoxTexture_ad7tg")
 text = "Buy"
 script = ExtResource("4_of4yv")
 
@@ -49,68 +120,45 @@ offset_bottom = 24.0
 text = "Money: "
 script = ExtResource("4_xue4i")
 
-[node name="weapon_info" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 711.0
-offset_top = 67.0
-offset_right = 751.0
-offset_bottom = 107.0
-
-[node name="image" type="TextureRect" parent="weapon_info"]
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+clip_contents = false
 layout_mode = 0
-offset_left = 11.0
-offset_top = 5.0
-offset_right = 139.0
-offset_bottom = 133.0
-texture = ExtResource("5_oyg04")
+offset_left = 58.0
+offset_top = 123.0
+offset_right = 315.0
+offset_bottom = 489.0
 
-[node name="name" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 33.0
-offset_top = 156.0
-offset_right = 80.0
-offset_bottom = 179.0
+[node name="weapon_info" type="VBoxContainer" parent="ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+
+[node name="image" type="TextureRect" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
+expand_mode = 4
+
+[node name="name" type="Label" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
 text = "Name"
+autowrap_mode = 2
 
-[node name="fire_rate" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 204.0
-offset_right = 99.0
-offset_bottom = 227.0
+[node name="fire_rate" type="Label" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
 text = "Fire rate"
 
-[node name="damage" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 256.0
-offset_right = 102.0
-offset_bottom = 279.0
+[node name="damage" type="Label" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
 text = "Damage"
 
-[node name="bullet_speed" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 34.0
-offset_top = 304.0
-offset_right = 130.0
-offset_bottom = 327.0
+[node name="bullet_speed" type="Label" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
 text = "Bullet speed"
 
-[node name="capacity" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 349.0
-offset_right = 108.0
-offset_bottom = 372.0
+[node name="capacity" type="Label" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
 text = "Capacity"
 
-[node name="description" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 38.0
-offset_top = 392.0
-offset_right = 127.0
-offset_bottom = 415.0
+[node name="description" type="Label" parent="ScrollContainer/weapon_info"]
+layout_mode = 2
 text = "Description"
 
 [connection signal="item_selected" from="weapons" to="weapons" method="_on_item_selected"]

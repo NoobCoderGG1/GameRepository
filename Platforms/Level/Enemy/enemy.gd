@@ -1,3 +1,4 @@
+class_name Enemy
 extends CharacterBody2D
 
 var SPEED : float = 50.0
@@ -7,7 +8,9 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var delay = 3.0
 var lastHit : float = 0.0
 var coin_scene = preload("res://Level/level_objects/coin.tscn")
+@onready var animation = $enemySprite
 @onready var level = $".."
+@onready var dirEnemy = 1 #Направление взгляда Enemy, равняется -1 или 1
 
 func _physics_process(delta):
 	if HP <= 0: #Удаление врага в случае его смерти
@@ -26,6 +29,7 @@ func _physics_process(delta):
 			if position.x > get_parent().get_node("player").position.x:
 				Velocity.x = -1
 		target_velocity.x = Velocity.x * SPEED
+		dirEnemy = Velocity.x
 	else: #В случае соответствии, производится атака
 		if lastHit <= 0:
 			get_parent().get_node("player").HP -= damage

@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://bybny80bcvmg6"]
 
 [ext_resource type="Script" path="res://MainMenu/main_menu.gd" id="1_i7o12"]
-[ext_resource type="Texture2D" uid="uid://bcqr8p7cobi2q" path="res://MainMenu/MenuSprite.png" id="2_j31d2"]
+[ext_resource type="Texture2D" uid="uid://d1k21sv2gs58v" path="res://UI/assets/Background/MainMenu.png" id="2_r6u5i"]
 [ext_resource type="Script" path="res://MainMenu/PlayButton.gd" id="3_idkyk"]
 [ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="3_mgbg4"]
 [ext_resource type="Script" path="res://MainMenu/ShopButton.gd" id="4_su0qb"]
@@ -44,7 +44,7 @@ modulate = Color(0.658824, 0.658824, 0.658824, 1)
 texture_filter = 1
 position = Vector2(640, 360)
 scale = Vector2(4, 4)
-texture = ExtResource("2_j31d2")
+texture = ExtResource("2_r6u5i")
 
 [node name="play_button" type="Button" parent="."]
 texture_filter = 1

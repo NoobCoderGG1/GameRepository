@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d22kxat7u1v8k"
-path="res://.godot/imported/Borders_HealthBar.png-8d1eca443a21782fd36db113252d6091.ctex"
+uid="uid://j5cm6g03i2ue"
+path="res://.godot/imported/InventoryWithout.png-d92e5764f1bce345c20d98f7025535cd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level/Player/Player_HealthBar/Borders_HealthBar.png"
-dest_files=["res://.godot/imported/Borders_HealthBar.png-8d1eca443a21782fd36db113252d6091.ctex"]
+source_file="res://UI/assets/Background/InventoryWithout.png"
+dest_files=["res://.godot/imported/InventoryWithout.png-d92e5764f1bce345c20d98f7025535cd.ctex"]
 
 [params]
 

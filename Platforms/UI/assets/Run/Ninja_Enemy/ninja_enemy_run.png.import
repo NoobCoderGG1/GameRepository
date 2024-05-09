@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://okvgkrkkmepp"
-path="res://.godot/imported/MovementPlayer.png-0acf581fa5eed2d8b64dd978fc0fb458.ctex"
+uid="uid://d06jt48skb33u"
+path="res://.godot/imported/ninja_enemy_run.png-23b00a23f2a2a241b489b09adb0560b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Run/Player/MovementPlayer.png"
-dest_files=["res://.godot/imported/MovementPlayer.png-0acf581fa5eed2d8b64dd978fc0fb458.ctex"]
+source_file="res://UI/assets/Run/Ninja_Enemy/ninja_enemy_run.png"
+dest_files=["res://.godot/imported/ninja_enemy_run.png-23b00a23f2a2a241b489b09adb0560b7.ctex"]
 
 [params]
 

@@ -1,0 +1,2 @@
+#Attack.gd
+extends enemyState
