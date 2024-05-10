@@ -2,7 +2,6 @@ class_name Player
 extends CharacterBody2D
 #Переменные игрока
 @onready var player = $"."
-@onready var animation = $playerSprite
 var currentWeaponIndex = -1
 var HP = 100
 var damage: int = 0 #Не достал оружие.
@@ -49,7 +48,6 @@ func _ready():
 	dt = timerNode.time_counter
 
 func _physics_process(delta):
-	$PlayerHealthBar.value = HP
 	#Вынес все условия и прочие действия в функции
 	isMoving(delta)
 	changeWeapon()
@@ -99,6 +97,10 @@ func changeWeapon():
 			2:
 				currentWeaponIndex = 0
 		damage = inventory[currentWeaponIndex].damage
+		if inventory[currentWeaponIndex].icon == null:
+			$playerSprites/currentWeapon.texture = null
+			return
+		$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
 	
 func player_attack():
 	if Input.is_action_just_pressed("attack"):
@@ -148,13 +150,13 @@ func commonShoot():
 	#Создание коллизии пули
 	var segment := SegmentShape2D.new()
 	segment.a = Vector2(0,0)
-	segment.b = Vector2(5,0)
+	segment.b = Vector2(5,5)
 	var collision := CollisionShape2D.new()
 	collision.debug_color = Color(255, 0, 0, 1)
 	collision.shape = segment
 	#Создание узла спрайта для пули
 	var bullet_sprite := Sprite2D.new()
-	bullet_sprite.texture = load("res://UI/assets/Weapons/gold_bullet.png")
+	bullet_sprite.texture = load("res://UI/assets/Weapons/Bullets/gold_bullet.png")
 	bullet_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	bullet_sprite.scale = Vector2(0.35,0.35)
 	bullet_sprite.flip_h = dirPlayer < 0
@@ -200,7 +202,7 @@ func fire(pos_x:float) -> void: #Произведение лазерного в�
 		for i in range(pos_x/3):
 			var point = Vector2(i * 5 * dirPlayer, isUp * (position.y/16))
 			isUp = isUp * -1
-			$LazerGun.add_point(point,i)
+			$LazerGunLine.add_point(point,i)
 func check_tile(user_position_x: float, user_position_y: float, offset: int) -> bool: #Проверка на слой тайла
 		var check_ground_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(2, Vector2i(
 			(user_position_x + offset) / 16, user_position_y / 16))

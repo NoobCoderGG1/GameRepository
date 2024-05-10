@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://byxkv5xfh8f2m"]
 
 [ext_resource type="Script" path="res://Level/level_objects/coin.gd" id="1_f46p6"]
-[ext_resource type="Texture2D" uid="uid://dmi3m30f35ek2" path="res://Level/level_objects/coin.png" id="1_sxrqn"]
+[ext_resource type="Texture2D" uid="uid://dwbrdpshhjn2e" path="res://Level/level_objects/Coin.png" id="2_bx5tj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5lmna"]
-size = Vector2(12, 12)
+size = Vector2(6, 6)
 
 [node name="coin" type="Area2D"]
 collision_mask = 2
@@ -12,9 +12,8 @@ script = ExtResource("1_f46p6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
-position = Vector2(4.76837e-07, -1)
-scale = Vector2(0.65625, 0.625)
-texture = ExtResource("1_sxrqn")
+scale = Vector2(0.515625, 0.5)
+texture = ExtResource("2_bx5tj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5lmna")

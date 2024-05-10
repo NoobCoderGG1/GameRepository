@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxe800td1a6af"
-path="res://.godot/imported/player_idle.png-6d97293036c866d554f695d40c349b62.ctex"
+uid="uid://mfhlwc2nbkve"
+path="res://.godot/imported/ninja_enemy_idle.png-018906c97248a48bcfc3da9497b7e541.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Idle/player_idle.png"
-dest_files=["res://.godot/imported/player_idle.png-6d97293036c866d554f695d40c349b62.ctex"]
+source_file="res://UI/assets/Idle/Ninja_Enemy/ninja_enemy_idle.png"
+dest_files=["res://.godot/imported/ninja_enemy_idle.png-018906c97248a48bcfc3da9497b7e541.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mfhlwc2nbkve"
-path="res://.godot/imported/ninja_enemy_idle.png-4a40e3511f02b8d0bc11ab0702b1bcc8.ctex"
+uid="uid://dsiskthjyu3st"
+path="res://.godot/imported/lazerGun.png-903adb758f2621e64cb3a56cca4baae1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Idle/ninja_enemy_idle.png"
-dest_files=["res://.godot/imported/ninja_enemy_idle.png-4a40e3511f02b8d0bc11ab0702b1bcc8.ctex"]
+source_file="res://UI/assets/Weapons/lazerGun.png"
+dest_files=["res://.godot/imported/lazerGun.png-903adb758f2621e64cb3a56cca4baae1.ctex"]
 
 [params]
 

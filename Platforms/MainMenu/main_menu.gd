@@ -11,14 +11,14 @@ func _ready():
 	var weapon_class = ResourceLoader.load("res://Weapon.gd")
 	var tmp_weapon = weapon_class.Weapon.new()
 	# Weapon1
-	tmp_weapon.icon = "res://UI/assets/Weapons/gold_bullet.png"
+	tmp_weapon.icon = "res://UI/assets/Weapons/lazerGun.png"
 	tmp_weapon.name = "LazerGun";	tmp_weapon.fire_rate = 200;	tmp_weapon.damage = 14.0; #Weapon1 --> LazerGun переименовал
 	tmp_weapon.bullet_speed = 16.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 13
 	shop_weapons.append(tmp_weapon)
 	#Weapon2
 	tmp_weapon = weapon_class.Weapon.new()
-	tmp_weapon.icon = "res://icon.svg"
+	tmp_weapon.icon = "res://UI/assets/Weapons/diamond_sword.png"
 	tmp_weapon.name = "Weapon2";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 20.0;
 	tmp_weapon.bullet_speed = 50.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 20

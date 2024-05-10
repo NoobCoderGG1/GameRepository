@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dwbrdpshhjn2e"
-path="res://.godot/imported/Coin.png-6beb883fcf6699161455a757fb328504.ctex"
+uid="uid://35o1rvj0k5ph"
+path="res://.godot/imported/diamond_sword.png-5ddbe7e6d210d7907fad44dff88eded1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Level/level_objects/Coin.png"
-dest_files=["res://.godot/imported/Coin.png-6beb883fcf6699161455a757fb328504.ctex"]
+source_file="res://UI/assets/Weapons/diamond_sword.png"
+dest_files=["res://.godot/imported/diamond_sword.png-5ddbe7e6d210d7907fad44dff88eded1.ctex"]
 
 [params]
 

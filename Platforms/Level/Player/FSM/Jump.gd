@@ -19,5 +19,8 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Run")
-	player.animation.play("player_jump")
-	player.animation.flip_h = player.dirPlayer < 0
+	
+	if player.dirPlayer > 0:
+		$"../../playerSprites/AnimationPlayer".current_animation = "jump_right"
+	else:
+		$"../../playerSprites/AnimationPlayer".current_animation = "jump_left"

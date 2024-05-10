@@ -15,5 +15,5 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Run")
-	enemy.animation.play("player_jump")
+	enemy.animation.play("enemy_jump")
 	enemy.animation.flip_h = enemy.dirEnemy < 0

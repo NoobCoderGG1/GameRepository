@@ -15,11 +15,13 @@ func physics_update(delta: float) -> void:
 		- Input.get_action_strength("move_left")
 	)
 	#Совершить какие-то действия с анимацией
-	
 
 	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Jump", {do_jump = true})
 	elif is_equal_approx(input_direction_x, 0.0):
 		state_machine.transition_to("Idle")
-	player.animation.play("player_run")
-	player.animation.flip_h = player.dirPlayer < 0
+	
+	if player.dirPlayer > 0:
+		$"../../playerSprites/AnimationPlayer".current_animation = "run_right"
+	else:
+		$"../../playerSprites/AnimationPlayer".current_animation = "run_left"

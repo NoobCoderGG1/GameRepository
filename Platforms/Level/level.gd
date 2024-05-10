@@ -19,6 +19,7 @@ func spawn_timer(): #Спавн врагов по таймеру
 	
 func _physics_process(delta):
 	var player = $player
+	$UI/PlayerHealthBar.value = player.HP
 	for bullet in bullets: #Пробежка по списку выпущенных пуль
 		if bullet == null: continue
 		var bullet_dir : int = bullet.name.split("^")[1].to_int() #Направление пули
