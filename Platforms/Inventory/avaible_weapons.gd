@@ -8,15 +8,18 @@ func _ready():
 	#virtual_player = get_tree().root.get_node("main_menu").virtual_player
 	weapons_inventory = get_tree().root.get_node("main_menu").weapon_inventory
 	for weapon in weapons_inventory:
-		add_item(weapon.name)
+		var image = Image.load_from_file(weapon.icon)
+		var texture = ImageTexture.create_from_image(image)
+		add_icon_item(texture)
 
 func _on_item_selected(index):
 	selected_item_index = index
 	
-	var name_of_weapon = get_item_text(index)
+	var icon_of_weapon = get_item_icon(selected_item_index)
 	var selected_weapon
 	for w in weapons_inventory:
-		if w.name == name_of_weapon:
+		var image = Image.load_from_file(w.icon)
+		if ImageTexture.create_from_image(image).get_image().get_data() == icon_of_weapon.get_image().get_data():
 			selected_weapon = w
 			break
 	

@@ -10,17 +10,20 @@ func _ready():
 
 func is_in_taken(weapon):
 	for w in virtual_player.player_inventory:
-		if w.name == weapon.name:
+		if  w.icon == weapon.icon:
 			return true
 	return false
 
 func _on_button_down():
 		release_focus()
 		selected_item_index = taken_weapons_list.selected_item_index
-		var name_of_weapon = taken_weapons_list.get_item_text(selected_item_index)
+		var icon_of_weapon = taken_weapons_list.get_item_icon(selected_item_index)
+		if icon_of_weapon == null:
+			return
 		var selected_weapon
 		for w in virtual_player.player_inventory:
-			if w.name == name_of_weapon:
+			var image = Image.load_from_file(w.icon)
+			if ImageTexture.create_from_image(image).get_image().get_data() == icon_of_weapon.get_image().get_data():
 				selected_weapon = w
 				break
 		if selected_weapon == null:
@@ -28,3 +31,4 @@ func _on_button_down():
 		if selected_item_index != -1 and is_in_taken(selected_weapon):
 			virtual_player.player_inventory.remove_at(selected_item_index)
 			$"../taken_weapons".update_list()
+			virtual_player.weapon_count -= 1

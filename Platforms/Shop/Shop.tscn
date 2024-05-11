@@ -76,6 +76,7 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_dgq57")
 
 [node name="weapons" type="ItemList" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 51.0
 offset_top = 529.0
@@ -83,6 +84,7 @@ offset_right = 1233.0
 offset_bottom = 691.0
 max_columns = 6
 same_column_width = true
+fixed_icon_size = Vector2i(155, 140)
 script = ExtResource("2_vfph1")
 
 [node name="to_menu" type="Button" parent="."]

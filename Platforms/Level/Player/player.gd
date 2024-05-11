@@ -32,8 +32,11 @@ func _ready():
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
 	var weapon_class = ResourceLoader.load("res://Weapon.gd")
 	var tmp_weapon = weapon_class.Weapon.new()
-	tmp_weapon.name = "Knife";	tmp_weapon.fire_rate = 100;	tmp_weapon.damage = 50.0;
+	tmp_weapon.icon = "res://icon.svg";tmp_weapon.name = "Knife";	
+	tmp_weapon.fire_rate = 100;	tmp_weapon.damage = 50.0;
 	inventory.append(tmp_weapon)
+	damage = inventory[0].damage
+	$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[0].icon))
 	countMoney = get_tree().root.get_node("main_menu").virtual_player.player_money
 	PosX = $AreaPlayer/AreaCollision.position.x
 	PosY = $AreaPlayer/AreaCollision.position.y

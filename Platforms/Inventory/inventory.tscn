@@ -1,13 +1,19 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpwmxbivx348f"]
+[gd_scene load_steps=22 format=3 uid="uid://bpwmxbivx348f"]
 
 [ext_resource type="Texture2D" uid="uid://j5cm6g03i2ue" path="res://UI/assets/Background/InventoryWithout.png" id="1_n4itx"]
 [ext_resource type="Script" path="res://Inventory/avaible_weapons.gd" id="1_r1mpv"]
 [ext_resource type="Script" path="res://Inventory/taken_weapons.gd" id="2_24fka"]
 [ext_resource type="Script" path="res://Inventory/take.gd" id="3_0nn04"]
+[ext_resource type="Texture2D" uid="uid://dsiskthjyu3st" path="res://UI/assets/Weapons/lazerGun.png" id="3_vw0c8"]
 [ext_resource type="Script" path="res://Inventory/to_menu.gd" id="4_633ql"]
+[ext_resource type="Texture2D" uid="uid://35o1rvj0k5ph" path="res://UI/assets/Weapons/diamond_sword.png" id="4_nctpi"]
 [ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="5_s3i7b"]
 [ext_resource type="Script" path="res://Inventory/drop.gd" id="5_t61g8"]
 [ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="6_0lj8w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mp0vu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhvvp"]
 
 [sub_resource type="FontVariation" id="FontVariation_f3fba"]
 variation_embolden = 2.0
@@ -114,14 +120,25 @@ offset_left = 36.0
 offset_top = 34.0
 offset_right = 620.0
 offset_bottom = 460.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_mp0vu")
 script = ExtResource("1_r1mpv")
 
 [node name="taken_weapons" type="ItemList" parent="."]
+texture_filter = 1
 layout_mode = 0
-offset_left = 978.0
-offset_top = 23.0
-offset_right = 1250.0
-offset_bottom = 482.0
+offset_left = 988.0
+offset_top = 28.0
+offset_right = 1236.0
+offset_bottom = 471.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_fhvvp")
+item_count = 3
+fixed_icon_size = Vector2i(250, 140)
+item_0/text = ""
+item_0/icon = ExtResource("3_vw0c8")
+item_1/text = ""
+item_1/icon = ExtResource("4_nctpi")
+item_2/text = ""
+item_2/icon = ExtResource("3_vw0c8")
 script = ExtResource("2_24fka")
 
 [node name="take" type="Button" parent="."]
