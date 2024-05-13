@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsiskthjyu3st"
-path="res://.godot/imported/lazerGun.png-903adb758f2621e64cb3a56cca4baae1.ctex"
+uid="uid://cd4x5kxugugdm"
+path="res://.godot/imported/WoodenHammer.png-a3378065c7a308e005856ffc5c37d612.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Weapons/lazerGun.png"
-dest_files=["res://.godot/imported/lazerGun.png-903adb758f2621e64cb3a56cca4baae1.ctex"]
+source_file="res://UI/assets/Weapons/WoodenHammer.png"
+dest_files=["res://.godot/imported/WoodenHammer.png-a3378065c7a308e005856ffc5c37d612.ctex"]
 
 [params]
 

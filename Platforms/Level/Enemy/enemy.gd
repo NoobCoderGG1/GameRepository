@@ -14,9 +14,11 @@ var coin_scene = preload("res://Level/level_objects/coin.tscn")
 
 func _physics_process(delta):
 	if HP <= 0: #Удаление врага в случае его смерти
-		var coin = coin_scene.instantiate()
-		coin.position = Vector2(position.x, position.y)
-		get_tree().root.add_child(coin)
+		var randomNumber = randi() % 6 #Монета выпадет с шансом 50/50
+		if randomNumber > 2:
+			var coin = coin_scene.instantiate()
+			coin.position = Vector2(position.x, position.y)
+			get_tree().root.add_child(coin)
 		level.enemies.erase(self)
 		queue_free()
 	var Velocity = velocity

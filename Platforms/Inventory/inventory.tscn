@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Inventory/avaible_weapons.gd" id="1_r1mpv"]
 [ext_resource type="Script" path="res://Inventory/taken_weapons.gd" id="2_24fka"]
 [ext_resource type="Script" path="res://Inventory/take.gd" id="3_0nn04"]
-[ext_resource type="Texture2D" uid="uid://dsiskthjyu3st" path="res://UI/assets/Weapons/lazerGun.png" id="3_vw0c8"]
+[ext_resource type="Texture2D" uid="uid://dsiskthjyu3st" path="res://UI/assets/Weapons/LazerPistol.png" id="3_vw0c8"]
 [ext_resource type="Script" path="res://Inventory/to_menu.gd" id="4_633ql"]
 [ext_resource type="Texture2D" uid="uid://35o1rvj0k5ph" path="res://UI/assets/Weapons/diamond_sword.png" id="4_nctpi"]
 [ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="5_s3i7b"]

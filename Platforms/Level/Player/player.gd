@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 #Переменные игрока
 @onready var player = $"."
-var currentWeaponIndex = -1
+var currentWeaponIndex = 0
 var HP = 100
 var damage: int = 0 #Не достал оружие.
 var helpVector = [] #Vector2 
@@ -31,12 +31,15 @@ var area_commonshoot
 func _ready():
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
 	var weapon_class = ResourceLoader.load("res://Weapon.gd")
-	var tmp_weapon = weapon_class.Weapon.new()
-	tmp_weapon.icon = "res://icon.svg";tmp_weapon.name = "Knife";	
-	tmp_weapon.fire_rate = 100;	tmp_weapon.damage = 50.0;
-	inventory.append(tmp_weapon)
-	damage = inventory[0].damage
-	$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[0].icon))
+	if get_tree().root.get_node("main_menu").virtual_player.weapon_count < 3:
+		var tmp_weapon = weapon_class.Weapon.new()
+		tmp_weapon.icon = "res://UI/assets/Weapons/StoneSword.png";tmp_weapon.name = "Knife";	
+		tmp_weapon.fire_rate = 100;	tmp_weapon.damage = 50.0;
+		tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.370,0.370);
+		inventory.append(tmp_weapon)
+	$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
+	$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
+	damage = inventory[currentWeaponIndex].damage
 	countMoney = get_tree().root.get_node("main_menu").virtual_player.player_money
 	PosX = $AreaPlayer/AreaCollision.position.x
 	PosY = $AreaPlayer/AreaCollision.position.y
@@ -90,7 +93,7 @@ func isMoving(delta):
 func changeWeapon():
 	if Input.is_action_just_pressed("change_weapon") and inventory.size() > 1:
 		match currentWeaponIndex:
-			-1, 0:
+			0:
 				currentWeaponIndex = 1
 			1:
 				if inventory.size() < 3:
@@ -104,16 +107,17 @@ func changeWeapon():
 			$playerSprites/currentWeapon.texture = null
 			return
 		$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
+		$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
 	
 func player_attack():
 	if Input.is_action_just_pressed("attack"):
-		if is_on_floor() and currentWeaponIndex == -1: #Урон по области, если в руках оружие ближнего боя
+		if is_on_floor() and inventory[currentWeaponIndex].type == "melee": #Урон по области, если в руках оружие ближнего боя
 			for enemy in enemies:
 				enemy.HP -= damage
 				print(enemy.HP)
 			return
-		if currentWeaponIndex != -1:
-			if inventory[currentWeaponIndex].name == "LazerGun":
+		elif inventory[currentWeaponIndex].type == "ranged":
+			if inventory[currentWeaponIndex].name == "LazerGun" or inventory[currentWeaponIndex].name == "DragonFire" or inventory[currentWeaponIndex].name == "Stick":
 				lazerShoot()
 			else:
 				commonShoot()
@@ -127,7 +131,7 @@ func areaPlayer_exited(body): #Выносит из списка
 
 func shootingBody_entered(body): #Функция для lazerShoot
 	if body != null:
-		body.HP -= 24
+		body.HP -= damage
 #Функции осуществляющие стрельбу
 func lazerShoot():
 	for i in range(0, 20*16, 16):
@@ -159,7 +163,7 @@ func commonShoot():
 	collision.shape = segment
 	#Создание узла спрайта для пули
 	var bullet_sprite := Sprite2D.new()
-	bullet_sprite.texture = load("res://UI/assets/Weapons/Bullets/gold_bullet.png")
+	bullet_sprite.texture = load(inventory[indx].bulletTexture)
 	bullet_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	bullet_sprite.scale = Vector2(0.35,0.35)
 	bullet_sprite.flip_h = dirPlayer < 0
@@ -176,6 +180,8 @@ func commonShoot():
 				print(body.HP)
 				body.HP -= realPlayer.damage
 				print(body.HP)
+				get_tree().root.get_node("Level").bullets.erase(area_commonshoot_copy)
+				deleteScene(area_commonshoot_name)
 			elif body is TileMap or body is StaticBody2D:
 				get_tree().root.get_node("Level").bullets.erase(area_commonshoot_copy)
 				deleteScene(area_commonshoot_name)
@@ -200,6 +206,8 @@ func fire(pos_x:float) -> void: #Произведение лазерного в�
 		area_lazerGun.shape.b = Vector2(pos_x, 0)
 		area_lazerGun.visible = true
 		var isUp = -1
+		$LazerGunLine.texture = load(inventory[currentWeaponIndex].bulletTexture)
+		$LazerGunLine.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 		if pos_x < 0:
 			pos_x = pos_x * -1
 		for i in range(pos_x/3):

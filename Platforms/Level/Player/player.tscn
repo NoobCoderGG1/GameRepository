@@ -253,7 +253,7 @@ tracks/3/path = NodePath("playerSprites/currentWeapon:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.9, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.63, 0.9, 1),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
 "values": [Vector2(-7, -4), Vector2(-6, -3), Vector2(4, 8), Vector2(4, 8), Vector2(4, 9), Vector2(2, 9), Vector2(1, 8), Vector2(1, 8), Vector2(1, 8)]
@@ -513,7 +513,7 @@ shape = SubResource("SegmentShape2D_bakwj")
 debug_color = Color(0, 0.482353, 0, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.085, 3.085)
+zoom = Vector2(3.44, 3.44)
 position_smoothing_enabled = true
 
 [node name="FSM" type="Node" parent="."]
@@ -550,7 +550,7 @@ root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_h3x60")
 }
-speed_scale = 0.74
+speed_scale = 1.417
 
 [connection signal="body_entered" from="Shooting" to="." method="shootingBody_entered"]
 [connection signal="body_entered" from="AreaPlayer" to="." method="areaPlayer_entered"]

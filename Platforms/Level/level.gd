@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var timerCount = get_node("UI/timerCount") #Подключение таймера начала игры для получения времени
 var bullets = []
-var spawn_positions = [Vector2(0, 0), Vector2(25, -79), Vector2(147, -6), Vector2(179, -50), Vector2(197, -6)] #Список позиций спавна врагов
+var spawn_positions = [Vector2(30, -9), Vector2(39, -9), Vector2(46, -17), Vector2(57, -10), Vector2(11, -13)] #Список позиций спавна врагов
 var enemy_scene = preload("res://Level/Enemy/enemy.tscn") 
 var coin_scene = preload("res://Level/level_objects/coin.tscn")
 var enemies = []
