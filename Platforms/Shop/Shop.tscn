@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bsyprmbw6mk73"]
+[gd_scene load_steps=14 format=3 uid="uid://bsyprmbw6mk73"]
 
 [ext_resource type="Texture2D" uid="uid://wwdyjydjlyps" path="res://UI/assets/Background/ShopWithout.png" id="1_dgq57"]
 [ext_resource type="Script" path="res://Shop/to_menu.gd" id="2_oc2bk"]
@@ -61,6 +61,10 @@ expand_margin_right = 4.0
 expand_margin_bottom = 15.0
 modulate_color = Color(0.466667, 0.466667, 0.466667, 1)
 
+[sub_resource type="FontVariation" id="FontVariation_xk58y"]
+variation_embolden = 2.0
+spacing_top = -3
+
 [node name="shop" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -115,11 +119,12 @@ script = ExtResource("4_of4yv")
 
 [node name="user_money" type="Label" parent="."]
 layout_mode = 0
-offset_left = 713.0
-offset_top = 1.0
-offset_right = 766.0
-offset_bottom = 24.0
-text = "Money: "
+offset_left = 1116.0
+offset_top = 33.0
+offset_right = 1204.0
+offset_bottom = 81.0
+theme_override_fonts/font = SubResource("FontVariation_xk58y")
+theme_override_font_sizes/font_size = 35
 script = ExtResource("4_xue4i")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
@@ -146,7 +151,8 @@ autowrap_mode = 2
 
 [node name="fire_rate" type="Label" parent="ScrollContainer/weapon_info"]
 layout_mode = 2
-text = "Fire rate"
+text = "Cost
+"
 
 [node name="damage" type="Label" parent="ScrollContainer/weapon_info"]
 layout_mode = 2

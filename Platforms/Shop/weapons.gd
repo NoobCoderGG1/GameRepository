@@ -25,7 +25,7 @@ func _on_item_selected(index):
 
 	$"../ScrollContainer/weapon_info/image".texture = ImageTexture.create_from_image(Image.load_from_file(selected_weapon.icon))
 	$"../ScrollContainer/weapon_info/name".text			= "Name: " + 			selected_weapon.name
-	$"../ScrollContainer/weapon_info/fire_rate".text	= "Fire rate: " + 	str(selected_weapon.fire_rate)
+	$"../ScrollContainer/weapon_info/fire_rate".text	= "Cost: " + 	str(selected_weapon.cost)
 	$"../ScrollContainer/weapon_info/damage".text		= "Damage: " + 		str(selected_weapon.damage)
 	$"../ScrollContainer/weapon_info/bullet_speed".text	= "Bullet_speed: " +str(selected_weapon.bullet_speed)
 	$"../ScrollContainer/weapon_info/capacity".text		= "Capacity: " + 	str(selected_weapon.capacity)

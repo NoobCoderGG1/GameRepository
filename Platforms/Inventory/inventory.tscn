@@ -115,12 +115,15 @@ scale = Vector2(4, 4)
 texture = ExtResource("1_n4itx")
 
 [node name="avaible_weapons" type="ItemList" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 36.0
 offset_top = 34.0
 offset_right = 620.0
 offset_bottom = 460.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_mp0vu")
+max_columns = 5
+fixed_icon_size = Vector2i(105, 110)
 script = ExtResource("1_r1mpv")
 
 [node name="taken_weapons" type="ItemList" parent="."]
