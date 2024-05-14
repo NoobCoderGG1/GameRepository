@@ -928,11 +928,11 @@ texture_normal = ExtResource("21_n4x5v")
 script = ExtResource("23_4xhsv")
 
 [node name="Label" type="Label" parent="UI/endGame"]
-offset_left = 290.0
-offset_top = 16.0
-offset_right = 930.0
-offset_bottom = 427.0
-text = "You died:
+offset_left = 411.0
+offset_top = 23.0
+offset_right = 1051.0
+offset_bottom = 434.0
+text = "You died!
 Coins: 
 Time:"
 label_settings = SubResource("LabelSettings_syg1s")

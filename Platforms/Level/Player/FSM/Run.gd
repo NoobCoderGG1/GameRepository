@@ -20,6 +20,8 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Jump", {do_jump = true})
 	elif is_equal_approx(input_direction_x, 0.0):
 		state_machine.transition_to("Idle")
+	elif Input.is_action_just_pressed("attack"):
+		state_machine.transition_to("Attack")
 	
 	if player.dirPlayer > 0:
 		$"../../playerSprites/AnimationPlayer".current_animation = "run_right"

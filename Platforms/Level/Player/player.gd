@@ -58,7 +58,7 @@ func _physics_process(delta):
 		$LazerGunLine.clear_points()
 		var total_time = "%02d" % timerNode.min + ":" + "%02d" % timerNode.sec
 		$"../UI/endGame".visible = true
-		$"../UI/endGame/Label".text = "You Died \n" + "Time:" + total_time + "\n" + "Coins: " + str(countMoney)
+		$"../UI/endGame/Label".text = "You Died!\n" + "Time:" + total_time + "\n" + "Coins: " + str(countMoney)
 		return
 	isMoving(delta)
 	changeWeapon()
@@ -118,7 +118,8 @@ func player_attack():
 	if Input.is_action_just_released("attack"):
 		pressedAttack = false
 	if Input.is_action_just_pressed("attack") and (inventory[currentWeaponIndex].type == "melee" or inventory[currentWeaponIndex].name == "LazerGun" or inventory[currentWeaponIndex].name == "DragonFire" or inventory[currentWeaponIndex].name == "Stick"):
-		if is_on_floor() and inventory[currentWeaponIndex].type == "melee": #Урон по области, если в руках оружие ближнего боя
+		pressedAttack = true
+		if is_on_floor() and inventory[currentWeaponIndex].type == "melee" or pressedAttack: #Урон по области, если в руках оружие ближнего боя
 			for enemy in enemies:
 				enemy.HP -= damage
 				print(enemy.HP)

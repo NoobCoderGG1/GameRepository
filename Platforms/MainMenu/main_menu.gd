@@ -24,7 +24,7 @@ func _ready():
 	tmp_weapon.name = "Diamond Sword";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 80.0;
 	tmp_weapon.bullet_speed = 50.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 45
-	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.379,0.344);
+	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.65,0.70);
 	shop_weapons.append(tmp_weapon)
 	#LazerGun
 	tmp_weapon = weapon_class.Weapon.new()

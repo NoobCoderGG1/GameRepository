@@ -11,6 +11,8 @@ func physics_update(_delta: float) -> void:
 		state_machine.transition_to("Jump", {do_jump = true})
 	elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
 		state_machine.transition_to("Run")
+	elif Input.is_action_just_pressed("attack"):
+		state_machine.transition_to("Attack")
 	
 	if player.dirPlayer > 0:
 		$"../../playerSprites/AnimationPlayer".current_animation = "idle_right"

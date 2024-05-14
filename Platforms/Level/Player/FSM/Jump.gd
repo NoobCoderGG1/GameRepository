@@ -12,11 +12,12 @@ func physics_update(delta: float) -> void:
 		- Input.get_action_strength("move_left")
 	)
 	#Совершить какие-то действия с анимацией падения
-	
 	# Landing.
 	if player.is_on_floor():
 		if is_equal_approx(input_direction_x, 0.0):
 			state_machine.transition_to("Idle")
+		elif Input.is_action_just_pressed("attack"):
+			state_machine.transition_to("Attack")
 		else:
 			state_machine.transition_to("Run")
 	
