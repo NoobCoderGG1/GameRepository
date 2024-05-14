@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://di8njwhg0rn63"]
+[gd_scene load_steps=21 format=3 uid="uid://di8njwhg0rn63"]
 
 [ext_resource type="Script" path="res://Level/Player/player.gd" id="1_hh38r"]
 [ext_resource type="Texture2D" uid="uid://ct2pf7q844lve" path="res://UI/assets/Player_Animations/Player/AllAnims.png" id="2_ya1jq"]
 [ext_resource type="Script" path="res://Level/Player/FSM/fsm.gd" id="6_vk6eb"]
+[ext_resource type="Texture2D" uid="uid://2f6o6036nepq" path="res://UI/assets/Attack/reloadAttention.png" id="7_8epld"]
 [ext_resource type="Script" path="res://Level/Player/FSM/Idle.gd" id="7_ai86a"]
 [ext_resource type="Script" path="res://Level/Player/FSM/Run.gd" id="8_d3np2"]
 [ext_resource type="Script" path="res://Level/Player/FSM/Jump.gd" id="9_q3228"]
@@ -14,7 +15,7 @@
 size = Vector2(15, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jvn7o"]
-size = Vector2(22, 27)
+size = Vector2(34, 39.5)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_bakwj"]
 b = Vector2(0, 0)
@@ -482,6 +483,7 @@ collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shooting"]
 z_index = 1
+scale = Vector2(1, 7.27)
 shape = SubResource("SegmentShape2D_x02gu")
 
 [node name="LazerGunLine" type="Line2D" parent="."]
@@ -501,7 +503,6 @@ collision_layer = 8
 collision_mask = 4
 
 [node name="AreaCollision" type="CollisionShape2D" parent="AreaPlayer"]
-position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_jvn7o")
 
 [node name="HelpShooting" type="Area2D" parent="."]
@@ -530,6 +531,13 @@ script = ExtResource("8_d3np2")
 script = ExtResource("9_q3228")
 
 [node name="playerSprites" type="Node2D" parent="."]
+
+[node name="reloadAttention" type="Sprite2D" parent="playerSprites"]
+visible = false
+texture_filter = 1
+position = Vector2(-1, -23)
+scale = Vector2(0.75, 0.671875)
+texture = ExtResource("7_8epld")
 
 [node name="playerSprite2D" type="Sprite2D" parent="playerSprites"]
 texture_filter = 1

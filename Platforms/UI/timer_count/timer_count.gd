@@ -7,6 +7,8 @@ var attempt = false #mutex
 @onready var level = $"../.."
 
 func _physics_process(delta):
+	if $"../../player".HP <= 0:
+		return
 	time_counter += delta
 	sec = int(time_counter) % 60
 	min = int((int(time_counter) % 1000) / 60)

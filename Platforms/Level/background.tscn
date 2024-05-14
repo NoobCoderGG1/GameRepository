@@ -6,21 +6,21 @@
 [node name="Background" type="ParallaxBackground"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(1280.06, 0)
+motion_scale = Vector2(0.4, 0.4)
 
 [node name="LastPicture" type="Sprite2D" parent="ParallaxLayer"]
 z_index = 1
 texture_filter = 1
-position = Vector2(640, 360)
-scale = Vector2(2.66667, 2.66667)
+position = Vector2(631, 360)
+scale = Vector2(2.70417, 2.66667)
 texture = ExtResource("1_q6727")
 
 [node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2(1274.9, 0)
+motion_scale = Vector2(0.8, 0.8)
 
 [node name="FirtsPicture" type="Sprite2D" parent="ParallaxLayer2"]
 z_index = 1
 texture_filter = 1
-position = Vector2(640.5, 360)
-scale = Vector2(2.13167, 2.13018)
+position = Vector2(631.5, 360)
+scale = Vector2(2.16167, 2.13018)
 texture = ExtResource("2_fsr3o")

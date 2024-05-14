@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var timerCount = get_node("UI/timerCount") #Подключение таймера начала игры для получения времени
 var bullets = []
-var spawn_positions = [Vector2(18, 19), Vector2(4, 8), Vector2(18, -13), Vector2(39, -13), Vector2(55, -15)] #Список позиций спавна врагов
+var spawn_positions = [Vector2(380, 253), Vector2(940, 230), Vector2(500, 250), Vector2(400, 300), Vector2(600, 270)] #Список позиций спавна врагов
 var enemy_scene = preload("res://Level/Enemy/enemy.tscn") 
 var coin_scene = preload("res://Level/level_objects/coin.tscn")
 var enemies = []
@@ -34,3 +34,19 @@ func _physics_process(delta):
 		ss.b = Vector2(ss.b.x + delta * bullet_speed * bullet_dir, ss.b.y)
 		ss.a = Vector2(ss.b.x - 5, ss.b.y)
 		bullet_sprite.position = Vector2(ss.b.x + delta * bullet_speed * bullet_dir, ss.b.y)
+
+func restartBtn_pressed():
+	$player.HP = 100
+	$UI/endGame.visible = false
+	$SpawnTimer.stop()
+	for enemy in enemies:
+		enemies.erase(enemy)
+		enemy.queue_free()
+	$player.timeNow = 0.0
+	$player.dt = 0.0
+	$SpawnTimer.start()
+	$player.position = Vector2(561, 313)
+	$UI/timerCount.time_counter = 0.0
+	get_tree().root.get_node("main_menu").virtual_player.player_money = get_tree().root.get_node("main_menu").virtual_player.player_money + $player.countMoney 
+	$player.countMoney = 0
+

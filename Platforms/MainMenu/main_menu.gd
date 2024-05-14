@@ -47,7 +47,7 @@ func _ready():
 	#AK-47
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/ak-47.png"
-	tmp_weapon.name = "AK-47";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 49.0;
+	tmp_weapon.name = "AK-47";	tmp_weapon.fire_rate = 50;	tmp_weapon.damage = 49.0;
 	tmp_weapon.bullet_speed = 500.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 73
 	tmp_weapon.type = "ranged"; tmp_weapon.textureSize = Vector2(1,1);

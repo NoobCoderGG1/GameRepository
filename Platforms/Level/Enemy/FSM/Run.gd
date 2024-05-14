@@ -11,7 +11,6 @@ func physics_update(delta: float) -> void:
 	# A good alternative would be to define a `get_input_direction()` function on the `Player.gd`
 	# script to avoid duplicating these lines in every script.
 	#Совершить какие-то действия с анимацией
-	print("Анимация бега и направление:")
 
 	if Input.is_action_just_pressed("jump"):
 		state_machine.transition_to("Jump", {do_jump = true})

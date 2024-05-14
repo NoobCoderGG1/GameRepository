@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 #Переменные игрока
 @onready var player = $"."
+var pressedAttack = false #Переменная для того, чтобы определить зажата ли кнопка атаки
 var currentWeaponIndex = 0
 var HP = 100
 var damage: int = 0 #Не достал оружие.
@@ -40,7 +41,6 @@ func _ready():
 	$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
 	$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
 	damage = inventory[currentWeaponIndex].damage
-	countMoney = get_tree().root.get_node("main_menu").virtual_player.player_money
 	PosX = $AreaPlayer/AreaCollision.position.x
 	PosY = $AreaPlayer/AreaCollision.position.y
 	#Инициализация переменных для lazerGun стрельбы
@@ -54,7 +54,12 @@ func _ready():
 	dt = timerNode.time_counter
 
 func _physics_process(delta):
-	#Вынес все условия и прочие действия в функции
+	if HP <= 0:
+		$LazerGunLine.clear_points()
+		var total_time = "%02d" % timerNode.min + ":" + "%02d" % timerNode.sec
+		$"../UI/endGame".visible = true
+		$"../UI/endGame/Label".text = "You Died \n" + "Time:" + total_time + "\n" + "Coins: " + str(countMoney)
+		return
 	isMoving(delta)
 	changeWeapon()
 	player_attack()
@@ -78,7 +83,7 @@ func isMoving(delta):
 	if Input.is_action_just_pressed("move_down") and is_on_floor():
 		position = Vector2(position.x, position.y + 5);
 
-	var direction = Input.get_vector("move_left","move_right","jump","move_down")
+	var direction = Input.get_vector("move_left","move_right","ui_page_up","ui_page_up") #Последнии два действия как объекты пустышки, ни на что не влияет
 	if direction.x == 1 or direction.x == -1:
 			Velocity.x = direction.x * SPEED;
 			dirAreaPlayer.y = PosY;
@@ -110,7 +115,9 @@ func changeWeapon():
 		$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
 	
 func player_attack():
-	if Input.is_action_just_pressed("attack"):
+	if Input.is_action_just_released("attack"):
+		pressedAttack = false
+	if Input.is_action_just_pressed("attack") and (inventory[currentWeaponIndex].type == "melee" or inventory[currentWeaponIndex].name == "LazerGun" or inventory[currentWeaponIndex].name == "DragonFire" or inventory[currentWeaponIndex].name == "Stick"):
 		if is_on_floor() and inventory[currentWeaponIndex].type == "melee": #Урон по области, если в руках оружие ближнего боя
 			for enemy in enemies:
 				enemy.HP -= damage
@@ -119,7 +126,11 @@ func player_attack():
 		elif inventory[currentWeaponIndex].type == "ranged":
 			if inventory[currentWeaponIndex].name == "LazerGun" or inventory[currentWeaponIndex].name == "DragonFire" or inventory[currentWeaponIndex].name == "Stick":
 				lazerShoot()
-			else:
+		return
+	if Input.is_action_just_pressed("attack") or pressedAttack:
+		pressedAttack = true
+		if inventory[currentWeaponIndex].type == "ranged":
+			if inventory[currentWeaponIndex].name != "LazerGun" or inventory[currentWeaponIndex].name != "DragonFire" or inventory[currentWeaponIndex].name != "Stick":
 				commonShoot()
 
 func areaPlayer_entered(body): #Заносит врагов в список, если они попали в область действия оружия ближнего боя
@@ -150,8 +161,10 @@ func commonShoot():
 	if indx == -1:
 		return
 	if inventory[indx].current_bullet == 0:
-		print("Перезарядка")
-		inventory[indx].current_bullet = inventory[indx].capacity
+		$playerSprites/reloadAttention.visible = true
+		if timerNode.time_counter - dt > 3.5:
+			inventory[indx].current_bullet = inventory[indx].capacity
+			$playerSprites/reloadAttention.visible = false
 		return
 	dt = timerNode.time_counter
 	#Создание коллизии пули
@@ -220,4 +233,3 @@ func check_tile(user_position_x: float, user_position_y: float, offset: int) -> 
 		var check_trees_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(1, Vector2i(
 			(user_position_x + offset) / 16, user_position_y / 16))
 		return check_ground_layer != null or check_trees_layer != null
-
