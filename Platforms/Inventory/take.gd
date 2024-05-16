@@ -22,8 +22,7 @@ func _on_gui_input(event):
 		var icon_of_weapon = avaible_weapons_list.get_item_icon(selected_item_index)
 		var selected_weapon
 		for w in avaible_weapons_list.weapons_inventory:
-			var image = Image.load_from_file(w.icon)
-			if ImageTexture.create_from_image(image).get_image().get_data() == icon_of_weapon.get_image().get_data():
+			if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
 				selected_weapon = w
 				break
 		if selected_weapon == null:

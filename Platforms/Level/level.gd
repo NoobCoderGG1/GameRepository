@@ -1,15 +1,34 @@
 extends Node2D
 
+@onready var parent = get_parent() #Получение level для рестарта игры
 @onready var timerCount = get_node("UI/timerCount") #Подключение таймера начала игры для получения времени
 var bullets = []
-var spawn_positions = [Vector2(380, 253), Vector2(940, 230), Vector2(500, 250), Vector2(400, 300), Vector2(600, 270)] #Список позиций спавна врагов
-var enemy_scene = preload("res://Level/Enemy/enemy.tscn") 
-var coin_scene = preload("res://Level/level_objects/coin.tscn")
+var spawn_positions = [Vector2(281, 271), Vector2(414, 322), Vector2(570, 177), Vector2(599, 299), Vector2(980, 249)] #Список позиций спавна врагов
+var slug_scene = preload("res://Level/Enemy/enemy.tscn") 
+var boar_scene =  preload("res://Level/Enemy/Boar/boar.tscn") 
+var ogre_scene =  preload("res://Level/Enemy/Ogre/ogre.tscn") 
+var zombie_scene =  preload("res://Level/Enemy/Zombie/zombie.tscn") 
+var gargoyle_scene =  preload("res://Level/Enemy/Gargoyle/gargoyle.tscn") 
+var vampire_scene =  preload("res://Level/Enemy/Vampire/vampire.tscn") 
 var enemies = []
 
 func spawn_timer(): #Спавн врагов по таймеру
+	var enemy
+	var random_enemy = randi() % 12
+	match random_enemy:
+		0,1,2:
+			enemy = zombie_scene.instantiate()
+		3,4,5:
+			enemy = slug_scene.instantiate()
+		6,7:
+			enemy = gargoyle_scene.instantiate()
+		8,9:
+			enemy = boar_scene.instantiate()
+		10,11:
+			enemy = ogre_scene.instantiate()
+		12:
+			enemy = vampire_scene.instantiate()
 	var index_array = randi() % 5
-	var enemy = enemy_scene.instantiate()
 	enemy.position = spawn_positions[index_array]
 	match timerCount.min: 
 		1: #Если прошла минута, то увеличиваем ХП врагов на 9
@@ -36,17 +55,14 @@ func _physics_process(delta):
 		bullet_sprite.position = Vector2(ss.b.x + delta * bullet_speed * bullet_dir, ss.b.y)
 
 func restartBtn_pressed():
-	$player.HP = 100
-	$UI/endGame.visible = false
-	$SpawnTimer.stop()
-	for enemy in enemies:
-		enemies.erase(enemy)
-		enemy.queue_free()
-	$player.timeNow = 0.0
-	$player.dt = 0.0
-	$SpawnTimer.start()
-	$player.position = Vector2(561, 313)
-	$UI/timerCount.time_counter = 0.0
-	get_tree().root.get_node("main_menu").virtual_player.player_money = get_tree().root.get_node("main_menu").virtual_player.player_money + $player.countMoney 
+	parent.get_node("main_menu").virtual_player.player_money = parent.get_node("main_menu").virtual_player.player_money + $player.countMoney 
 	$player.countMoney = 0
-
+	var inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
+	for w in inventory:
+		if w.name == "Knife":
+			inventory.erase(w)
+			break
+	timerCount.time_counter = 0.0
+	parent.remove_child(parent.get_node("Level"))
+	parent.add_child(ResourceLoader.load("res://Level/level.tscn").instantiate()) 
+	

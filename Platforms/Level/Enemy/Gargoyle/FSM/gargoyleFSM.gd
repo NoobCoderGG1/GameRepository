@@ -1,0 +1,2 @@
+class_name gargoyleFSM
+extends enemy_FSM

@@ -4,7 +4,7 @@ extends CharacterBody2D
 var SPEED : float = 50.0
 var damage : float = 50
 var HP = 100
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var gravity = 10000#ProjectSettings.get_setting("physics/2d/default_gravity")
 var delay = 3.0
 var lastHit : float = 0.0
 var coin_scene = preload("res://Level/level_objects/coin.tscn")

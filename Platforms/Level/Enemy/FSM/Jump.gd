@@ -1,4 +1,5 @@
 #Jump.gd
+class_name enemyJump
 extends enemyState
 
 # If we get a message asking us to jump, we jump.
@@ -15,5 +16,5 @@ func physics_update(delta: float) -> void:
 			state_machine.transition_to("Idle")
 		else:
 			state_machine.transition_to("Run")
-	enemy.animation.play("enemy_jump")
+	enemy.animation.play("jump")
 	enemy.animation.flip_h = enemy.dirEnemy < 0

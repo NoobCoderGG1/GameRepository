@@ -3,7 +3,7 @@ extends Area2D
 var is_fall = true
 
 func player_entered(body):
-	if body is CharacterBody2D:
+	if body is Player:
 		body.countMoney += 1
 		queue_free()
 	if body is TileMap or body is StaticBody2D:

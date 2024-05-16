@@ -1,4 +1,5 @@
 #Idle.gd
+class_name enemyIdle
 extends enemyState
 
 func enter(_msg := {}) -> void:
@@ -12,6 +13,6 @@ func physics_update(_delta: float) -> void:
 	if enemy.velocity.x > 1 or enemy.velocity.x < -1:
 		state_machine.transition_to("Run")
 		
-	enemy.animation.play("enemy_idle")
+	enemy.animation.play("idle")
 	enemy.animation.flip_h = enemy.dirEnemy < 0
 

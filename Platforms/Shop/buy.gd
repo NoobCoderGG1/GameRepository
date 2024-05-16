@@ -18,8 +18,7 @@ func _on_gui_input(event):
 		if selected_index != -1:
 			var icon_of_weapon = shop_items.get_item_icon(selected_index)
 			for w in shop_items.weapons:
-				var image = Image.load_from_file(w.icon)
-				if ImageTexture.create_from_image(image).get_image().get_data() == icon_of_weapon.get_image().get_data():
+				if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
 					selected_weapon = w
 					break
 			if virtual_player.player_money >= selected_weapon.cost and selected_weapon.status == false:

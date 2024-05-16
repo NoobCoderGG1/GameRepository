@@ -128,7 +128,7 @@ theme_override_font_sizes/font_size = 35
 script = ExtResource("4_xue4i")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
-clip_contents = false
+texture_filter = 1
 layout_mode = 0
 offset_left = 58.0
 offset_top = 123.0
@@ -143,11 +143,6 @@ layout_mode = 2
 texture_filter = 1
 layout_mode = 2
 expand_mode = 4
-
-[node name="name" type="Label" parent="ScrollContainer/weapon_info"]
-layout_mode = 2
-text = "Name"
-autowrap_mode = 2
 
 [node name="fire_rate" type="Label" parent="ScrollContainer/weapon_info"]
 layout_mode = 2
@@ -165,10 +160,6 @@ text = "Bullet speed"
 [node name="capacity" type="Label" parent="ScrollContainer/weapon_info"]
 layout_mode = 2
 text = "Capacity"
-
-[node name="description" type="Label" parent="ScrollContainer/weapon_info"]
-layout_mode = 2
-text = "Description"
 
 [connection signal="item_selected" from="weapons" to="weapons" method="_on_item_selected"]
 [connection signal="ready" from="weapons" to="weapons" method="_on_ready"]

@@ -1,0 +1,2 @@
+class_name zombieFSM
+extends enemy_FSM

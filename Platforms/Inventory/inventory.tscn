@@ -1,15 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://bpwmxbivx348f"]
+[gd_scene load_steps=19 format=3 uid="uid://bpwmxbivx348f"]
 
 [ext_resource type="Texture2D" uid="uid://j5cm6g03i2ue" path="res://UI/assets/Background/InventoryWithout.png" id="1_n4itx"]
 [ext_resource type="Script" path="res://Inventory/avaible_weapons.gd" id="1_r1mpv"]
 [ext_resource type="Script" path="res://Inventory/taken_weapons.gd" id="2_24fka"]
 [ext_resource type="Script" path="res://Inventory/take.gd" id="3_0nn04"]
-[ext_resource type="Texture2D" uid="uid://dsiskthjyu3st" path="res://UI/assets/Weapons/LazerPistol.png" id="3_vw0c8"]
 [ext_resource type="Script" path="res://Inventory/to_menu.gd" id="4_633ql"]
-[ext_resource type="Texture2D" uid="uid://35o1rvj0k5ph" path="res://UI/assets/Weapons/diamond_sword.png" id="4_nctpi"]
 [ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="5_s3i7b"]
 [ext_resource type="Script" path="res://Inventory/drop.gd" id="5_t61g8"]
-[ext_resource type="Texture2D" uid="uid://dnb4yxykccenb" path="res://icon.svg" id="6_0lj8w"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mp0vu"]
 
@@ -134,14 +131,7 @@ offset_top = 28.0
 offset_right = 1236.0
 offset_bottom = 471.0
 theme_override_styles/panel = SubResource("StyleBoxEmpty_fhvvp")
-item_count = 3
 fixed_icon_size = Vector2i(250, 140)
-item_0/text = ""
-item_0/icon = ExtResource("3_vw0c8")
-item_1/text = ""
-item_1/icon = ExtResource("4_nctpi")
-item_2/text = ""
-item_2/icon = ExtResource("3_vw0c8")
 script = ExtResource("2_24fka")
 
 [node name="take" type="Button" parent="."]
@@ -172,22 +162,6 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_i4cm3")
 text = "Back to menu"
 script = ExtResource("4_633ql")
 
-[node name="avaible_weapons_text" type="Label" parent="."]
-layout_mode = 0
-offset_left = 262.0
-offset_top = 6.0
-offset_right = 392.0
-offset_bottom = 29.0
-text = "Avaible weapons"
-
-[node name="taken_weapons_text" type="Label" parent="."]
-layout_mode = 0
-offset_left = 994.0
-offset_top = 4.0
-offset_right = 1115.0
-offset_bottom = 27.0
-text = "Taken weapons"
-
 [node name="drop" type="Button" parent="."]
 texture_filter = 1
 layout_mode = 0
@@ -210,20 +184,13 @@ offset_right = 209.0
 offset_bottom = 49.0
 
 [node name="image" type="TextureRect" parent="weapon_info"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 544.0
+offset_left = 592.35
 offset_top = 40.0
-offset_right = 672.0
+offset_right = 720.35
 offset_bottom = 168.0
-texture = ExtResource("6_0lj8w")
-
-[node name="name" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 552.0
-offset_top = 170.0
-offset_right = 599.0
-offset_bottom = 193.0
-text = "Name"
+expand_mode = 4
 
 [node name="fire_rate" type="Label" parent="weapon_info"]
 layout_mode = 0
@@ -256,14 +223,6 @@ offset_top = 356.0
 offset_right = 620.0
 offset_bottom = 379.0
 text = "Capacity"
-
-[node name="description" type="Label" parent="weapon_info"]
-layout_mode = 0
-offset_left = 551.0
-offset_top = 410.0
-offset_right = 640.0
-offset_bottom = 433.0
-text = "Description"
 
 [connection signal="item_selected" from="avaible_weapons" to="avaible_weapons" method="_on_item_selected"]
 [connection signal="item_selected" from="taken_weapons" to="taken_weapons" method="_on_item_selected"]

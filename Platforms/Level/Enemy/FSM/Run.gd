@@ -1,4 +1,5 @@
 # Run.gd
+class_name enemyRun
 extends enemyState
 func physics_update(delta: float) -> void:
 	# Notice how we have some code duplication between states. That's inherent to the pattern,
@@ -16,5 +17,5 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Jump", {do_jump = true})
 	elif is_equal_approx(enemy.velocity.x, 0.0):
 		state_machine.transition_to("Idle")
-	enemy.animation.play("enemy_run")
+	enemy.animation.play("run")
 	enemy.animation.flip_h = enemy.dirEnemy < 0

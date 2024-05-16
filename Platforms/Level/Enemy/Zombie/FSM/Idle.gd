@@ -1,0 +1,3 @@
+#Idle
+extends enemyIdle
+

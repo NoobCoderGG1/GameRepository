@@ -15,7 +15,7 @@ func _ready():
 	tmp_weapon.name = "LazerGun";	tmp_weapon.fire_rate = 200;	tmp_weapon.damage = 14.0;
 	tmp_weapon.bullet_speed = 16.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 23
-	tmp_weapon.type = "ranged"; tmp_weapon.textureSize = Vector2(0.379,0.344);
+	tmp_weapon.type = "lazer"; tmp_weapon.textureSize = Vector2(0.379,0.344);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/lazer.png"
 	shop_weapons.append(tmp_weapon)
 	#diamond_sword
@@ -32,7 +32,7 @@ func _ready():
 	tmp_weapon.name = "DragonFire";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 200.0;
 	tmp_weapon.bullet_speed = 100.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 95
-	tmp_weapon.type = "ranged"; tmp_weapon.textureSize = Vector2(0.65,0.6);
+	tmp_weapon.type = "lazer"; tmp_weapon.textureSize = Vector2(0.65,0.6);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
 	shop_weapons.append(tmp_weapon)
 	#Bow
@@ -122,7 +122,7 @@ func _ready():
 	tmp_weapon.name = "Stick";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 50.0;
 	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 53
-	tmp_weapon.type = "ranged"; tmp_weapon.textureSize = Vector2(0.379,0.344);
+	tmp_weapon.type = "lazer"; tmp_weapon.textureSize = Vector2(0.379,0.344);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/lazer.png"
 	shop_weapons.append(tmp_weapon)
 	#StoneHammer

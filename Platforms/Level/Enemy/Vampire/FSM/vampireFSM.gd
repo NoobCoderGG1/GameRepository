@@ -1,0 +1,2 @@
+class_name vampireFSM
+extends enemy_FSM

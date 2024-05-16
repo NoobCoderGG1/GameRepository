@@ -1,0 +1,116 @@
+[gd_scene load_steps=18 format=3 uid="uid://b6xte856n68cy"]
+
+[ext_resource type="Texture2D" uid="uid://bhqpf841j2gak" path="res://UI/assets/Run/Boar/BoarRun.png" id="1_6o78i"]
+[ext_resource type="Script" path="res://Level/Enemy/Boar/boar.gd" id="1_6oeye"]
+[ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/boarFSM.gd" id="2_qr0yr"]
+[ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Jump.gd" id="3_t5n5l"]
+[ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Idle.gd" id="4_clilp"]
+[ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Attack.gd" id="5_8ek1y"]
+[ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Run.gd" id="6_fod0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7c0kc"]
+size = Vector2(25, 19)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tsp5i"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dv42i"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ueqjw"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bv8ht"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmtty"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqsni"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa8sh"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hqlpe"]
+atlas = ExtResource("1_6o78i")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w1yiv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tsp5i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dv42i")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ueqjw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bv8ht")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmtty")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqsni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oa8sh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hqlpe")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="boar" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_6oeye")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_7c0kc")
+
+[node name="enemySprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_w1yiv")
+animation = &"run"
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("2_qr0yr")
+start_state = NodePath("Idle")
+
+[node name="Jump" type="Node" parent="FSM"]
+script = ExtResource("3_t5n5l")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("4_clilp")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("5_8ek1y")
+
+[node name="Run" type="Node" parent="FSM"]
+script = ExtResource("6_fod0r")

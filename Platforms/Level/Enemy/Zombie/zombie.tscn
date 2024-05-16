@@ -1,0 +1,146 @@
+[gd_scene load_steps=22 format=3 uid="uid://g2s6k586hirh"]
+
+[ext_resource type="Script" path="res://Level/Enemy/Zombie/zombie.gd" id="1_ij7mu"]
+[ext_resource type="Texture2D" uid="uid://colxbr7h0c2w" path="res://UI/assets/Run/Zombie/ZombieRun.png" id="2_yyfvq"]
+[ext_resource type="Script" path="res://Level/Enemy/Zombie/FSM/zombieFSM.gd" id="3_leq8e"]
+[ext_resource type="Script" path="res://Level/Enemy/Zombie/FSM/Idle.gd" id="4_sksdk"]
+[ext_resource type="Script" path="res://Level/Enemy/Zombie/FSM/Run.gd" id="5_afqq4"]
+[ext_resource type="Script" path="res://Level/Enemy/Zombie/FSM/Jump.gd" id="6_jpvmr"]
+[ext_resource type="Script" path="res://Level/Enemy/Zombie/FSM/Attack.gd" id="7_pplkg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kqqd3"]
+size = Vector2(15, 29)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adath"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hg5mr"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fkrvm"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mcgup"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xckdq"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00k34"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2bay"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_43olt"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6367t"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psmay"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uo5gi"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_05si0"]
+atlas = ExtResource("2_yyfvq")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s4rbi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adath")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hg5mr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fkrvm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mcgup")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xckdq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00k34")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2bay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_43olt")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6367t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psmay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uo5gi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_05si0")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="zombie" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_ij7mu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_kqqd3")
+
+[node name="enemySprite" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_s4rbi")
+animation = &"jump"
+
+[node name="FSM" type="Node" parent="."]
+script = ExtResource("3_leq8e")
+start_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="FSM"]
+script = ExtResource("4_sksdk")
+
+[node name="Run" type="Node" parent="FSM"]
+script = ExtResource("5_afqq4")
+
+[node name="Jump" type="Node" parent="FSM"]
+script = ExtResource("6_jpvmr")
+
+[node name="Attack" type="Node" parent="FSM"]
+script = ExtResource("7_pplkg")
+
+[connection signal="ready" from="." to="." method="_on_ready"]

@@ -6,10 +6,7 @@ var selected_item_index: int = -1
 func _on_ready():
 	weapons = get_tree().root.get_node("main_menu").shop_weapons
 	for weapon in weapons:
-		#add_item(weapon.name)
-		var image = Image.load_from_file(weapon.icon)
-		var texture = ImageTexture.create_from_image(image)
-		add_icon_item(texture)
+		add_icon_item(load(weapon.icon))
 
 func _on_item_selected(index):
 	selected_item_index = index
@@ -19,14 +16,13 @@ func _on_item_selected(index):
 	var selected_weapon
 	for w in weapons:
 		var image = Image.load_from_file(w.icon)
-		if ImageTexture.create_from_image(image).get_image().get_data() == icon_of_weapon.get_image().get_data():
+		if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
 			selected_weapon = w
 			break
 
-	$"../ScrollContainer/weapon_info/image".texture = ImageTexture.create_from_image(Image.load_from_file(selected_weapon.icon))
-	$"../ScrollContainer/weapon_info/name".text			= "Name: " + 			selected_weapon.name
+	$"../ScrollContainer/weapon_info/image".texture = load(selected_weapon.icon)
 	$"../ScrollContainer/weapon_info/fire_rate".text	= "Cost: " + 	str(selected_weapon.cost)
 	$"../ScrollContainer/weapon_info/damage".text		= "Damage: " + 		str(selected_weapon.damage)
 	$"../ScrollContainer/weapon_info/bullet_speed".text	= "Bullet_speed: " +str(selected_weapon.bullet_speed)
 	$"../ScrollContainer/weapon_info/capacity".text		= "Capacity: " + 	str(selected_weapon.capacity)
-	$"../ScrollContainer/weapon_info/description".text	= "Description: " + str(selected_weapon.description)
+	

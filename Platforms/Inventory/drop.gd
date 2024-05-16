@@ -22,8 +22,7 @@ func _on_button_down():
 			return
 		var selected_weapon
 		for w in virtual_player.player_inventory:
-			var image = Image.load_from_file(w.icon)
-			if ImageTexture.create_from_image(image).get_image().get_data() == icon_of_weapon.get_image().get_data():
+			if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
 				selected_weapon = w
 				break
 		if selected_weapon == null:

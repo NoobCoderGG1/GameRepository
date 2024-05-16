@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 #Переменные игрока
 @onready var player = $"."
+var is_Alive = true #Переменная, которая показывает, что игрок живой
 var pressedAttack = false #Переменная для того, чтобы определить зажата ли кнопка атаки
 var currentWeaponIndex = 0
 var HP = 100
@@ -20,7 +21,6 @@ var enemies = []
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #Переменные необходимые для lazerGun стрельбы
 var area_lazerGun : CollisionShape2D
-#var helpArea : CollisionShape2D
 @onready var timerNode = $"../UI/timerCount"
 var timeNow
 var offset : float
@@ -36,6 +36,8 @@ func _ready():
 		var tmp_weapon = weapon_class.Weapon.new()
 		tmp_weapon.icon = "res://UI/assets/Weapons/StoneSword.png";tmp_weapon.name = "Knife";	
 		tmp_weapon.fire_rate = 100;	tmp_weapon.damage = 50.0;
+		tmp_weapon.capacity = -1;
+		tmp_weapon.current_bullet = -1;
 		tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.370,0.370);
 		inventory.append(tmp_weapon)
 	$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
@@ -46,19 +48,24 @@ func _ready():
 	#Инициализация переменных для lazerGun стрельбы
 	area_lazerGun = player.get_node("Shooting").get_node("CollisionShape2D")
 	area_lazerGun.visible = false
-	#helpArea = player.get_node("HelpShooting").get_node("CollisionShape2D")
-	#helpArea.visible = false
 	timeNow = timerNode.time_counter
 	#Инициализация переменных для commonShoot стрельбы
 	realPlayer = get_tree().root.get_node("Level").get_node("player")
 	dt = timerNode.time_counter
 
 func _physics_process(delta):
-	if HP <= 0:
+	if HP <= 0 and is_Alive:
+		is_Alive = false
 		$LazerGunLine.clear_points()
 		var total_time = "%02d" % timerNode.min + ":" + "%02d" % timerNode.sec
 		$"../UI/endGame".visible = true
 		$"../UI/endGame/Label".text = "You Died!\n" + "Time:" + total_time + "\n" + "Coins: " + str(countMoney)
+		$playerSprites.visible = false
+		$playerDied.visible = true
+		$playerDied.play("player_died")
+		return
+	if HP <= 0:
+		timerNode.time_counter = 0
 		return
 	isMoving(delta)
 	changeWeapon()
@@ -67,7 +74,6 @@ func _physics_process(delta):
 	if timerNode.time_counter - timeNow >= 0.2:
 		area_lazerGun.visible = false
 		area_lazerGun.shape.b = Vector2(0, 0)
-		#helpArea.shape.b = Vector2(0, 0)
 		timeNow = timerNode.time_counter
 		$LazerGunLine.clear_points()
 	
@@ -111,27 +117,34 @@ func changeWeapon():
 		if inventory[currentWeaponIndex].icon == null:
 			$playerSprites/currentWeapon.texture = null
 			return
-		$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
+		$playerSprites/currentWeapon.texture = load(inventory[currentWeaponIndex].icon)
 		$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
-	
+		if inventory[currentWeaponIndex].current_bullet == 0:
+			$playerSprites/reloadAttention.visible = true
+		else:
+			$playerSprites/reloadAttention.visible = false
+					
 func player_attack():
+	if inventory[currentWeaponIndex].current_bullet == 0:
+		$playerSprites/reloadAttention.visible = true
+		if timerNode.time_counter - dt > 3.5:
+			inventory[currentWeaponIndex].current_bullet = inventory[currentWeaponIndex].capacity
+			$playerSprites/reloadAttention.visible = false
 	if Input.is_action_just_released("attack"):
 		pressedAttack = false
-	if Input.is_action_just_pressed("attack") and (inventory[currentWeaponIndex].type == "melee" or inventory[currentWeaponIndex].name == "LazerGun" or inventory[currentWeaponIndex].name == "DragonFire" or inventory[currentWeaponIndex].name == "Stick"):
+	if Input.is_action_just_pressed("attack") and (inventory[currentWeaponIndex].type == "melee" or inventory[currentWeaponIndex].type == "lazer"):
 		pressedAttack = true
-		if is_on_floor() and inventory[currentWeaponIndex].type == "melee" or pressedAttack: #Урон по области, если в руках оружие ближнего боя
+		if inventory[currentWeaponIndex].type == "lazer":
+			lazerShoot()
+		if is_on_floor() and inventory[currentWeaponIndex].type == "melee":  #Урон по области, если в руках оружие ближнего боя
 			for enemy in enemies:
 				enemy.HP -= damage
 				print(enemy.HP)
-			return
-		elif inventory[currentWeaponIndex].type == "ranged":
-			if inventory[currentWeaponIndex].name == "LazerGun" or inventory[currentWeaponIndex].name == "DragonFire" or inventory[currentWeaponIndex].name == "Stick":
-				lazerShoot()
 		return
 	if Input.is_action_just_pressed("attack") or pressedAttack:
-		pressedAttack = true
 		if inventory[currentWeaponIndex].type == "ranged":
 			if inventory[currentWeaponIndex].name != "LazerGun" or inventory[currentWeaponIndex].name != "DragonFire" or inventory[currentWeaponIndex].name != "Stick":
+				pressedAttack = true
 				commonShoot()
 
 func areaPlayer_entered(body): #Заносит врагов в список, если они попали в область действия оружия ближнего боя
@@ -140,14 +153,13 @@ func areaPlayer_entered(body): #Заносит врагов в список, е�
 func areaPlayer_exited(body): #Выносит из списка
 	if enemies.has(body) and body != null:
 		enemies.erase(body)
-
+		
 func shootingBody_entered(body): #Функция для lazerShoot
 	if body != null:
 		body.HP -= damage
 #Функции осуществляющие стрельбу
 func lazerShoot():
 	for i in range(0, 20*16, 16):
-		#helpArea.shape.b = Vector2(i * dirPlayer, 0) --- нигде не используется, зачем нужна?
 		if check_tile(player.position.x, player.position.y, i * dirPlayer): #Проверка на tile
 			fire(float(i * dirPlayer - fmod(player.position.x, 16.0) + 0)) 
 			return
@@ -162,10 +174,6 @@ func commonShoot():
 	if indx == -1:
 		return
 	if inventory[indx].current_bullet == 0:
-		$playerSprites/reloadAttention.visible = true
-		if timerNode.time_counter - dt > 3.5:
-			inventory[indx].current_bullet = inventory[indx].capacity
-			$playerSprites/reloadAttention.visible = false
 		return
 	dt = timerNode.time_counter
 	#Создание коллизии пули
@@ -213,7 +221,7 @@ func commonShoot():
 	area_commonshoot.position = get_tree().root.get_node("Level").get_node("player").position
 	
 #Вспомогательная функция для commonShoot
-func deleteScene(stringNodePath): #Требуется для корректного удаления 
+func deleteScene(stringNodePath): #Требуется для корректного удаления пули
 	get_tree().root.get_node("Level").get_node(str(stringNodePath)).queue_free()
 #Вспомогательные функции для lazerShoot
 func fire(pos_x:float) -> void: #Произведение лазерного выстрела

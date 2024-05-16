@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gvsfxd3edlq3"
-path="res://.godot/imported/AllAnim.png-e260b6969bb77021a81e04e4a75dc827.ctex"
+uid="uid://be0vp5x5fq7cw"
+path="res://.godot/imported/OgreRun.png-c58b0f226837e2d86d2287c3cd34b5e7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Run/Player/AllAnim.png"
-dest_files=["res://.godot/imported/AllAnim.png-e260b6969bb77021a81e04e4a75dc827.ctex"]
+source_file="res://UI/assets/Run/Ogre/OgreRun.png"
+dest_files=["res://.godot/imported/OgreRun.png-c58b0f226837e2d86d2287c3cd34b5e7.ctex"]
 
 [params]
 
