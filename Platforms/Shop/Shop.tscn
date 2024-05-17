@@ -1,15 +1,17 @@
-[gd_scene load_steps=14 format=3 uid="uid://bsyprmbw6mk73"]
+[gd_scene load_steps=17 format=3 uid="uid://bsyprmbw6mk73"]
 
 [ext_resource type="Texture2D" uid="uid://wwdyjydjlyps" path="res://UI/assets/Background/ShopWithout.png" id="1_dgq57"]
 [ext_resource type="Script" path="res://Shop/to_menu.gd" id="2_oc2bk"]
 [ext_resource type="Script" path="res://Shop/weapons.gd" id="2_vfph1"]
 [ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="3_ee17m"]
+[ext_resource type="FontFile" uid="uid://c5x02esvk5w41" path="res://UI/assets/FontText.png" id="3_fhuvh"]
 [ext_resource type="Script" path="res://Shop/buy.gd" id="4_of4yv"]
 [ext_resource type="Script" path="res://Shop/user_money.gd" id="4_xue4i"]
-
-[sub_resource type="FontVariation" id="FontVariation_n0wao"]
-variation_embolden = 2.0
-spacing_top = -1
+[ext_resource type="Texture2D" uid="uid://daawc3ld4oukq" path="res://UI/pins/Damage.png" id="7_b2bi8"]
+[ext_resource type="Texture2D" uid="uid://iexj5oxckap5" path="res://UI/pins/Speed.png" id="8_2pit6"]
+[ext_resource type="Texture2D" uid="uid://cra58k5m2pva5" path="res://UI/pins/Capacity.png" id="9_1uwtm"]
+[ext_resource type="Texture2D" uid="uid://ryhv7ahfwx8e" path="res://UI/pins/Rate.png" id="10_pahr3"]
+[ext_resource type="Texture2D" uid="uid://dq0ul2j6vuhes" path="res://UI/pins/Cost.png" id="11_ysbdg"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mj2wo"]
 texture = ExtResource("3_ee17m")
@@ -34,10 +36,6 @@ expand_margin_right = 4.0
 expand_margin_bottom = 15.0
 modulate_color = Color(0.466667, 0.466667, 0.466667, 1)
 
-[sub_resource type="FontVariation" id="FontVariation_tjvt0"]
-variation_embolden = 2.0
-spacing_top = -3
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q6u4g"]
 texture = ExtResource("3_ee17m")
 texture_margin_left = 7.0
@@ -60,10 +58,6 @@ expand_margin_top = 19.0
 expand_margin_right = 4.0
 expand_margin_bottom = 15.0
 modulate_color = Color(0.466667, 0.466667, 0.466667, 1)
-
-[sub_resource type="FontVariation" id="FontVariation_xk58y"]
-variation_embolden = 2.0
-spacing_top = -3
 
 [node name="shop" type="Control"]
 layout_mode = 3
@@ -92,74 +86,154 @@ fixed_icon_size = Vector2i(155, 140)
 script = ExtResource("2_vfph1")
 
 [node name="to_menu" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 970.0
 offset_top = 347.0
 offset_right = 1201.0
 offset_bottom = 418.0
-theme_override_fonts/font = SubResource("FontVariation_n0wao")
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("3_fhuvh")
+theme_override_font_sizes/font_size = 40
 theme_override_styles/normal = SubResource("StyleBoxTexture_mj2wo")
 theme_override_styles/hover = SubResource("StyleBoxTexture_wegmy")
 text = "Menu"
 script = ExtResource("2_oc2bk")
 
 [node name="buy" type="Button" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 968.0
 offset_top = 198.0
 offset_right = 1199.0
 offset_bottom = 269.0
-theme_override_fonts/font = SubResource("FontVariation_tjvt0")
-theme_override_font_sizes/font_size = 35
+theme_override_fonts/font = ExtResource("3_fhuvh")
+theme_override_font_sizes/font_size = 45
 theme_override_styles/normal = SubResource("StyleBoxTexture_q6u4g")
 theme_override_styles/hover = SubResource("StyleBoxTexture_ad7tg")
 text = "Buy"
 script = ExtResource("4_of4yv")
 
 [node name="user_money" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 0
 offset_left = 1116.0
 offset_top = 33.0
 offset_right = 1204.0
 offset_bottom = 81.0
-theme_override_fonts/font = SubResource("FontVariation_xk58y")
+theme_override_fonts/font = ExtResource("3_fhuvh")
 theme_override_font_sizes/font_size = 35
 script = ExtResource("4_xue4i")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="."]
-texture_filter = 1
-layout_mode = 0
-offset_left = 58.0
-offset_top = 123.0
-offset_right = 315.0
-offset_bottom = 489.0
-
-[node name="weapon_info" type="VBoxContainer" parent="ScrollContainer"]
-clip_contents = true
-layout_mode = 2
-
-[node name="image" type="TextureRect" parent="ScrollContainer/weapon_info"]
+[node name="image" type="TextureRect" parent="."]
 texture_filter = 1
 layout_mode = 2
-expand_mode = 4
+offset_left = 118.0
+offset_top = 145.0
+offset_right = 245.0
+offset_bottom = 241.0
 
-[node name="fire_rate" type="Label" parent="ScrollContainer/weapon_info"]
+[node name="damage" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 2
-text = "Cost
+offset_left = 138.0
+offset_top = 259.0
+offset_right = 234.0
+offset_bottom = 282.0
+theme_override_fonts/font = ExtResource("3_fhuvh")
+text = ": DamaGe"
+
+[node name="bullet_speed" type="Label" parent="."]
+texture_filter = 1
+layout_mode = 2
+offset_left = 137.0
+offset_top = 303.0
+offset_right = 233.0
+offset_bottom = 326.0
+theme_override_fonts/font = ExtResource("3_fhuvh")
+text = ": Speed
 "
 
-[node name="damage" type="Label" parent="ScrollContainer/weapon_info"]
+[node name="capacity" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 2
-text = "Damage"
+offset_left = 138.0
+offset_top = 343.0
+offset_right = 234.0
+offset_bottom = 366.0
+theme_override_fonts/font = ExtResource("3_fhuvh")
+text = ": Capacity"
 
-[node name="bullet_speed" type="Label" parent="ScrollContainer/weapon_info"]
+[node name="rate" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 2
-text = "Bullet speed"
+offset_left = 139.0
+offset_top = 388.0
+offset_right = 235.0
+offset_bottom = 411.0
+theme_override_fonts/font = ExtResource("3_fhuvh")
+text = ": Rate
+"
 
-[node name="capacity" type="Label" parent="ScrollContainer/weapon_info"]
+[node name="fire_rate" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 2
-text = "Capacity"
+offset_left = 139.0
+offset_top = 434.0
+offset_right = 235.0
+offset_bottom = 457.0
+theme_override_fonts/font = ExtResource("3_fhuvh")
+text = ": Cost
+
+"
+
+[node name="damage_img" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 88.0
+offset_top = 248.0
+offset_right = 128.0
+offset_bottom = 288.0
+texture = ExtResource("7_b2bi8")
+expand_mode = 4
+
+[node name="speed_img" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 87.0
+offset_top = 290.0
+offset_right = 127.0
+offset_bottom = 330.0
+texture = ExtResource("8_2pit6")
+expand_mode = 4
+
+[node name="capacity_img" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 88.0
+offset_top = 333.0
+offset_right = 128.0
+offset_bottom = 373.0
+texture = ExtResource("9_1uwtm")
+expand_mode = 4
+
+[node name="rate_img" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 86.0
+offset_top = 384.0
+offset_right = 126.0
+offset_bottom = 424.0
+texture = ExtResource("10_pahr3")
+
+[node name="cost_img" type="TextureRect" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 87.0
+offset_top = 435.0
+offset_right = 127.0
+offset_bottom = 475.0
+texture = ExtResource("11_ysbdg")
+expand_mode = 4
 
 [connection signal="item_selected" from="weapons" to="weapons" method="_on_item_selected"]
 [connection signal="ready" from="weapons" to="weapons" method="_on_ready"]

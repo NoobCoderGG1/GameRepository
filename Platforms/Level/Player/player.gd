@@ -59,13 +59,12 @@ func _physics_process(delta):
 		$LazerGunLine.clear_points()
 		var total_time = "%02d" % timerNode.min + ":" + "%02d" % timerNode.sec
 		$"../UI/endGame".visible = true
-		$"../UI/endGame/Label".text = "You Died!\n" + "Time:" + total_time + "\n" + "Coins: " + str(countMoney)
+		$"../UI/endGame/Label".text = "You Died!\n" + "Time:" + total_time + "\n" + "Coins: " + str(countMoney) + "X" + str(timerNode.min)
 		$playerSprites.visible = false
 		$playerDied.visible = true
 		$playerDied.play("player_died")
 		return
 	if HP <= 0:
-		timerNode.time_counter = 0
 		return
 	isMoving(delta)
 	changeWeapon()

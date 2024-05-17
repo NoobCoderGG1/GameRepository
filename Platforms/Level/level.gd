@@ -33,6 +33,14 @@ func spawn_timer(): #Спавн врагов по таймеру
 	match timerCount.min: 
 		1: #Если прошла минута, то увеличиваем ХП врагов на 9
 			enemy.HP += 9 
+		5:
+			enemy.HP += 20
+		10:
+			enemy.HP += 40
+			enemy.damage += 30
+		15:
+			enemy.HP += 40
+			enemy.damage += 30
 	add_child(enemy)
 	enemies.append(enemy)
 	
@@ -55,7 +63,7 @@ func _physics_process(delta):
 		bullet_sprite.position = Vector2(ss.b.x + delta * bullet_speed * bullet_dir, ss.b.y)
 
 func restartBtn_pressed():
-	parent.get_node("main_menu").virtual_player.player_money = parent.get_node("main_menu").virtual_player.player_money + $player.countMoney 
+	parent.get_node("main_menu").virtual_player.player_money = parent.get_node("main_menu").virtual_player.player_money + ($player.countMoney * $UI/timerCount.min)
 	$player.countMoney = 0
 	var inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
 	for w in inventory:

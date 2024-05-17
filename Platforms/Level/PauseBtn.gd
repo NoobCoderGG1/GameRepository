@@ -2,7 +2,7 @@ extends TouchScreenButton
 
 func btnPressed():
 	var inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
-	get_tree().root.get_node("main_menu").virtual_player.player_money = get_tree().root.get_node("main_menu").virtual_player.player_money + $"../../player".countMoney
+	get_tree().root.get_node("main_menu").virtual_player.player_money = get_tree().root.get_node("main_menu").virtual_player.player_money + ($"../../player".countMoney * $"../timerCount".min) 
 	$"../timerCount".time_counter = 0.0
 	for w in inventory:
 		if w.name == "Knife":

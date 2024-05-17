@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bhrlaw06f1fmq"]
+[gd_scene load_steps=28 format=3 uid="uid://bhrlaw06f1fmq"]
 
 [ext_resource type="Script" path="res://Level/level.gd" id="1_8gipx"]
 [ext_resource type="PackedScene" uid="uid://di8njwhg0rn63" path="res://Level/Player/player.tscn" id="1_qwmfb"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://d22kxat7u1v8k" path="res://UI/assets/HealthBar/Borders_HealthBar.png" id="16_tggir"]
 [ext_resource type="Texture2D" uid="uid://5xky86hl13tf" path="res://UI/assets/HealthBar/Full_HealthBar.png" id="17_burje"]
 [ext_resource type="Texture2D" uid="uid://bay76fjdd2iq6" path="res://UI/assets/Background/EndGame.png" id="20_tetn4"]
+[ext_resource type="FontFile" uid="uid://c5x02esvk5w41" path="res://UI/assets/FontText.png" id="21_kdx7x"]
 [ext_resource type="Texture2D" uid="uid://oj27w4f3aj7r" path="res://UI/buttons/Exit.png" id="21_n4x5v"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0ycmr"]
@@ -787,16 +788,9 @@ sources/1 = SubResource("TileSetAtlasSource_y2u2t")
 sources/2 = SubResource("TileSetScenesCollectionSource_p2d5o")
 sources/3 = SubResource("TileSetAtlasSource_tw4gi")
 
-[sub_resource type="FontVariation" id="FontVariation_qs4u2"]
-
-[sub_resource type="FontVariation" id="FontVariation_6lwfp"]
-base_font = SubResource("FontVariation_qs4u2")
-variation_embolden = 2.0
-spacing_top = -3
-
 [sub_resource type="LabelSettings" id="LabelSettings_syg1s"]
-font = SubResource("FontVariation_6lwfp")
-font_size = 40
+font_size = 65
+shadow_color = Color(1, 1, 1, 1)
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_8gipx")
@@ -808,8 +802,24 @@ transform = Transform2D(1, 0, 0, 1, 0, -349.92)
 [node name="player" parent="." instance=ExtResource("1_qwmfb")]
 position = Vector2(623, 314)
 
+[node name="Label" type="Label" parent="player"]
+z_index = 1
+texture_filter = 1
+offset_left = -175.0
+offset_top = -82.0
+offset_right = 177.0
+offset_bottom = -33.0
+theme_override_fonts/font = ExtResource("21_kdx7x")
+theme_override_font_sizes/font_size = 5
+text = "Hold oN How 
+As much As possible, the collected coins
+at the end of the game are multiplied by the
+time spent
+Goodluck"
+horizontal_alignment = 1
+
 [node name="SpawnTimer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.5
 autostart = true
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -908,30 +918,34 @@ visible = false
 
 [node name="endSprite" type="Sprite2D" parent="UI/endGame"]
 modulate = Color(1, 1, 1, 0.415686)
-self_modulate = Color(0, 0, 0, 1)
 texture_filter = 1
-position = Vector2(646, 295)
-scale = Vector2(2.336, 3.62)
+position = Vector2(650, 365)
+scale = Vector2(3.264, 5.02)
 texture = ExtResource("20_tetn4")
 
 [node name="RestartButton" type="TouchScreenButton" parent="UI/endGame"]
 modulate = Color(0, 0.862745, 0.368627, 1)
 texture_filter = 1
-position = Vector2(706, 324)
-scale = Vector2(4.1875, 3.96875)
+position = Vector2(726, 422)
+scale = Vector2(5.875, 5.59375)
 texture_normal = ExtResource("13_vxaek")
 
 [node name="ExitButton" type="TouchScreenButton" parent="UI/endGame"]
 texture_filter = 1
-position = Vector2(510, 323)
-scale = Vector2(4, 4)
+position = Vector2(324, 433)
+scale = Vector2(6.375, 5.3125)
 texture_normal = ExtResource("21_n4x5v")
 
 [node name="Label" type="Label" parent="UI/endGame"]
-offset_left = 528.0
-offset_top = 126.0
-offset_right = 808.0
-offset_bottom = 288.0
+texture_filter = 1
+offset_left = 478.0
+offset_top = 120.0
+offset_right = 1038.0
+offset_bottom = 387.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("21_kdx7x")
 text = "You died!
 Coins: 
 Time:"
@@ -939,9 +953,9 @@ label_settings = SubResource("LabelSettings_syg1s")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
 [connection signal="body_entered" from="TileMap/coin" to="TileMap/coin" method="player_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@61740" to="TileMap/@Area2D@61740" method="player_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@61741" to="TileMap/@Area2D@61741" method="player_entered"]
-[connection signal="body_entered" from="TileMap/@Area2D@61742" to="TileMap/@Area2D@61742" method="player_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@312920" to="TileMap/@Area2D@312920" method="player_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@312921" to="TileMap/@Area2D@312921" method="player_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@312922" to="TileMap/@Area2D@312922" method="player_entered"]
 [connection signal="pressed" from="UI/PauseBtn" to="UI/PauseBtn" method="btnPressed"]
 [connection signal="pressed" from="UI/endGame/RestartButton" to="." method="restartBtn_pressed"]
 [connection signal="pressed" from="UI/endGame/ExitButton" to="UI/PauseBtn" method="btnPressed"]

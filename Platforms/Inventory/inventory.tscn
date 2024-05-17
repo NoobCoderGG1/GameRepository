@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpwmxbivx348f"]
+[gd_scene load_steps=24 format=3 uid="uid://bpwmxbivx348f"]
 
 [ext_resource type="Texture2D" uid="uid://j5cm6g03i2ue" path="res://UI/assets/Background/InventoryWithout.png" id="1_n4itx"]
 [ext_resource type="Script" path="res://Inventory/avaible_weapons.gd" id="1_r1mpv"]
@@ -7,6 +7,11 @@
 [ext_resource type="Script" path="res://Inventory/to_menu.gd" id="4_633ql"]
 [ext_resource type="Texture2D" uid="uid://cg53fvlwwpwwq" path="res://UI/buttons/ButtonSprite.png" id="5_s3i7b"]
 [ext_resource type="Script" path="res://Inventory/drop.gd" id="5_t61g8"]
+[ext_resource type="FontFile" uid="uid://c5x02esvk5w41" path="res://UI/assets/FontText.png" id="8_rsx8t"]
+[ext_resource type="Texture2D" uid="uid://ryhv7ahfwx8e" path="res://UI/pins/Rate.png" id="9_xb4gj"]
+[ext_resource type="Texture2D" uid="uid://daawc3ld4oukq" path="res://UI/pins/Damage.png" id="10_yexkn"]
+[ext_resource type="Texture2D" uid="uid://iexj5oxckap5" path="res://UI/pins/Speed.png" id="11_xfm2u"]
+[ext_resource type="Texture2D" uid="uid://cra58k5m2pva5" path="res://UI/pins/Capacity.png" id="12_66w8g"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mp0vu"]
 
@@ -186,43 +191,92 @@ offset_bottom = 49.0
 [node name="image" type="TextureRect" parent="weapon_info"]
 texture_filter = 1
 layout_mode = 0
-offset_left = 592.35
+offset_left = 578.0
 offset_top = 40.0
-offset_right = 720.35
-offset_bottom = 168.0
+offset_right = 749.0
+offset_bottom = 191.0
 expand_mode = 4
 
 [node name="fire_rate" type="Label" parent="weapon_info"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 552.0
-offset_top = 215.0
-offset_right = 617.0
-offset_bottom = 238.0
-text = "Fire rate"
+offset_left = 609.0
+offset_top = 234.0
+offset_right = 674.0
+offset_bottom = 257.0
+theme_override_fonts/font = ExtResource("8_rsx8t")
+text = ": Rate"
 
 [node name="damage" type="Label" parent="weapon_info"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 551.0
-offset_top = 267.0
-offset_right = 615.0
-offset_bottom = 290.0
-text = "Damage"
+offset_left = 610.0
+offset_top = 274.0
+offset_right = 674.0
+offset_bottom = 297.0
+theme_override_fonts/font = ExtResource("8_rsx8t")
+text = ": DamaGe"
 
 [node name="bullet_speed" type="Label" parent="weapon_info"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 553.0
-offset_top = 312.0
-offset_right = 649.0
-offset_bottom = 335.0
-text = "Bullet speed"
+offset_left = 610.0
+offset_top = 314.0
+offset_right = 706.0
+offset_bottom = 337.0
+theme_override_fonts/font = ExtResource("8_rsx8t")
+text = ": Speed"
 
 [node name="capacity" type="Label" parent="weapon_info"]
+texture_filter = 1
 layout_mode = 0
-offset_left = 554.0
-offset_top = 356.0
-offset_right = 620.0
-offset_bottom = 379.0
-text = "Capacity"
+offset_left = 612.0
+offset_top = 353.0
+offset_right = 678.0
+offset_bottom = 376.0
+theme_override_fonts/font = ExtResource("8_rsx8t")
+text = ": Capacity"
+
+[node name="Control" type="Control" parent="weapon_info"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="weapon_info/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 550.0
+offset_top = 211.0
+offset_right = 590.0
+offset_bottom = 251.0
+texture = ExtResource("9_xb4gj")
+
+[node name="TextureRect2" type="TextureRect" parent="weapon_info/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 553.0
+offset_top = 258.0
+offset_right = 593.0
+offset_bottom = 298.0
+texture = ExtResource("10_yexkn")
+
+[node name="TextureRect3" type="TextureRect" parent="weapon_info/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 548.0
+offset_top = 303.0
+offset_right = 588.0
+offset_bottom = 343.0
+texture = ExtResource("11_xfm2u")
+
+[node name="TextureRect4" type="TextureRect" parent="weapon_info/Control"]
+texture_filter = 1
+layout_mode = 0
+offset_left = 550.0
+offset_top = 352.0
+offset_right = 590.0
+offset_bottom = 392.0
+texture = ExtResource("12_66w8g")
 
 [connection signal="item_selected" from="avaible_weapons" to="avaible_weapons" method="_on_item_selected"]
 [connection signal="item_selected" from="taken_weapons" to="taken_weapons" method="_on_item_selected"]

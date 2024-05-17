@@ -22,14 +22,14 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/diamond_sword.png"
 	tmp_weapon.name = "Diamond Sword";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 80.0;
-	tmp_weapon.bullet_speed = 50.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 50.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 45
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.65,0.70);
 	shop_weapons.append(tmp_weapon)
 	#LazerGun
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/LaserGun.png"
-	tmp_weapon.name = "DragonFire";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 200.0;
+	tmp_weapon.name = "DragonFire";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 100.0;
 	tmp_weapon.bullet_speed = 100.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 95
 	tmp_weapon.type = "lazer"; tmp_weapon.textureSize = Vector2(0.65,0.6);
@@ -57,7 +57,7 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/Carrot.png"
 	tmp_weapon.name = "Carrot";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 5.0;
-	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 5
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.379,0.344);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
@@ -111,7 +111,7 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/Spear.png"
 	tmp_weapon.name = "Spear";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 15.0;
-	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 9
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.65,0.6);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
@@ -129,7 +129,7 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/StoneHammer.png"
 	tmp_weapon.name = "Stone Hammer";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 49.0;
-	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 32
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(1,1);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
@@ -138,7 +138,7 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/StoneSword.png"
 	tmp_weapon.name = "Stone Sword";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 19.0;
-	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 18
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.65,0.6);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
@@ -147,7 +147,7 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/WoodenHammer.png"
 	tmp_weapon.name = "Wooden Hammer";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 16.0;
-	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 16
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(1,1);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
@@ -165,7 +165,7 @@ func _ready():
 	tmp_weapon = weapon_class.Weapon.new()
 	tmp_weapon.icon = "res://UI/assets/Weapons/WoodenSword.png"
 	tmp_weapon.name = "Wooden Sword";	tmp_weapon.fire_rate = 300;	tmp_weapon.damage = 14.0;
-	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 30
+	tmp_weapon.bullet_speed = 400.0;	tmp_weapon.status = false;	tmp_weapon.capacity = 0
 	tmp_weapon.current_bullet = tmp_weapon.capacity;			tmp_weapon.cost = 8
 	tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.65,0.6);
 	tmp_weapon.bulletTexture = "res://UI/assets/Weapons/Bullets/gold_bullet.png"
