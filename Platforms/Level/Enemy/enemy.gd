@@ -7,6 +7,7 @@ var HP = 100
 var gravity = 10000#ProjectSettings.get_setting("physics/2d/default_gravity")
 var delay = 3.0
 var lastHit : float = 0.0
+var JUMP_VELOCITY : float = -1000.0
 var coin_scene = preload("res://Level/level_objects/coin.tscn")
 @onready var animation = $enemySprite
 @onready var level = $".."
@@ -31,6 +32,7 @@ func _physics_process(delta):
 			if position.x > get_parent().get_node("player").position.x:
 				Velocity.x = -1
 		target_velocity.x = Velocity.x * SPEED
+		target_velocity.y = Velocity.y
 		dirEnemy = Velocity.x
 	else: #В случае соответствии, производится атака
 		if lastHit <= 0:
@@ -44,4 +46,7 @@ func _physics_process(delta):
 
 	velocity = target_velocity
 	move_and_slide()
-
+	
+func lvl_obj_detect(body):
+	if body is TileMap and is_on_floor():
+		velocity.y = JUMP_VELOCITY

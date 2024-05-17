@@ -142,7 +142,7 @@ func player_attack():
 		return
 	if Input.is_action_just_pressed("attack") or pressedAttack:
 		if inventory[currentWeaponIndex].type == "ranged":
-			if inventory[currentWeaponIndex].name != "LazerGun" or inventory[currentWeaponIndex].name != "DragonFire" or inventory[currentWeaponIndex].name != "Stick":
+			if inventory[currentWeaponIndex].name != "DragonFire" or inventory[currentWeaponIndex].name != "Stick":
 				pressedAttack = true
 				commonShoot()
 

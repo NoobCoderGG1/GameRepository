@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c1u8o53fueecg"]
+[gd_scene load_steps=23 format=3 uid="uid://c1u8o53fueecg"]
 
 [ext_resource type="Script" path="res://Level/Enemy/enemy.gd" id="1_wnv5k"]
 [ext_resource type="Texture2D" uid="uid://dn3phem5b8hua" path="res://UI/assets/Run/Slug/SlugRun.png" id="2_diumw"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Level/Enemy/FSM/Attack.gd" id="5_1uyjp"]
 [ext_resource type="Script" path="res://Level/Enemy/FSM/Run.gd" id="5_qp70y"]
 [ext_resource type="Script" path="res://Level/Enemy/FSM/Jump.gd" id="7_gsk67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b01t8"]
+size = Vector2(31, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t14un"]
 size = Vector2(25, 19)
@@ -118,7 +121,14 @@ position = Vector2(1, -1)
 collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_wnv5k")
-metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-0.5, 3)
+shape = SubResource("RectangleShape2D_b01t8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 5.5)
@@ -146,3 +156,5 @@ script = ExtResource("5_qp70y")
 
 [node name="Jump" type="Node" parent="FSM"]
 script = ExtResource("7_gsk67")
+
+[connection signal="body_entered" from="Area2D" to="." method="lvl_obj_detect"]

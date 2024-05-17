@@ -3,7 +3,9 @@ extends Node2D
 @onready var parent = get_parent() #Получение level для рестарта игры
 @onready var timerCount = get_node("UI/timerCount") #Подключение таймера начала игры для получения времени
 var bullets = []
-var spawn_positions = [Vector2(281, 271), Vector2(414, 322), Vector2(570, 177), Vector2(599, 299), Vector2(980, 249)] #Список позиций спавна врагов
+var spawn_positions = [Vector2(281, 271), Vector2(414, 322), Vector2(570, 177), Vector2(599, 299)
+, Vector2(980, 249), Vector2(923, -38), Vector2(571, 69), Vector2(728, 69), Vector2(445, 78), 
+Vector2(183, 228), Vector2(1229, 244)] #Список позиций спавна врагов
 var slug_scene = preload("res://Level/Enemy/enemy.tscn") 
 var boar_scene =  preload("res://Level/Enemy/Boar/boar.tscn") 
 var ogre_scene =  preload("res://Level/Enemy/Ogre/ogre.tscn") 

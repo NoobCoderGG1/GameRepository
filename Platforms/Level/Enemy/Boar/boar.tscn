@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b6xte856n68cy"]
+[gd_scene load_steps=19 format=3 uid="uid://b6xte856n68cy"]
 
 [ext_resource type="Texture2D" uid="uid://bhqpf841j2gak" path="res://UI/assets/Run/Boar/BoarRun.png" id="1_6o78i"]
 [ext_resource type="Script" path="res://Level/Enemy/Boar/boar.gd" id="1_6oeye"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Idle.gd" id="4_clilp"]
 [ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Attack.gd" id="5_8ek1y"]
 [ext_resource type="Script" path="res://Level/Enemy/Boar/FSM/Run.gd" id="6_fod0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1b1vi"]
+size = Vector2(41, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c0kc"]
 size = Vector2(25, 19)
@@ -90,6 +93,14 @@ collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_6oeye")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(0.5, 1.5)
+shape = SubResource("RectangleShape2D_1b1vi")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-0.5, 5.5)
 shape = SubResource("RectangleShape2D_7c0kc")
@@ -114,3 +125,5 @@ script = ExtResource("5_8ek1y")
 
 [node name="Run" type="Node" parent="FSM"]
 script = ExtResource("6_fod0r")
+
+[connection signal="body_entered" from="Area2D" to="." method="lvl_obj_detect"]

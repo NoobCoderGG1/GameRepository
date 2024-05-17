@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://btrdtwmwqo4da"]
+[gd_scene load_steps=26 format=3 uid="uid://btrdtwmwqo4da"]
 
 [ext_resource type="Texture2D" uid="uid://86o1exsk6vis" path="res://UI/assets/Run/Vampire/VampireRun.png" id="1_78xkk"]
 [ext_resource type="Script" path="res://Level/Enemy/Vampire/vampire.gd" id="1_cmen5"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://Level/Enemy/Vampire/FSM/Attack.gd" id="4_p7ngf"]
 [ext_resource type="Script" path="res://Level/Enemy/Vampire/FSM/Jump.gd" id="5_8xha8"]
 [ext_resource type="Script" path="res://Level/Enemy/Vampire/FSM/Run.gd" id="6_sywhl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ri65"]
+size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1pjk"]
 size = Vector2(12, 26)
@@ -139,6 +142,14 @@ collision_layer = 4
 collision_mask = 11
 script = ExtResource("1_cmen5")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0, 0, 0, 1)
+position = Vector2(-1, 0)
+shape = SubResource("RectangleShape2D_5ri65")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_w1pjk")
@@ -163,3 +174,5 @@ script = ExtResource("5_8xha8")
 
 [node name="Run" type="Node" parent="FSM"]
 script = ExtResource("6_sywhl")
+
+[connection signal="body_entered" from="Area2D" to="." method="lvl_obj_detect"]
