@@ -2,10 +2,10 @@ class_name Enemy
 extends CharacterBody2D
 
 var SPEED : float = 50.0
-var damage : float = 50
-var HP = 100
+var damage : float = 5
+var HP = 20
 var gravity = 10000#ProjectSettings.get_setting("physics/2d/default_gravity")
-var delay = 3.0
+var delay = 0.5
 var lastHit : float = 0.0
 var JUMP_VELOCITY : float = -1000.0
 var coin_scene = preload("res://Level/level_objects/coin.tscn")
@@ -19,7 +19,7 @@ func _physics_process(delta):
 		if randomNumber > 4:
 			var coin = coin_scene.instantiate()
 			coin.position = Vector2(position.x, position.y)
-			get_tree().root.add_child(coin)
+			get_tree().root.get_node("Level").add_child(coin)
 		level.enemies.erase(self)
 		queue_free()
 	var Velocity = velocity

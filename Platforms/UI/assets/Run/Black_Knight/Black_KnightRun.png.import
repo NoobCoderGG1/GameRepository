@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mfhlwc2nbkve"
-path="res://.godot/imported/ninja_enemy_idle.png-018906c97248a48bcfc3da9497b7e541.ctex"
+uid="uid://b0614ed7tkt84"
+path="res://.godot/imported/Black_KnightRun.png-947cd58d1a0090984abbbe7b4df5d29c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Idle/Ninja_Enemy/ninja_enemy_idle.png"
-dest_files=["res://.godot/imported/ninja_enemy_idle.png-018906c97248a48bcfc3da9497b7e541.ctex"]
+source_file="res://UI/assets/Run/Black_Knight/Black_KnightRun.png"
+dest_files=["res://.godot/imported/Black_KnightRun.png-947cd58d1a0090984abbbe7b4df5d29c.ctex"]
 
 [params]
 

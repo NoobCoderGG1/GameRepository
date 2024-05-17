@@ -133,4 +133,5 @@ script = ExtResource("6_cmbrt")
 [node name="Run" type="Node" parent="FSM"]
 script = ExtResource("7_vlwex")
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="body_entered" from="Area2D" to="." method="lvl_obj_detect"]

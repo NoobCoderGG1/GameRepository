@@ -11,11 +11,13 @@ var boar_scene =  preload("res://Level/Enemy/Boar/boar.tscn")
 var ogre_scene =  preload("res://Level/Enemy/Ogre/ogre.tscn") 
 var zombie_scene =  preload("res://Level/Enemy/Zombie/zombie.tscn") 
 var gargoyle_scene =  preload("res://Level/Enemy/Gargoyle/gargoyle.tscn") 
-var vampire_scene =  preload("res://Level/Enemy/Vampire/vampire.tscn") 
+var vampire_scene =  preload("res://Level/Enemy/Vampire/vampire.tscn")
+var black_knight_scene = preload("res://Level/Enemy/Black_Knight/black_knight.tscn") 
 var enemies = []
 
 func spawn_timer(): #Спавн врагов по таймеру
 	var enemy
+	var boss_enemy
 	var random_enemy = randi() % 12
 	match random_enemy:
 		0,1,2:
@@ -34,7 +36,7 @@ func spawn_timer(): #Спавн врагов по таймеру
 	enemy.position = spawn_positions[index_array]
 	match timerCount.min: 
 		1: #Если прошла минута, то увеличиваем ХП врагов на 9
-			enemy.HP += 9 
+			enemy.HP += 9
 		5:
 			enemy.HP += 20
 		10:
@@ -45,6 +47,13 @@ func spawn_timer(): #Спавн врагов по таймеру
 			enemy.damage += 30
 	add_child(enemy)
 	enemies.append(enemy)
+	
+	#Добавление босса
+	if timerCount.min % 2 == 0 and timerCount.sec == 0:
+			boss_enemy = black_knight_scene.instantiate()
+			boss_enemy.position = spawn_positions[index_array]
+			add_child(boss_enemy)
+			enemies.append(boss_enemy)
 	
 func _physics_process(delta):
 	var player = $player

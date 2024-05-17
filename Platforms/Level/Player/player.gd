@@ -28,6 +28,7 @@ var offset : float
 var realPlayer
 var dt #как timeNow, но для commonShoot
 var area_commonshoot
+var isMegaWeapon=false #Для огромной лазерной пушки
 
 func _ready():
 	inventory = get_tree().root.get_node("main_menu").virtual_player.player_inventory
@@ -40,7 +41,7 @@ func _ready():
 		tmp_weapon.current_bullet = -1;
 		tmp_weapon.type = "melee"; tmp_weapon.textureSize = Vector2(0.370,0.370);
 		inventory.append(tmp_weapon)
-	$playerSprites/currentWeapon.texture = ImageTexture.create_from_image(Image.load_from_file(inventory[currentWeaponIndex].icon))
+	$playerSprites/currentWeapon.texture = load(inventory[currentWeaponIndex].icon)
 	$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
 	damage = inventory[currentWeaponIndex].damage
 	PosX = $AreaPlayer/AreaCollision.position.x
@@ -118,6 +119,10 @@ func changeWeapon():
 			return
 		$playerSprites/currentWeapon.texture = load(inventory[currentWeaponIndex].icon)
 		$playerSprites/currentWeapon.scale = inventory[currentWeaponIndex].textureSize
+		if inventory[currentWeaponIndex].icon == "res://UI/assets/Weapons/LaserGun.png":
+			isMegaWeapon = true
+		else: 
+			isMegaWeapon = false
 		if inventory[currentWeaponIndex].current_bullet == 0:
 			$playerSprites/reloadAttention.visible = true
 		else:
@@ -142,7 +147,7 @@ func player_attack():
 		return
 	if Input.is_action_just_pressed("attack") or pressedAttack:
 		if inventory[currentWeaponIndex].type == "ranged":
-			if inventory[currentWeaponIndex].name != "DragonFire" or inventory[currentWeaponIndex].name != "Stick":
+			if inventory[currentWeaponIndex].name != "LazerGun" or inventory[currentWeaponIndex].name != "DragonFire" or inventory[currentWeaponIndex].name != "Stick":
 				pressedAttack = true
 				commonShoot()
 
@@ -159,6 +164,7 @@ func shootingBody_entered(body): #Функция для lazerShoot
 #Функции осуществляющие стрельбу
 func lazerShoot():
 	for i in range(0, 20*16, 16):
+		if isMegaWeapon: break
 		if check_tile(player.position.x, player.position.y, i * dirPlayer): #Проверка на tile
 			fire(float(i * dirPlayer - fmod(player.position.x, 16.0) + 0)) 
 			return

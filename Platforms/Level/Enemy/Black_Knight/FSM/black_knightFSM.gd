@@ -1,0 +1,2 @@
+class_name black_knightFSM
+extends enemy_FSM

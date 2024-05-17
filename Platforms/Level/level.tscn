@@ -952,6 +952,10 @@ Time:"
 label_settings = SubResource("LabelSettings_syg1s")
 
 [connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
+[connection signal="body_entered" from="TileMap/coin" to="TileMap/coin" method="player_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@84351" to="TileMap/@Area2D@84351" method="player_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@84352" to="TileMap/@Area2D@84352" method="player_entered"]
+[connection signal="body_entered" from="TileMap/@Area2D@84353" to="TileMap/@Area2D@84353" method="player_entered"]
 [connection signal="pressed" from="UI/PauseBtn" to="UI/PauseBtn" method="btnPressed"]
 [connection signal="pressed" from="UI/endGame/RestartButton" to="." method="restartBtn_pressed"]
 [connection signal="pressed" from="UI/endGame/ExitButton" to="UI/PauseBtn" method="btnPressed"]
