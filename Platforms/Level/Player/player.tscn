@@ -931,7 +931,7 @@ collision_mask = 4
 shape = SubResource("RectangleShape2D_jvn7o")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(3.44, 3.44)
+zoom = Vector2(1.115, 1.115)
 position_smoothing_enabled = true
 
 [node name="FSM" type="Node" parent="."]

@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Level/Enemy/Black_Knight/FSM/Run.gd" id="7_68qst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_48quk"]
-size = Vector2(81, 53)
+size = Vector2(37, 51)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uoj04"]
 size = Vector2(34, 64)
@@ -157,7 +157,7 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 modulate = Color(0, 0, 0, 1)
-position = Vector2(1.5, 2.5)
+position = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_48quk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
