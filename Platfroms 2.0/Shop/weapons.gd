@@ -20,7 +20,6 @@ func _on_ready():
 
 func _on_item_selected(index):
 	selected_item_index = index
-	#var name_of_weapon = get_item_text(index)
 	var icon_of_weapon = get_item_icon(index)
 	var selected_weapon
 	for w in weapons:
@@ -28,7 +27,6 @@ func _on_item_selected(index):
 			selected_weapon = w
 			break
 			
-	#$"../ScrollContainer/weapon_info/image"
 	$"../image".texture = load(selected_weapon.icon)
 	$"../rate".text	= ": " + 	str(selected_weapon.cost)
 	$"../damage".text		= ": " + 		str(selected_weapon.damage)

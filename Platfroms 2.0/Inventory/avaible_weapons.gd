@@ -2,10 +2,8 @@ extends ItemList
 
 var selected_item_index: int #long
 var weapons_inventory = [] # Weapon
-#var virtual_player # Player
 
 func _ready():
-	#virtual_player = get_tree().root.get_node("main_menu").virtual_player
 	weapons_inventory = get_tree().root.get_node("main_menu").weapon_inventory
 	for i in range(weapons_inventory.size()):
 		var min_index = i
@@ -20,11 +18,10 @@ func _ready():
 
 func _on_item_selected(index):
 	selected_item_index = index
-	
 	var icon_of_weapon = get_item_icon(selected_item_index)
 	var selected_weapon
 	for w in weapons_inventory:
-		if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
+		if w.icon == icon_of_weapon.resource_path:
 			selected_weapon = w
 			break
 	

@@ -11,16 +11,14 @@ func _ready():
 func update_list():
 	clear()
 	for weapon in virtual_player.player_inventory:
-		#add_item(weapon.name)
 		add_icon_item(load(weapon.icon))
 
 func _on_item_selected(index):
 	selected_item_index = index
-	
 	var icon_of_weapon = get_item_icon(selected_item_index)
 	var selected_weapon
 	for w in virtual_player.player_inventory:
-		if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
+		if load(w.icon).resource_path == icon_of_weapon.resource_path:
 			selected_weapon = w
 			break
 	

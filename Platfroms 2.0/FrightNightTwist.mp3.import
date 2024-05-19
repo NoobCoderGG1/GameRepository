@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/FrightNightTwist.mp3-323a41b762bb4ac1d83c9a9d64976623.mp3str"
+
+[deps]
+
+source_file="res://FrightNightTwist.mp3"
+dest_files=[ "res://.import/FrightNightTwist.mp3-323a41b762bb4ac1d83c9a9d64976623.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

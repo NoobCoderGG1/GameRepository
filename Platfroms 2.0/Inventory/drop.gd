@@ -22,12 +22,12 @@ func _on_button_down():
 		return
 	var selected_weapon
 	for w in virtual_player.player_inventory:
-		if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
+		if w.icon == icon_of_weapon.resource_path:
 			selected_weapon = w
 			break
 	if selected_weapon == null:
 		return
 	if selected_item_index != -1 and is_in_taken(selected_weapon):
-		virtual_player.player_inventory.remove_at(selected_item_index)
+		virtual_player.player_inventory.remove(selected_item_index)
 		$"../taken_weapons".update_list()
 		virtual_player.weapon_count -= 1

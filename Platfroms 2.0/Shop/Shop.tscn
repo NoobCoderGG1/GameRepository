@@ -4,7 +4,7 @@
 [ext_resource path="res://UI/pins/Damage.png" type="Texture" id=2]
 [ext_resource path="res://UI/pins/Capacity.png" type="Texture" id=3]
 [ext_resource path="res://UI/pins/Rate.png" type="Texture" id=4]
-[ext_resource path="res://UI/assets/Background/ShopWithout.png" type="Texture" id=5]
+[ext_resource path="res://UI/assets/Background/Shop.png" type="Texture" id=5]
 [ext_resource path="res://Shop/buy.gd" type="Script" id=6]
 [ext_resource path="res://Shop/weapons.gd" type="Script" id=7]
 [ext_resource path="res://Shop/to_menu.gd" type="Script" id=8]
@@ -92,6 +92,7 @@ margin_right = 234.0
 margin_bottom = 376.0
 
 [node name="damage_img" type="TextureRect" parent="."]
+visible = false
 margin_left = 64.0
 margin_top = 190.0
 margin_right = 104.0
@@ -100,6 +101,7 @@ texture = ExtResource( 2 )
 stretch_mode = 1
 
 [node name="speed_img" type="TextureRect" parent="."]
+visible = false
 margin_left = 67.0
 margin_top = 230.0
 margin_right = 107.0
@@ -108,6 +110,7 @@ texture = ExtResource( 1 )
 stretch_mode = 1
 
 [node name="capacity_img" type="TextureRect" parent="."]
+visible = false
 margin_left = 60.0
 margin_top = 272.0
 margin_right = 100.0
@@ -116,6 +119,7 @@ texture = ExtResource( 3 )
 stretch_mode = 1
 
 [node name="rate_img" type="TextureRect" parent="."]
+visible = false
 margin_left = 63.0
 margin_top = 305.0
 margin_right = 103.0
@@ -124,6 +128,7 @@ texture = ExtResource( 4 )
 stretch_mode = 1
 
 [node name="cost_img" type="TextureRect" parent="."]
+visible = false
 margin_left = 57.0
 margin_top = 358.0
 margin_right = 97.0

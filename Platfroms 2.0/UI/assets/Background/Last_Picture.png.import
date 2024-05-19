@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ShopWithout.png-698d98d7257a534c5f2890ea6f28c98f.stex"
+path="res://.import/Last_Picture.png-afbf151a56ce73c5e34df89b452ffa97.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/assets/Background/ShopWithout.png"
-dest_files=[ "res://.import/ShopWithout.png-698d98d7257a534c5f2890ea6f28c98f.stex" ]
+source_file="res://UI/assets/Background/Last_Picture.png"
+dest_files=[ "res://.import/Last_Picture.png-afbf151a56ce73c5e34df89b452ffa97.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
@@ -31,5 +31,5 @@ process/invert_color=false
 process/normal_map_invert_y=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

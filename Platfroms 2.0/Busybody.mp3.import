@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Busybody.mp3-e7b1b9695e2892205685fd6037eb142a.mp3str"
+
+[deps]
+
+source_file="res://Busybody.mp3"
+dest_files=[ "res://.import/Busybody.mp3-e7b1b9695e2892205685fd6037eb142a.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

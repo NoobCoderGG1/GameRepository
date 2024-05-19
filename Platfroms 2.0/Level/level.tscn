@@ -1,0 +1,129 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Level/background.tscn" type="PackedScene" id=1]
+[ext_resource path="res://UI/timer_count/timer_count.tscn" type="PackedScene" id=2]
+[ext_resource path="res://UI/buttons/UpDown.png" type="Texture" id=3]
+[ext_resource path="res://UI/buttons/PauseButton.png" type="Texture" id=4]
+[ext_resource path="res://UI/buttons/LeftRight.png" type="Texture" id=5]
+[ext_resource path="res://UI/buttons/Attack.png" type="Texture" id=6]
+[ext_resource path="res://UI/buttons/Reload.png" type="Texture" id=7]
+[ext_resource path="res://UI/assets/HealthBar/Empty_HealthBar.png" type="Texture" id=8]
+[ext_resource path="res://UI/assets/HealthBar/Full_HealthBar.png" type="Texture" id=9]
+[ext_resource path="res://UI/assets/Background/EndGame.png" type="Texture" id=10]
+[ext_resource path="res://UI/buttons/Exit.png" type="Texture" id=11]
+[ext_resource path="res://Level/level.gd" type="Script" id=12]
+[ext_resource path="res://Level/PauseBtn.gd" type="Script" id=13]
+
+[sub_resource type="TileSet" id=1]
+
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 9 )
+region_rect = Rect2( -0.598927, 0, 33.4132, 32 )
+margin_left = 1.83516
+margin_right = 2.24298
+margin_top = 12.2344
+margin_bottom = 12.0305
+expand_margin_top = 1.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 8 )
+region_rect = Rect2( 0.463833, 0.389034, 31.2285, 30.6797 )
+margin_left = 1.63125
+margin_right = 1.63125
+margin_top = 11.6227
+margin_bottom = 10.6032
+expand_margin_top = 7.0
+expand_margin_bottom = 11.0
+
+[node name="level" type="Node2D"]
+script = ExtResource( 12 )
+
+[node name="Background" parent="." instance=ExtResource( 1 )]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 2.5
+autostart = true
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource( 1 )
+format = 1
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="timerCount" parent="UI" instance=ExtResource( 2 )]
+margin_left = 799.0
+margin_top = 19.0
+margin_right = -179.0
+margin_bottom = -560.0
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="UI"]
+margin_left = 24.0
+margin_top = 19.0
+margin_right = 348.0
+margin_bottom = 102.0
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+
+[node name="PauseBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 472, 9 )
+scale = Vector2( 4.25, 3 )
+normal = ExtResource( 4 )
+script = ExtResource( 13 )
+
+[node name="LMoveBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 20, 442 )
+scale = Vector2( 6.09375, 3.71875 )
+normal = ExtResource( 5 )
+action = "move_left"
+
+[node name="RMoveBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 451, 438 )
+scale = Vector2( -5.43272, 3.82033 )
+normal = ExtResource( 5 )
+action = "move_right"
+
+[node name="AttackBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 894, 277 )
+scale = Vector2( 3.59375, 3.5625 )
+normal = ExtResource( 6 )
+action = "attack"
+
+[node name="ChangeBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 865, 443 )
+scale = Vector2( 4.25, 3.84375 )
+normal = ExtResource( 7 )
+action = "change_weapon"
+
+[node name="JumpBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 735, 410 )
+scale = Vector2( 4.28125, -3.8125 )
+normal = ExtResource( 3 )
+action = "jump"
+
+[node name="DownMoveBtn" type="TouchScreenButton" parent="UI"]
+position = Vector2( 688, 449 )
+scale = Vector2( 4.21875, 3.71875 )
+normal = ExtResource( 3 )
+action = "move_down"
+
+[node name="endGame" type="Node2D" parent="UI"]
+visible = false
+
+[node name="endSprite" type="Sprite" parent="UI/endGame"]
+texture = ExtResource( 10 )
+
+[node name="RestartButton" type="TouchScreenButton" parent="UI/endGame"]
+normal = ExtResource( 7 )
+
+[node name="ExitButton" type="TouchScreenButton" parent="UI/endGame"]
+normal = ExtResource( 11 )
+
+[node name="Label" type="Label" parent="UI/endGame"]
+margin_right = 40.0
+margin_bottom = 14.0
+
+[connection signal="timeout" from="SpawnTimer" to="." method="spawn_timer"]
+[connection signal="pressed" from="UI/PauseBtn" to="UI/PauseBtn" method="PauseBtn_pressed"]
+[connection signal="pressed" from="UI/endGame/RestartButton" to="." method="restartBtn_pressed"]
+[connection signal="pressed" from="UI/endGame/ExitButton" to="UI/PauseBtn" method="PauseBtn_pressed"]
