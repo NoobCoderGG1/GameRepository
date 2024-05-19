@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://MainMenu/virtual_player.gd" type="Script" id=1]
+[ext_resource path="res://MainMenu/main_menu.gd" type="Script" id=2]
+[ext_resource path="res://MainMenu/shop_button.gd" type="Script" id=3]
+[ext_resource path="res://MainMenu/play_button.gd" type="Script" id=4]
+[ext_resource path="res://MainMenu/inventory_button.gd" type="Script" id=5]
+[ext_resource path="res://UI/assets/Background/MainMenu.png" type="Texture" id=6]
+
+[node name="main_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 256.0
+margin_bottom = 120.0
+script = ExtResource( 2 )
+
+[node name="background" type="Sprite" parent="."]
+position = Vector2( 512, 300 )
+scale = Vector2( 3.2, 3.33333 )
+texture = ExtResource( 6 )
+
+[node name="play_button" type="Button" parent="."]
+margin_left = 406.0
+margin_top = 136.0
+margin_right = 590.0
+margin_bottom = 217.0
+text = "Play"
+script = ExtResource( 4 )
+
+[node name="shop_button" type="Button" parent="."]
+margin_left = 401.0
+margin_top = 278.0
+margin_right = 597.0
+margin_bottom = 362.0
+text = "Shop"
+script = ExtResource( 3 )
+
+[node name="inventory_button" type="Button" parent="."]
+margin_left = 406.0
+margin_top = 421.0
+margin_right = 596.0
+margin_bottom = 519.0
+text = "Inventory"
+script = ExtResource( 5 )
+
+[node name="virtual_player" type="KinematicBody2D" parent="."]
+script = ExtResource( 1 )
+
+[connection signal="gui_input" from="play_button" to="play_button" method="_on_gui_input"]
+[connection signal="gui_input" from="shop_button" to="shop_button" method="_on_gui_input"]
+[connection signal="gui_input" from="inventory_button" to="inventory_button" method="_on_gui_input"]

@@ -24,9 +24,10 @@ func _on_item_selected(index):
 	var icon_of_weapon = get_item_icon(index)
 	var selected_weapon
 	for w in weapons:
-		if load(w.icon).get_image().get_data() == icon_of_weapon.get_image().get_data():
+		if w.icon == icon_of_weapon.resource_path:
 			selected_weapon = w
 			break
+			
 	#$"../ScrollContainer/weapon_info/image"
 	$"../image".texture = load(selected_weapon.icon)
 	$"../rate".text	= ": " + 	str(selected_weapon.cost)

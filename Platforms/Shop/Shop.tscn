@@ -174,7 +174,7 @@ theme_override_fonts/font = ExtResource("3_fhuvh")
 text = ": Rate
 "
 
-[node name="fire_rate" type="Label" parent="."]
+[node name="cost" type="Label" parent="."]
 texture_filter = 1
 layout_mode = 2
 offset_left = 139.0

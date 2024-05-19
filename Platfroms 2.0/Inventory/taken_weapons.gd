@@ -29,4 +29,3 @@ func _on_item_selected(index):
 	$"../weapon_info/damage".text		= "Damage: " + 		str(selected_weapon.damage)
 	$"../weapon_info/bullet_speed".text	= "Bullet_speed: " +str(selected_weapon.bullet_speed)
 	$"../weapon_info/capacity".text		= "Capacity: " + 	str(selected_weapon.capacity)
-	
