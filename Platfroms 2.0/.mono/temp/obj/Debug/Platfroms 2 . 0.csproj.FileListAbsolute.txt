@@ -1,0 +1,5 @@
+C:\Users\1\OneDrive\Документы\GitHub\GameRepository\Platfroms 2.0\.mono\temp\obj\Debug\Platfroms 2 . 0.csproj.AssemblyReference.cache
+C:\Users\1\OneDrive\Документы\GitHub\GameRepository\Platfroms 2.0\.mono\temp\obj\Debug\Platfroms 2 . 0.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\1\OneDrive\Документы\GitHub\GameRepository\Platfroms 2.0\.mono\temp\obj\Debug\Platfroms 2 . 0.AssemblyInfoInputs.cache
+C:\Users\1\OneDrive\Документы\GitHub\GameRepository\Platfroms 2.0\.mono\temp\obj\Debug\Platfroms 2 . 0.AssemblyInfo.cs
+C:\Users\1\OneDrive\Документы\GitHub\GameRepository\Platfroms 2.0\.mono\temp\obj\Debug\Platfroms 2 . 0.csproj.CoreCompileInputs.cache

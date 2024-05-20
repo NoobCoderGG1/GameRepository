@@ -200,7 +200,6 @@ func commonShoot():
 	var area_commonshoot_name = str(area_commonshoot.name) #Получение имени пули для правильного обращения через get_node 
 	var area_commonshoot_copy = area_commonshoot #Получение копии для корректной работы с ссылками
 	var lambda = func(body): 
-		var index = get_tree().root.get_node("Level").get_node("player").currentWeaponIndex
 		if body is CharacterBody2D or body is TileMap or body is StaticBody2D:
 			if body is CharacterBody2D:
 				print("")

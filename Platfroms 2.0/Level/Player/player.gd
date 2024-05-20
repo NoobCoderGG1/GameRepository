@@ -178,7 +178,7 @@ func commonShoot():
 	collision.debug_color = Color(255, 0, 0, 1)
 	collision.shape = segment
 	#Создание узла спрайта для пули
-	var bullet_sprite := Sprite2D.new()
+	var bullet_sprite := Sprite.new()
 	bullet_sprite.texture = load(inventory[indx].bulletTexture)
 	bullet_sprite.texture_filter = CanvasItem.TEXTURE_FILTER_NEAREST
 	bullet_sprite.scale = Vector2(0.35,0.35)
@@ -188,8 +188,12 @@ func commonShoot():
 	area_commonshoot.name = inventory[indx].name + "~" + str(inventory[indx].current_bullet) + "^" + str(dirPlayer)
 	var area_commonshoot_name = str(area_commonshoot.name) #Получение имени пули для правильного обращения через get_node 
 	var area_commonshoot_copy = area_commonshoot #Получение копии для корректной работы с ссылками
-	var lambda = func(body): 
-		var index = get_tree().root.get_node("Level").get_node("player").currentWeaponIndex
+	
+	var csharp_script = load("res://Level/Player/csharp_lambda.cs")
+	var csharp_node = csharp_script.new()
+	var lambda = csharp_node.lambda
+	
+	"""var lambda = func(body): 
 		if body is CharacterBody2D or body is TileMap or body is StaticBody2D:
 			if body is CharacterBody2D:
 				print("")
@@ -200,7 +204,8 @@ func commonShoot():
 				deleteScene(area_commonshoot_name)
 			elif body is TileMap or body is StaticBody2D:
 				get_tree().root.get_node("Level").bullets.erase(area_commonshoot_copy)
-				deleteScene(area_commonshoot_name)
+				deleteScene(area_commonshoot_name) 
+	"""
 	#Продолжение установки свойств для пули
 	area_commonshoot.body_entered.connect(lambda)
 	area_commonshoot.add_child(collision)
@@ -231,9 +236,9 @@ func fire(pos_x:float) -> void: #Произведение лазерного в�
 			isUp = isUp * -1
 			$LazerGunLine.add_point(point,i)
 func check_tile(user_position_x: float, user_position_y: float, offset: int) -> bool: #Проверка на слой тайла
-		var check_ground_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(2, Vector2i(
+		var check_ground_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(2, Vector2(
 			(user_position_x + offset) / 16, user_position_y / 16))
-		var check_trees_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(1, Vector2i(
+		var check_trees_layer = get_tree().root.get_node("Level").get_node("TileMap").get_cell_tile_data(1, Vector2(
 			(user_position_x + offset) / 16, user_position_y / 16))
 		return check_ground_layer != null or check_trees_layer != null
 

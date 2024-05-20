@@ -7,17 +7,17 @@ var spawn_positions = [Vector2(281, 271), Vector2(414, 322), Vector2(570, 177), 
 , Vector2(980, 249), Vector2(923, -38), Vector2(571, 69), Vector2(728, 69), Vector2(445, 78), 
 Vector2(183, 228), Vector2(1229, 244)] #Список позиций спавна врагов
 
-var slug_scene = preload("res://Level/Enemy/enemy.tscn") 
+"""var slug_scene = preload("res://Level/Enemy/enemy.tscn") 
 var boar_scene =  preload("res://Level/Enemy/Boar/boar.tscn") 
 var ogre_scene =  preload("res://Level/Enemy/Ogre/ogre.tscn") 
 var zombie_scene =  preload("res://Level/Enemy/Zombie/zombie.tscn") 
 var gargoyle_scene =  preload("res://Level/Enemy/Gargoyle/gargoyle.tscn") 
 var vampire_scene =  preload("res://Level/Enemy/Vampire/vampire.tscn")
-var black_knight_scene = preload("res://Level/Enemy/Black_Knight/black_knight.tscn") 
+var black_knight_scene = preload("res://Level/Enemy/Black_Knight/black_knight.tscn") """
 var enemies = []
 
 func spawn_timer():
-	var enemy
+	"""var enemy
 	var boss_enemy
 	var random_enemy = randi() % 12
 	match random_enemy:
@@ -54,7 +54,7 @@ func spawn_timer():
 			boss_enemy = black_knight_scene.instantiate()
 			boss_enemy.position = spawn_positions[index_array]
 			add_child(boss_enemy)
-			enemies.append(boss_enemy)
+			enemies.append(boss_enemy) """
 
 func _physics_process(delta):
 	var player = $player
